@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Yourself Login </title>
+    <link rel="stylesheet" href="log.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+   <!-- Animated Circles Background -->
+   <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="container">
+    <input type="checkbox" id="flip" #flip (change)="onFlipChange()">
+    <div class="cover">
+      <div class="front">
+        <img src="../../assets/image/login-cover.jpeg" alt="">
+        <div class="text">
+          <span class="text-1">Already member of the club?</span>
+          <span class="text-2">Let's party!</span>
+        </div>
+      </div>
+      <div class="back">
+        <img src="../../assets/image/login-back-cover.jpg" alt="">
+        <div class="text">
+          <span class="text-1">Not part of the club yet?</span>
+          <span class="text-2">Let's get you started!</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+          <form action="#">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email"  name="email" placeholder="Enter your email" required  [(ngModel)]="userData.email"/>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Enter your password" [(ngModel)]="userData.password"  required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}"
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 12 or more characters">
+              </div>
+              <div class="text"><a href="/reset-password">Forgot password?</a></div>
+              <div class="button input-box">
+                <input type="submit" (click)="onLogin(userData)" value="Submit" >
+              </div>
+              <div class="text sign-up-text">Don't have an account? <label for="flip">Sign Up</label></div>
+            </div>
+        </form>
+      </div>
+        <div class="signup-form">
+          <div class="title">Sign Up</div>
+          <form (ngSubmit)="onSignUp(userDataRegistration)" method="post" #registrationForm="ngForm">
+            <div class="input-boxes">
+                <div class="input-box" style="position: relative;">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" placeholder="Enter your username" [(ngModel)]="userDataRegistration.username" #username="ngModel" required pattern="[A-Za-z0-9]+">
+                    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="validation-popup">
+                        Username must only contain letters and numbers.
+                    </div>
+                </div>
+                <div class="input-box" style="position: relative;">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" name="email" class="form-control" placeholder="Enter your email" [(ngModel)]="userDataRegistration.email" #emailField="ngModel" required email>
+                  <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="validation-popup">
+                      Please enter a valid email.
+                  </div>
+              </div>
+
+                <div class="input-box" style="position: relative;">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Enter your password" [(ngModel)]="userDataRegistration.password" #password="ngModel" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="validation-popup">
+                      Password must be at least 12 characters long and<br>
+                      include at least one uppercase letter, one lowercase<br>
+                      letter, one special character and one number. <br>
+                    </div>
+                </div>
+
+                <div class="button input-box" (change)="onFlipChange()">
+                    <input type="submit" value="Submit" [disabled]="!registrationForm.valid">
+                </div>
+                <div class="text sign-up-text">Already have an account? <label for="flip">Log In</label></div>
+            </div>
+        </form>
+
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

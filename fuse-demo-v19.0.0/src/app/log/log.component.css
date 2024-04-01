@@ -1,0 +1,468 @@
+/* Global style resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Body styling */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(86,92,202);
+  padding: 30px;
+}
+
+/* Container for login/sign-up forms */
+.container {
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  perspective: 2700px;
+}
+
+/* Styling for the cover which contains front and back elements */
+.container .cover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 50%;
+  z-index: 98;
+  transition: all 1s ease;
+  transform-origin: left;
+  transform-style: preserve-3d;
+}
+
+/* Transformation for the cover when flipped */
+.container #flip:checked ~ .cover {
+  transform: rotateY(-180deg);
+}
+
+.container #flip:checked ~ .cover .text-1,.container #flip:checked ~ .cover .text-2 {
+  /*transform: rotateY(-180deg);*/
+  z-index: 1;
+}
+
+/* Styles for front and back sections of the cover */
+.container .cover .front,
+.container .cover .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+
+/* Additional transformation for the back section */
+.cover .back {
+  transform: rotateY(180deg);
+}
+
+/* Styling for before and after pseudo-elements of the cover */
+.container .cover::before,
+.container .cover::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgb(86,92,202);
+  z-index: -1; /* Behind the text */
+}
+
+.container .cover::after {
+  opacity: 0.2;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+/* Styling for images in the cover */
+.container .cover .front img,
+.container .cover .back img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 1; /* Ensure they are above the purple background */
+  opacity: 0.3;
+}
+
+/* Styling for text in the cover */
+.container .cover .text {
+  position: absolute;
+  z-index: 130;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styling for specific text elements in the cover */
+.cover .text .text-1,
+.cover .text .text-2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+
+.cover .text .text-2 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Styles for the forms container */
+.container .forms {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+
+/* Flex layout for form content */
+.container .form-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Styles for login and signup forms */
+.form-content .login-form,
+.form-content .signup-form {
+  width: calc(100% / 2 - 25px);
+}
+
+/* Title styling for forms */
+.forms .form-content .title {
+  position: relative;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.forms .form-content .title:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 25px;
+  background: rgb(86,92,202);
+}
+
+.forms .signup-form .title:before {
+  width: 20px;
+}
+
+/* Styles for input boxes in the forms */
+.forms .form-content .input-box {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* Styles for inputs in the forms */
+.form-content .input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+/* Style changes for input fields on focus or when valid */
+.form-content .input-box input:focus,
+.form-content .input-box input:valid {
+  border-color: rgb(86,92,202);
+}
+
+/* Styles for icons in the input boxes */
+.form-content .input-box i {
+  position: absolute;
+  color: rgb(86,92,202);
+  font-size: 17px;
+}
+
+/* Styles for text content in the form */
+.forms .form-content .text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Styles for links within the form text */
+.forms .form-content .text a {
+  text-decoration: none;
+}
+
+/* Hover effect for links within the form text */
+.forms .form-content .text a:hover {
+  text-decoration: underline;
+}
+
+/* Styles for the submit button in the form */
+.forms .form-content .button {
+  color: #fff;
+  margin-top: 40px;
+}
+
+/* Styles for the submit input within the form */
+.forms .form-content .button input {
+  color: #fff;
+  background: rgb(86,92,202);
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+/* Hover effect for the submit button */
+.forms .form-content .button input:hover {
+  background: #5b13b9;
+}
+
+/* Styles for labels in the form content */
+.forms .form-content label {
+  color: #5b13b9;
+  cursor: pointer;
+}
+
+/* Hover effect for labels in the form content */
+.forms .form-content label:hover {
+  text-decoration: underline;
+}
+
+/* Styles for login and signup text prompts */
+.forms .form-content .login-text,
+.forms .form-content .sign-up-text {
+  text-align: center;
+  margin-top: 25px;
+}
+
+/* Hide the flip checkbox, as it's controlled via labels */
+.container #flip {
+  display: none;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 730px) {
+  .container .cover {
+    display: none;
+  }
+  .form-content .login-form,
+  .form-content .signup-form {
+    width: 100%;
+  }
+  .form-content .signup-form {
+    display: none;
+  }
+  .container #flip:checked ~ .forms .signup-form {
+    display: block;
+  }
+  .container #flip:checked ~ .forms .login-form {
+    display: none;
+  }
+}
+
+/* Circles = for the background */
+.area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0; /* Behind the content */
+  background: #565cca;
+  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+}
+
+.circles{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circles li{
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+
+}
+
+.circles li:nth-child(1){
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(2){
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+
+@keyframes animate {
+
+  0%{
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+      border-radius: 0;
+  }
+
+  100%{
+      transform: translateY(-1000px) rotate(720deg);
+      opacity: 0;
+      border-radius: 50%;
+  }
+}
+
+.validation-popup {
+  position: absolute;
+  bottom: 120%; /* Position above the input */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: linear-gradient(145deg, #ff758c 0%, #ff7eb3 100%);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 10px 25px -5px rgba(255, 94, 98, 0.5);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-out;
+  pointer-events: none; /* Prevents mouse events on the popup */
+}
+
+.input-box:hover .validation-popup,
+.input-box:focus-within .validation-popup {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px); /* Slight move up effect */
+}
+
+/* Popup Arrow */
+.validation-popup::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #ff758c transparent transparent transparent;
+  transition: all 0.4s ease-out;
+}
+
+/* Animation for the popup */
+@keyframes popupAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.input-box:hover .validation-popup,
+.input-box:focus-within .validation-popup {
+  animation: popupAnimation 0.4s ease-out forwards;
+}
+
+
