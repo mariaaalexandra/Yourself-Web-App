@@ -168,6 +168,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:pencil-square',
                 link : '/apps/memos',
             },
+            {
+                id   : 'apps.navigation',
+                title: 'Map-Navigation',
+                type : 'basic',
+                icon : 'heroicons_outline:map',
+                link : '/apps/navigation',
+            },
             // {
             //     id   : 'apps.scrumboard',
             //     title: 'Scrumboard',

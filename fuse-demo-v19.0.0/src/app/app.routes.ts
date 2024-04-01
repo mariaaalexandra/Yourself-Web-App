@@ -108,6 +108,7 @@ export const appRoutes: Route[] = [
                 {path: 'boards', loadChildren: () => import('app/modules/admin/apps/board/scrumboard.routes')},
                 {path: 'tasks', loadChildren: () => import('app/modules/admin/apps/tasks/tasks.routes')},
                 {path: 'task-management', loadChildren: () => import('app/modules/admin/apps/task-management/tasks.routes')},
+                {path: 'navigation', loadChildren: () => import('app/modules/admin/apps/bucharest-map/buchares-map.routes')},
             ]},
 
             // Pages
