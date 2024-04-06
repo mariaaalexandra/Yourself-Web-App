@@ -6,6 +6,7 @@ import { LayoutComponent } from 'app/layout/layout.component';
 import { LogComponent } from './log/log.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { DonateComponent } from './modules/donate/donate.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -16,6 +17,9 @@ export const appRoutes: Route[] = [
     { path: 'otp-verification', component: OtpVerificationComponent},
     { path: '', pathMatch : 'full', redirectTo: 'log'},
     { path: 'start', component: StartPageComponent},
+    { path: 'contribute/donate', component: DonateComponent},
+
+    
 
     // Redirect empty path to '/dashboards/project'
     {path: '', pathMatch : 'full', redirectTo: 'dashboards/project'},
