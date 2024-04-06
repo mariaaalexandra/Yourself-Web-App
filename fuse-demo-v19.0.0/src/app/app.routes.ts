@@ -7,6 +7,9 @@ import { LogComponent } from './log/log.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { StartPageComponent } from './start-page/start-page.component';
 import { DonateComponent } from './modules/donate/donate.component';
+import { ContributeComponent } from './modules/contribute/contribute.component';
+import { OpenSOurceComponent } from './modules/opensource/opensource.component';
+import { FeedbackComponent } from './modules/feedback/feedback.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -17,7 +20,10 @@ export const appRoutes: Route[] = [
     { path: 'otp-verification', component: OtpVerificationComponent},
     { path: '', pathMatch : 'full', redirectTo: 'log'},
     { path: 'start', component: StartPageComponent},
+    { path: 'contribute', component: ContributeComponent},
     { path: 'contribute/donate', component: DonateComponent},
+    { path: 'contribute/open-source', component: OpenSOurceComponent},
+    { path: 'contribute/feedback', component: FeedbackComponent},
 
     
 
