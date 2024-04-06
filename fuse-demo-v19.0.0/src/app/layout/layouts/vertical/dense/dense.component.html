@@ -49,12 +49,6 @@
             <shortcuts></shortcuts>
             <messages></messages>
             <notifications></notifications>
-            <button
-                class="lg:hidden"
-                mat-icon-button
-                (click)="quickChat.toggle()">
-                <mat-icon [svgIcon]="'heroicons_outline:chat-bubble-left-right'"></mat-icon>
-            </button>
             <user></user>
         </div>
     </div>
@@ -66,12 +60,4 @@
         <router-outlet *ngIf="true"></router-outlet>
     </div>
 
-    <!-- Footer -->
-    <div class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
-        <span class="font-medium text-secondary">Fuse &copy; {{currentYear}}</span>
-    </div>
-
 </div>
-
-<!-- Quick chat -->
-<quick-chat #quickChat="quickChat"></quick-chat>

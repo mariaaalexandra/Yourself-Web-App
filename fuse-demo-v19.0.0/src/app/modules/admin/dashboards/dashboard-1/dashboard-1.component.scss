@@ -1,0 +1,46 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5; /* Below the slider to allow the slider to overlay */
+}
+
+.slider {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20vh; /* 20% of the viewport height */
+  background-color: #007BFF; /* A professional bluish color */
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(100%); /* Initially hidden */
+  z-index: 6; /* Above the container to overlay the button when open */
+}
+
+.slider-open {
+  transform: translateY(0); /* Move the slider up to show it */
+}
+
+.toggle-btn {
+  position: fixed;
+  bottom: 20px; /* Adjust the bottom position for initial state */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff; /* Matching blue color for consistency */
+  color: white;
+  font-size: 24px;
+  line-height: 50px; /* Center the plus sign */
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  z-index: 7; /* Above the slider to not be overlapped */
+  transition: bottom 0.3s ease-in-out; /* Smooth transition for the button */
+}
+
+.slider-open ~ .toggle-btn {
+  bottom: calc(20vh + 20px); /* Move button above the slider */
+}

@@ -1,1 +1,6 @@
-<p>Piu</p>
+<div class="container">
+  <div class="slider" [ngClass]="{'slider-open': sliderOpen}">
+    <!-- Slider content goes here -->
+  </div>
+  <button (click)="toggleSlider()" class="toggle-btn">&#43;</button> <!-- Plus symbol -->
+</div>
