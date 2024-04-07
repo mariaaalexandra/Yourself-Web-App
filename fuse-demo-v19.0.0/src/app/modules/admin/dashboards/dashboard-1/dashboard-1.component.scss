@@ -12,7 +12,7 @@
   left: 0;
   width: 100%;
   height: 20vh; /* 20% of the viewport height */
-  background-color: #007BFF; /* A professional bluish color */
+  background-color: #e1b035e7; /* A professional bluish color */
   transition: transform 0.3s ease-in-out;
   transform: translateY(100%); /* Initially hidden */
   z-index: 6; /* Above the container to overlay the button when open */
@@ -30,7 +30,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #007bff; /* Matching blue color for consistency */
+  background-color: #d16b0bc4; /* Matching blue color for consistency */
   color: white;
   font-size: 24px;
   line-height: 50px; /* Center the plus sign */
