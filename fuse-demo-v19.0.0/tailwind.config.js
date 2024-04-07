@@ -281,7 +281,7 @@ const config = {
     },
     plugins    : [
 
-        // Fuse - Tailwind plugins
+        // Tailwind plugins
         require(path.resolve(__dirname, ('src/@fuse/tailwind/plugins/utilities'))),
         require(path.resolve(__dirname, ('src/@fuse/tailwind/plugins/icon-size'))),
         require(path.resolve(__dirname, ('src/@fuse/tailwind/plugins/theming')))({themes}),
