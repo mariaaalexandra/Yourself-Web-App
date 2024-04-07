@@ -1,9 +1,13 @@
 .container {
   position: fixed;
+  min-height: 100vh;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 5; /* Below the slider to allow the slider to overlay */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: space-between; /* Adjust based on your layout needs */
 }
 
 .slider {
@@ -28,7 +32,7 @@
 }
 
 .toggle-btn {
-  position: fixed;
+  position: fixed; /* Adjusted from 'relative' to 'fixed' to maintain your original design */
   bottom: 4px; /* Adjust the bottom position for initial state */
   left: 50%;
   transform: translateX(-50%);
@@ -43,8 +47,27 @@
   border: none;
   cursor: pointer;
   z-index: 7; /* Above the slider to not be overlapped */
-  transition: bottom 0.3s ease-in-out; /* Smooth transition for the button */
+  transition: bottom 0.3s ease-in-out, left 0.3s ease; /* Added left transition here */
+  overflow: hidden; /* Hide the parts of the pseudo-element that overflow the button */
+
+  /* Pseudo-element for hover effect */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start from the left, outside the button */
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50; /* The color of the slide-in effect */
+    transition: left 0.3s ease; /* Smooth transition for the slide-in effect */
+    z-index: -1; /* Place the pseudo-element below the button text */
+  }
+
+  &:hover::before {
+    left: 0; /* On hover, slide in the background from left to right */
+  }
 }
+
 
 .slider-open ~ .toggle-btn {
   bottom: calc(20vh + 4px); /* Move button above the slider */
@@ -72,6 +95,32 @@
   flex-shrink: 0; /* Prevent shrinking */
   width: 350px; /* Fixed width for each slider item */
   height: calc(20vh - 20px); /* Fixed height based on the slider height, adjusting for padding */
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #4CAF50; /* Adjust the color as needed */
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+.slider-item:hover::before {
+  left: 0;
+}
+.slider-item * {
+  position: relative;
+  z-index: 1;
+}
+
+.slider-item:hover {
+  transition: transform 0.2s ease-in-out;
 }
 
 .slider-image {

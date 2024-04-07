@@ -2,6 +2,11 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SliderStateService } from './slider-state.service'; // Update path accordingly
 import { CommonModule } from '@angular/common';
+import { ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
+
+/* Gadgets */
+import { ReadingNowTrackerComponent } from './gadgets/ReadingNow Tracker/ReadingNowTracker.component'; // Make sure the path is correct
+/* Gadgets */
 
 @Component({
   selector: 'app-dashboard-1',
@@ -15,8 +20,11 @@ export class Dashboard1Component implements OnDestroy {
   sliderOpen = false;
   enlargedSlider = false;
   private subscription: Subscription;
+  @ViewChild('dynamicInsert', { read: ViewContainerRef }) dynamicInsert: ViewContainerRef;
 
-  constructor(private sliderStateService: SliderStateService) {
+  constructor(
+    private sliderStateService: SliderStateService,
+    private componentFactoryResolver: ComponentFactoryResolver) {
     // Subscribe to the enlargedSlider$ observable
     this.subscription = this.sliderStateService.enlargedSlider$.subscribe(enlarged => {
       this.enlargedSlider = enlarged;
@@ -27,6 +35,9 @@ export class Dashboard1Component implements OnDestroy {
         this.resetSliderPosition();
       }
     });
+  }
+
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
