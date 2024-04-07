@@ -63,12 +63,6 @@ export class OtherComponentsComponent implements OnInit, OnDestroy
                         link : '/ui/other-components/common/notifications',
                     },
                     {
-                        id   : 'other-components.common.quick-chat',
-                        title: 'Quick chat',
-                        type : 'basic',
-                        link : '/ui/other-components/common/quick-chat',
-                    },
-                    {
                         id   : 'other-components.common.search',
                         title: 'Search',
                         type : 'basic',
