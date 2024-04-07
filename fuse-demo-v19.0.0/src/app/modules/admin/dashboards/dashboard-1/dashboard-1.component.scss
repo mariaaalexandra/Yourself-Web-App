@@ -9,11 +9,11 @@
 .slider {
   position: fixed;
   bottom: 0;
-  left: 10%; /* Offset from the left */
-  right: 10%; /* Offset from the right */
+  left: 6.5%; /* Offset from the left */
+  right: 0%; /* Offset from the right */
   height: 20vh; /* 20% of the viewport height */
   background-color: #e1b035e7; /* A professional bluish color */
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, left 0.5s ease-in-out, right 0.5s ease-in-out; /* Combined transitions */
   transform: translateY(100%); /* Initially hidden */
   z-index: 6; /* Above the container to overlay the button when open */
   overflow-x: auto; /* Enable horizontal scrolling */
@@ -52,16 +52,18 @@
 
 .slider-list {
   display: flex; /* Align items horizontally */
-  padding: 0 10px; /* Adjusts padding for the inner content */
+  padding-left: 10px; /* Adjusts padding for the inner content */
+  padding-right: 0px; /* Adjusts padding for the inner content */
   margin: 0; /* Removes default margin */
   list-style-type: none; /* Removes default list styling */
   flex-wrap: nowrap; /* Prevents items from wrapping to a new line */
+  overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 .slider-item {
   display: flex; /* Keep items in a horizontal line */
   align-items: center; /* Align items vertically in the center */
-  margin-right: 20px; /* Space between each item */
+  margin-right: 10px; /* Space between each item */
   border: 4px solid black; /* Border styling */
   padding: 5px; /* Padding inside each item */
   border-radius: 10px; /* Rounded corners */
