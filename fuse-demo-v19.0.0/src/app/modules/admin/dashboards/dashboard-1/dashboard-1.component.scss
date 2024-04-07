@@ -9,13 +9,18 @@
 .slider {
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 10%; /* Offset from the left */
+  right: 10%; /* Offset from the right */
   height: 20vh; /* 20% of the viewport height */
   background-color: #e1b035e7; /* A professional bluish color */
   transition: transform 0.3s ease-in-out;
   transform: translateY(100%); /* Initially hidden */
   z-index: 6; /* Above the container to overlay the button when open */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Prevent vertical scrolling */
+  white-space: nowrap; /* Keep the slider items in one line */
+  padding: 10px 0; /* Padding at the top and bottom for aesthetics */
+  box-sizing: border-box; /* Include padding in the height calculation */
 }
 
 .slider-open {
@@ -24,7 +29,7 @@
 
 .toggle-btn {
   position: fixed;
-  bottom: 20px; /* Adjust the bottom position for initial state */
+  bottom: 4px; /* Adjust the bottom position for initial state */
   left: 50%;
   transform: translateX(-50%);
   width: 50px;
@@ -42,5 +47,57 @@
 }
 
 .slider-open ~ .toggle-btn {
-  bottom: calc(20vh + 20px); /* Move button above the slider */
+  bottom: calc(20vh + 4px); /* Move button above the slider */
+}
+
+.slider-list {
+  display: flex; /* Align items horizontally */
+  padding: 0 10px; /* Adjusts padding for the inner content */
+  margin: 0; /* Removes default margin */
+  list-style-type: none; /* Removes default list styling */
+  flex-wrap: nowrap; /* Prevents items from wrapping to a new line */
+}
+
+.slider-item {
+  display: flex; /* Keep items in a horizontal line */
+  align-items: center; /* Align items vertically in the center */
+  margin-right: 20px; /* Space between each item */
+  border: 4px solid black; /* Border styling */
+  padding: 5px; /* Padding inside each item */
+  border-radius: 10px; /* Rounded corners */
+  background: rgba(253, 196, 111, 0.982); /* Background color */
+  box-sizing: border-box; /* Include padding and border in the element's size */
+  flex-shrink: 0; /* Prevent shrinking */
+  width: 350px; /* Fixed width for each slider item */
+  height: calc(20vh - 20px); /* Fixed height based on the slider height, adjusting for padding */
+}
+
+.slider-image {
+  width: 100px; /* Fixed width for all images */
+  height: 100px; /* Fixed height for all images */
+  object-fit: cover; /* Cover the area, image may be cropped */
+}
+
+.slider-content {
+  display: flex;
+  flex-direction: column; /* Stack title and description vertically */
+  justify-content: center; /* Centers the text content vertically */
+  overflow: hidden; /* Hide overflowed text */
+  margin-left: 10px; /* Space between image and text content */
+  width: calc(250px - 10px); /* Adjusted width for text content, considering padding */
+}
+
+.slider-title {
+  font-weight: bold; /* Make the title text bold */
+  font-size: 1em; /* Slightly larger font size for the title */
+  overflow: hidden; /* Hide overflowed title text */
+  text-overflow: ellipsis; /* Add an ellipsis for overflowed text */
+  white-space: wrap; /* Prevent text wrapping to keep title in a single line */
+}
+
+.slider-description {
+  font-size: 0.8em; /* Smaller font size for the description */
+  overflow: hidden; /* Hide overflowed description text */
+  text-overflow: ellipsis; /* Add an ellipsis for overflowed text */
+  white-space: wrap; /* Prevent text wrapping to keep description in a single line */
 }
