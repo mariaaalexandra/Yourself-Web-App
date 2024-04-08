@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 
 /* Gadgets */
-import { ReadingNowTrackerComponent } from './gadgets/ReadingNow Tracker/ReadingNowTracker.component'; // Make sure the path is correct
+import { ReadingNowTrackerComponent } from './gadgets/ReadingNow Tracker/ReadingNowTracker.component';
 /* Gadgets */
 
 @Component({

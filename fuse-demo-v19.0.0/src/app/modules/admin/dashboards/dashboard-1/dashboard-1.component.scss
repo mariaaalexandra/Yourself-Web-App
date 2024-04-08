@@ -97,6 +97,7 @@
   height: calc(20vh - 20px); /* Fixed height based on the slider height, adjusting for padding */
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .slider-item::before {
