@@ -1,0 +1,60 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification</title>
+</head>
+
+<body class="body">
+  <div class="area" >
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+  </div >
+<div class="login-box">
+<form class="form" (ngSubmit)="processResetPassword(password)">
+<div class="title">Reset Password</div>
+<div class="title"></div>
+<p class="message">Please provide your email address</p>
+<!-- Password field -->
+<div class="e-input">
+    <input type="password" name="password" class="password-input" placeholder="Enter your password" [(ngModel)]="password" #passwordField="ngModel" required minlength="6">
+    <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)" class="validation-popup">
+        Password must be at least 12 characters long and<br>
+        include at least one uppercase letter, one lowercase<br>
+        letter, one special character and one number. <br>
+    </div>
+</div>
+
+<!-- Password confirmation field -->
+<div class="e-input">
+    <input type="password" name="confirmPassword" class="password-input" placeholder="Confirm your password" [(ngModel)]="confirmPassword" #confirmPasswordField="ngModel" required>
+    <div *ngIf="confirmPasswordField.invalid && (confirmPasswordField.dirty || confirmPasswordField.touched)" class="validation-popup">
+      Password confirmation is required.
+    </div>
+    <div *ngIf="password !== confirmPassword && (confirmPasswordField.dirty || confirmPasswordField.touched)" class="validation-popup">
+      Passwords do not match.
+    </div>
+</div>
+
+
+<button class="animated-button">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Submit
+</button>
+
+</form>
+</div>
+</body>

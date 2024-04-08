@@ -847,13 +847,17 @@ body {
     }
   }
 
-  .hidden {
+  /* .hidden {
     display: none;
-  }
+  } */
 
   .visible {
     display: inline-block;
   }
+
+  .why-us .collapse {
+    visibility: visible !important;
+}
 
   /*--------------------------------------------------------------
   # Benefits

@@ -10,6 +10,9 @@ import { DonateComponent } from './modules/donate/donate.component';
 import { ContributeComponent } from './modules/contribute/contribute.component';
 import { OpenSOurceComponent } from './modules/opensource/opensource.component';
 import { FeedbackComponent } from './modules/feedback/feedback.component';
+import { ResetPassComponent } from './modules/reset-pass/reset-pass.component';
+import { OtpVerificationPassComponent } from './modules/otp-verification-pass/otp-verification.component';
+import { CreateNewPassComponent } from './modules/create-new-pass/reset-pass.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -24,8 +27,10 @@ export const appRoutes: Route[] = [
     { path: 'contribute/donate', component: DonateComponent},
     { path: 'contribute/open-source', component: OpenSOurceComponent},
     { path: 'contribute/feedback', component: FeedbackComponent},
+    { path: 'reset-pass', component: ResetPassComponent},
+    { path: 'reset-pass-verification', component: OtpVerificationPassComponent},
+    { path: 'create-new-pass', component: CreateNewPassComponent},
 
-    
 
     // Redirect empty path to '/dashboards/project'
     {path: '', pathMatch : 'full', redirectTo: 'dashboards/project'},
