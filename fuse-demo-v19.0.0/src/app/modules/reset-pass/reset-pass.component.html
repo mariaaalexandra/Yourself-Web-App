@@ -1,0 +1,46 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification</title>
+</head>
+
+<body class="body">
+  <div class="area" >
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+  </div >
+<div class="login-box">
+<form class="form" (ngSubmit)="processForgotPassword(mail)">
+<div class="title">Reset Password</div>
+<div class="title">Email Verification</div>
+<p class="message">Please provide your email address</p>
+<div class="e-input">
+    <input type="email" name="email" class="email-input" placeholder="Enter your email" [(ngModel)]="mail" #emailField="ngModel" required email>
+    <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="validation-popup">
+      Please enter a valid email.
+    </div>
+  </div>
+
+
+<button class="animated-button">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Submit
+</button>
+
+</form>
+</div>
+</body>
