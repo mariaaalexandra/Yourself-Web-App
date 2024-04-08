@@ -1,0 +1,46 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification</title>
+</head>
+
+<body class="body">
+  <div class="area" >
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+  </div >
+<div class="login-box">
+<form class="form" (ngSubmit)="verifyOtp()">
+<div class="title">OTP</div>
+<div class="title">Verification Code</div>
+<p class="message">We have sent a verification code to your email address.</p>
+<div class="inputs">
+  <input [(ngModel)]="otp[0]"  name="input1" id="input1" type="text" maxlength="1" [class.invalid-input]="isOtpInvalid">
+  <input [(ngModel)]="otp[1]"  name="input2" id="input2" type="text" maxlength="1" [class.invalid-input]="isOtpInvalid">
+  <input [(ngModel)]="otp[2]"  name="input3" id="input3" type="text" maxlength="1" [class.invalid-input]="isOtpInvalid">
+  <input [(ngModel)]="otp[3]"  name="input4" id="input4" type="text" maxlength="1" [class.invalid-input]="isOtpInvalid">
+  <input [(ngModel)]="otp[4]"  name="input5" id="input5" type="text" maxlength="1" [class.invalid-input]="isOtpInvalid">
+  <input [(ngModel)]="otp[5]"  name="input6" id="input6" type="text" maxlength="1" [class.invalid-input]="isOtpInvalid">
+</div>
+<button class="animated-button">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Submit
+</button>
+
+</form>
+</div>
+</body>
