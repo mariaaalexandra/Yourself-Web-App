@@ -7,11 +7,12 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectChange } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
 import { ShortcutsService } from 'app/layout/common/shortcuts/shortcuts.service';
-import { Shortcut } from 'app/layout/common/shortcuts/shortcuts.types';
+import { Shortcuts } from 'app/layout/common/shortcuts/shortcuts.types';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -30,7 +31,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
 
     mode: 'view' | 'modify' | 'add' | 'edit' = 'view';
     shortcutForm: UntypedFormGroup;
-    shortcuts: Shortcut[];
+    shortcuts: Shortcuts[];
     private _overlayRef: OverlayRef;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -54,29 +55,18 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
-        // Initialize the form
+    ngOnInit(): void {
         this.shortcutForm = this._formBuilder.group({
-            id         : [null],
-            label      : ['', Validators.required],
+            selectedShortcut: [null],  // Dropdown control for selecting a shortcut
+            id: [null],
+            label: ['', Validators.required],
             description: [''],
-            icon       : ['', Validators.required],
-            link       : ['', Validators.required],
-            useRouter  : ['', Validators.required],
+            icon: ['', Validators.required],
+            link: ['', Validators.required],
+            useRouter: [false, Validators.required],
         });
-
-        // Get the shortcuts
-        this._shortcutsService.shortcuts$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((shortcuts: Shortcut[]) =>
-            {
-                // Load the shortcuts
-                this.shortcuts = shortcuts;
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
+    
+        this._shortcutsService.getAll().subscribe(); // Load shortcuts
     }
 
     /**
@@ -141,7 +131,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     }
 
     /**
-     * Prepare for a new shortcut
+     * Prepare for a new Shortcuts
      */
     newShortcut(): void
     {
@@ -153,50 +143,42 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     }
 
     /**
-     * Edit a shortcut
+     * Edit a Shortcuts
      */
-    editShortcut(shortcut: Shortcut): void
+    editShortcut(Shortcuts: Shortcuts): void
     {
-        // Reset the form with the shortcut
-        this.shortcutForm.reset(shortcut);
+        // Reset the form with the Shortcuts
+        this.shortcutForm.reset(Shortcuts);
 
         // Enter the edit mode
         this.mode = 'edit';
     }
 
     /**
-     * Save shortcut
+     * Save Shortcuts
      */
-    save(): void
-    {
-        // Get the data from the form
-        const shortcut = this.shortcutForm.value;
-
-        // If there is an id, update it...
-        if ( shortcut.id )
-        {
-            this._shortcutsService.update(shortcut.id, shortcut).subscribe();
+    save(): void {
+        const Shortcuts = this.shortcutForm.value;
+    
+        if (Shortcuts.id) {
+            this._shortcutsService.update(Shortcuts.id, Shortcuts).subscribe();
+        } else {
+            this._shortcutsService.create(Shortcuts).subscribe();
         }
-        // Otherwise, create a new shortcut...
-        else
-        {
-            this._shortcutsService.create(shortcut).subscribe();
-        }
-
-        // Go back the modify mode
-        this.mode = 'modify';
+    
+        this.mode = 'modify'; // Switch back to modify mode
     }
 
     /**
-     * Delete shortcut
+     * Delete Shortcuts
      */
     delete(): void
     {
         // Get the data from the form
-        const shortcut = this.shortcutForm.value;
+        const Shortcuts = this.shortcutForm.value;
 
         // Delete
-        this._shortcutsService.delete(shortcut.id).subscribe();
+        this._shortcutsService.delete(Shortcuts.id).subscribe();
 
         // Go back the modify mode
         this.mode = 'modify';
@@ -265,4 +247,21 @@ export class ShortcutsComponent implements OnInit, OnDestroy
             this._overlayRef.detach();
         });
     }
+
+    onShortcutSelected(event: MatSelectChange): void {
+        const selectedShortcut = event.value;
+        if (selectedShortcut) {
+            this.shortcutForm.patchValue({
+                id: selectedShortcut.id,
+                label: selectedShortcut.label,
+                description: selectedShortcut.description,
+                icon: selectedShortcut.icon,
+                link: selectedShortcut.link,
+                useRouter: selectedShortcut.useRouter
+            });
+        } else {
+            this.shortcutForm.reset();
+        }
+    }
+    
 }

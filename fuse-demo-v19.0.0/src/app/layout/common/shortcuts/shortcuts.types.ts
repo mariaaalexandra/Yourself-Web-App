@@ -1,4 +1,4 @@
-export interface Shortcut
+export interface Shortcuts
 {
     id: string;
     label: string;

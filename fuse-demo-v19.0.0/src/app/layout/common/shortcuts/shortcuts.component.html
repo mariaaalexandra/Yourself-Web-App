@@ -47,7 +47,7 @@
                     <button
                         mat-icon-button
                         (click)="newShortcut()"
-                        [matTooltip]="'Add shortcut'">
+                        [matTooltip]="'Add Shortcuts'">
                         <mat-icon
                             class="icon-size-5 text-current"
                             [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
@@ -101,29 +101,29 @@
 
                 <!-- Shortcuts -->
                 <div class="grid grid-cols-2 grid-flow-row">
-                    <!-- Shortcut -->
+                    <!-- Shortcuts -->
                     <ng-container *ngFor="let shortcut of shortcuts; trackBy: trackByFn">
                         <div class="relative group flex flex-col overflow-hidden bg-card border-r border-b even:border-r-0 hover:bg-gray-50 dark:hover:bg-black dark:hover:bg-opacity-5">
                             <ng-container *ngIf="mode === 'modify'">
                                 <div
                                     class="absolute inset-0 z-99 cursor-pointer"
-                                    (click)="editShortcut(shortcut)">
+                                    (click)="editShortcut(Shortcuts)">
                                 </div>
                             </ng-container>
                             <!-- Normal links -->
                             <a
                                 class="flex flex-col items-center justify-center w-full h-full py-6 no-underline"
-                                *ngIf="!shortcut.useRouter"
+                                *ngIf="!Shortcuts.useRouter"
                                 [ngClass]="{'pointer-events-none': mode === 'modify'}"
-                                [href]="shortcut.link">
+                                [href]="Shortcuts.link">
                                 <ng-container *ngTemplateOutlet="linkContent"></ng-container>
                             </a>
                             <!-- Router links -->
                             <a
                                 class="flex flex-col items-center justify-center w-full h-full py-6 no-underline"
-                                *ngIf="shortcut.useRouter"
+                                *ngIf="Shortcuts.useRouter"
                                 [ngClass]="{'pointer-events-none': mode === 'modify'}"
-                                [routerLink]="shortcut.link">
+                                [routerLink]="Shortcuts.link">
                                 <ng-container *ngTemplateOutlet="linkContent"></ng-container>
                             </a>
                             <!-- Link content template -->
@@ -136,10 +136,10 @@
                                     <mat-icon
                                         class="z-10"
                                         [ngClass]="{'group-hover:opacity-0': mode === 'modify'}"
-                                        [svgIcon]="shortcut.icon"></mat-icon>
+                                        [svgIcon]="Shortcuts.icon"></mat-icon>
                                 </div>
-                                <div class="font-medium text-center">{{shortcut.label}}</div>
-                                <div class="text-md text-center text-secondary">{{shortcut.description}}</div>
+                                <div class="font-medium text-center">{{Shortcuts.label}}</div>
+                                <div class="text-md text-center text-secondary">{{Shortcuts.description}}</div>
                             </ng-template>
                         </div>
                     </ng-container>
@@ -165,7 +165,14 @@
                     class="p-6"
                     [formGroup]="shortcutForm">
                     <mat-form-field class="w-full">
-                        <mat-label>Label</mat-label>
+                        <mat-label>Select a Shortcut</mat-label>
+                        <select matNativeControl [formControlName]="'selectedShortcut'" (change)="onShortcutSelected($event)">
+                            <option value="">--Select a Shortcut--</option>
+                            <option *ngFor="let shortcut of shortcuts" [ngValue]="shortcut">{{shortcut.label}}</option>
+                        </select>
+                    </mat-form-field>
+                    <mat-form-field class="w-full">
+                        <mat-label>Name</mat-label>
                         <input
                             matInput
                             [formControlName]="'label'"
