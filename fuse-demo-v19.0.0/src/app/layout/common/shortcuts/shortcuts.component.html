@@ -177,13 +177,6 @@
                     class="p-6"
                     [formGroup]="shortcutForm">
                     <mat-form-field class="w-full">
-                        <mat-label>Select a Shortcut</mat-label>
-                        <select matNativeControl [formControlName]="'selectedShortcut'" (change)="onShortcutSelected($event)">
-                            <option value="">--Select a Shortcut--</option>
-                            <option *ngFor="let shortcut of shortcuts" [ngValue]="shortcut">{{shortcut.label}}</option>
-                        </select>
-                    </mat-form-field>
-                    <mat-form-field class="w-full">
                         <mat-label>Name</mat-label>
                         <input
                             matInput
@@ -210,11 +203,13 @@
                             [formControlName]="'link'"
                             required>
                     </mat-form-field>
+                    <!--
                     <mat-slide-toggle
                         [color]="'primary'"
                         [formControlName]="'useRouter'">
                         Use router for the link
                     </mat-slide-toggle>
+                    -->
                     <!-- Actions -->
                     <div class="flex items-center justify-end mt-4">
                         <button
