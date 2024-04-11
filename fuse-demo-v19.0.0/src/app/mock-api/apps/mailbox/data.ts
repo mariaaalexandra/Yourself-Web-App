@@ -6,12 +6,6 @@ const now = DateTime.now();
 
 export const folders = [
     {
-        id   : '7c004a19-4506-48ef-93ab-f16381302e3b',
-        title: 'Inbox',
-        slug : 'inbox',
-        icon : 'heroicons_outline:inbox',
-    },
-    {
         id   : '1ee2ea29-9a1f-4c27-b4d2-5e465703b6a0',
         title: 'Sent',
         slug : 'sent',
