@@ -66,7 +66,10 @@ export class ShortcutsComponent implements OnInit, OnDestroy
             useRouter: [false, Validators.required],
         });
     
-        this._shortcutsService.getAll().subscribe(); // Load shortcuts
+        this._shortcutsService.getAll().subscribe((shortcuts: Shortcuts[]) => {
+            this.shortcuts = shortcuts;
+            console.log('Shortcuts loaded:', this.shortcuts); // Log loaded shortcuts to console
+        });
     }
 
     /**
@@ -263,5 +266,11 @@ export class ShortcutsComponent implements OnInit, OnDestroy
             this.shortcutForm.reset();
         }
     }
-    
+
+    deleteShortcut(id: string): void {
+        this._shortcutsService.delete(id).subscribe(() => {
+            // Remove the deleted shortcut from the local array
+            this.shortcuts = this.shortcuts.filter(shortcut => shortcut.id !== id);
+        });
+    }
 }
