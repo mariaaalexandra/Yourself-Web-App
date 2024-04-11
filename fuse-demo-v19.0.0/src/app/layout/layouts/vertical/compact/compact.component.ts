@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
@@ -16,6 +16,7 @@ import { SearchComponent } from 'app/layout/common/search/search.component';
 import { ShortcutsComponent } from 'app/layout/common/shortcuts/shortcuts.component';
 import { UserComponent } from 'app/layout/common/user/user.component';
 import { Subject, takeUntil } from 'rxjs';
+import { SliderStateService } from '../../../../../app/modules/admin/dashboards/dashboard-1/slider-state.service';
 
 @Component({
     selector     : 'compact-layout',
@@ -39,6 +40,7 @@ export class CompactLayoutComponent implements OnInit, OnDestroy
         private _navigationService: NavigationService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _fuseNavigationService: FuseNavigationService,
+        private sliderStateService: SliderStateService
     )
     {
     }
@@ -111,5 +113,12 @@ export class CompactLayoutComponent implements OnInit, OnDestroy
             // Toggle the opened status
             navigation.toggle();
         }
+
+        this.toggleSliderEnlargement();
     }
+
+    // Slide enlargement reference
+    toggleSliderEnlargement() {
+        this.sliderStateService.toggleEnlargedSlider();
+      }
 }
