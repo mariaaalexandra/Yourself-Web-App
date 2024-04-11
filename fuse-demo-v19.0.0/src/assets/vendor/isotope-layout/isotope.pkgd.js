@@ -3329,7 +3329,7 @@ var trim = String.prototype.trim ?
     return mungeSorter;
   })();
 
-  // parsers used in getSortData shortcut strings
+  // parsers used in getSortData Shortcuts strings
   Isotope.sortDataParsers = {
     'parseInt': function( val ) {
       return parseInt( val, 10 );

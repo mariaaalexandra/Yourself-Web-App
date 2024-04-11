@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { LanguagesComponent } from 'app/modules/admin/ui/other-components/common/languages/languages.component';
-import { MessagesComponent } from 'app/modules/admin/ui/other-components/common/messages/messages.component';
 import { NotificationsComponent } from 'app/modules/admin/ui/other-components/common/notifications/notifications.component';
 import { OverviewComponent } from 'app/modules/admin/ui/other-components/common/overview/overview.component';
 import { SearchComponent } from 'app/modules/admin/ui/other-components/common/search/search.component';
@@ -35,14 +34,6 @@ export default [
                     {
                         path     : 'languages',
                         component: LanguagesComponent,
-                    },
-                    {
-                        path     : 'messages',
-                        component: MessagesComponent,
-                    },
-                    {
-                        path     : 'notifications',
-                        component: NotificationsComponent,
                     },
                     {
                         path     : 'search',

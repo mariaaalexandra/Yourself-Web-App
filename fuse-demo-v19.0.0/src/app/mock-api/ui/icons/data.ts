@@ -1441,7 +1441,7 @@ export const material = [
     'shopping_basket',
     'shopping_cart',
     'short_text',
-    'shortcut',
+    'Shortcuts',
     'show_chart',
     'shower',
     'shuffle',

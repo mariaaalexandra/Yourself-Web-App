@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Shortcut } from 'app/layout/common/shortcuts/shortcuts.types';
+import { Shortcuts } from 'app/layout/common/shortcuts/shortcuts.types';
 import { map, Observable, ReplaySubject, switchMap, take, tap } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ShortcutsService
 {
-    private _shortcuts: ReplaySubject<Shortcut[]> = new ReplaySubject<Shortcut[]>(1);
+    private _shortcuts: ReplaySubject<Shortcuts[]> = new ReplaySubject<Shortcuts[]>(1);
 
     /**
      * Constructor
@@ -22,7 +22,7 @@ export class ShortcutsService
     /**
      * Getter for shortcuts
      */
-    get shortcuts$(): Observable<Shortcut[]>
+    get shortcuts$(): Observable<Shortcuts[]>
     {
         return this._shortcuts.asObservable();
     }
@@ -34,95 +34,40 @@ export class ShortcutsService
     /**
      * Get all messages
      */
-    getAll(): Observable<Shortcut[]>
-    {
-        return this._httpClient.get<Shortcut[]>('api/common/shortcuts').pipe(
-            tap((shortcuts) =>
-            {
+    getAll(): Observable<Shortcuts[]> {
+        return this._httpClient.get<Shortcuts[]>('http://localhost:8080/api/shortcuts').pipe(
+            tap((shortcuts) => {
                 this._shortcuts.next(shortcuts);
             }),
         );
     }
 
-    /**
-     * Create a shortcut
-     *
-     * @param shortcut
-     */
-    create(shortcut: Shortcut): Observable<Shortcut>
-    {
-        return this.shortcuts$.pipe(
-            take(1),
-            switchMap(shortcuts => this._httpClient.post<Shortcut>('api/common/shortcuts', {shortcut}).pipe(
-                map((newShortcut) =>
-                {
-                    // Update the shortcuts with the new shortcut
-                    this._shortcuts.next([...shortcuts, newShortcut]);
-
-                    // Return the new shortcut from observable
-                    return newShortcut;
-                }),
-            )),
+    create(Shortcuts: Shortcuts): Observable<Shortcuts> {
+        return this._httpClient.post<Shortcuts>('http://localhost:8080/api/shortcuts', Shortcuts).pipe(
+            tap((newShortcut) => {
+                this.shortcuts$.pipe(
+                    take(1),
+                    tap(shortcuts => {
+                        this._shortcuts.next([...shortcuts, newShortcut]);
+                    })
+                ).subscribe();
+            }),
         );
     }
 
-    /**
-     * Update the shortcut
-     *
-     * @param id
-     * @param shortcut
-     */
-    update(id: string, shortcut: Shortcut): Observable<Shortcut>
-    {
-        return this.shortcuts$.pipe(
-            take(1),
-            switchMap(shortcuts => this._httpClient.patch<Shortcut>('api/common/shortcuts', {
-                id,
-                shortcut,
-            }).pipe(
-                map((updatedShortcut: Shortcut) =>
-                {
-                    // Find the index of the updated shortcut
-                    const index = shortcuts.findIndex(item => item.id === id);
-
-                    // Update the shortcut
-                    shortcuts[index] = updatedShortcut;
-
-                    // Update the shortcuts
-                    this._shortcuts.next(shortcuts);
-
-                    // Return the updated shortcut
-                    return updatedShortcut;
-                }),
-            )),
+    update(id: string, Shortcuts: Shortcuts): Observable<Shortcuts> {
+        return this._httpClient.put<Shortcuts>(`http://localhost:8080/api/shortcuts/${id}`, Shortcuts).pipe(
+            tap((updatedShortcut) => {
+                this.getAll().subscribe(); // Refresh the list of shortcuts
+            }),
         );
     }
 
-    /**
-     * Delete the shortcut
-     *
-     * @param id
-     */
-    delete(id: string): Observable<boolean>
-    {
-        return this.shortcuts$.pipe(
-            take(1),
-            switchMap(shortcuts => this._httpClient.delete<boolean>('api/common/shortcuts', {params: {id}}).pipe(
-                map((isDeleted: boolean) =>
-                {
-                    // Find the index of the deleted shortcut
-                    const index = shortcuts.findIndex(item => item.id === id);
-
-                    // Delete the shortcut
-                    shortcuts.splice(index, 1);
-
-                    // Update the shortcuts
-                    this._shortcuts.next(shortcuts);
-
-                    // Return the deleted status
-                    return isDeleted;
-                }),
-            )),
+    delete(id: string): Observable<boolean> {
+        return this._httpClient.delete<boolean>(`http://localhost:8080/api/shortcuts/${id}`).pipe(
+            tap((isDeleted) => {
+                this.getAll().subscribe(); // Refresh the list of shortcuts
+            }),
         );
     }
 }

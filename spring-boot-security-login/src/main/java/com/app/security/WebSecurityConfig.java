@@ -94,6 +94,7 @@ public class WebSecurityConfig {
             .antMatchers("/api/boards/**").permitAll()
             .antMatchers("/api/members/**").permitAll()
             .antMatchers("/api/products/**").permitAll()
+            .antMatchers("/api/shortcuts/**").permitAll()
             .anyRequest().authenticated();
 
     http.headers().frameOptions().sameOrigin();
