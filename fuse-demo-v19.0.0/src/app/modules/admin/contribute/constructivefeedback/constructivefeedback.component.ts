@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ConstructiveFeedbackService } from './constructivefeedback.component.service';
 import { FormsModule } from '@angular/forms';
@@ -12,14 +12,16 @@ import { CommonModule } from '@angular/common';
   selector: 'constructivefeedback',
   templateUrl: './constructivefeedback.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   standalone: true,
   imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, CommonModule]
 })
 export class ConstructiveFeedbackComponent implements OnInit {
   feedbackForm: FormGroup;
   showThankYouModal = false;  // Control visibility of the thank you modal
-  constructor(private fb: FormBuilder, private feedbackService: ConstructiveFeedbackService) {}
+  constructor(private fb: FormBuilder, 
+    private feedbackService: ConstructiveFeedbackService,
+    private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.feedbackForm = this.fb.group({
@@ -39,6 +41,7 @@ export class ConstructiveFeedbackComponent implements OnInit {
         next: (response) => {
           console.log('Feedback submitted', response);
           this.showThankYouModal = true;  // Show the modal on successful submission
+          console.log('showThankYouModal:', this.showThankYouModal); // Debugging statement
           this.feedbackForm.reset();  // Clear the form
         },
         error: (error) => console.error('Error:', error)

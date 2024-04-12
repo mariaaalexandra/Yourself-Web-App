@@ -1,25 +1,25 @@
-<div *ngIf="showThankYouModal" class="thank-you-modal">
-    <div class="modal-content">
-      <span (click)="closeThankYouModal()" class="close-button">&times;</span>
-      <h1>Thank You!</h1>
-      <p>Your feedback has been submitted successfully.</p>
-    </div>
-  </div>
 <div class="formbold-main-wrapper">
-    <div class="formbold-form-wrapper">
+    <div *ngIf="showThankYouModal" class="thank-you-modal">
+        <div class="modal-content">
+          <span (click)="closeThankYouModal()" class="close-button">&times;</span>
+          <h1 class="thank-you-heading">Thank You!</h1>
+          <p class="thank-you-message">Your feedback has been submitted successfully.</p>
+        </div>
+      </div>
+    <div *ngIf="!showThankYouModal" class="formbold-form-wrapper">
       <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" method="post">
-        <img src="../../../../../assets/img/Contribute/Feedback.webp">
+        <img src="../../../../../assets/img/Contribute/Feedback.webp" class="formbold-img">
         <div class="formbold-input-flex">
           <div>
             <label for="firstName" class="formbold-form-label">First Name</label>
-            <input type="text" formControlName="firstName" id="firstName" placeholder="Julia" class="formbold-form-input">
+            <input type="text" formControlName="firstName" id="firstName" placeholder="Julia" class="formbold-form-input" required>
             <div *ngIf="feedbackForm.get('firstName').touched && feedbackForm.get('firstName').errors?.['required']" class="error">
               First name is required.
             </div>
           </div>
           <div>
             <label for="lastName" class="formbold-form-label">Last Name</label>
-            <input type="text" formControlName="lastName" id="lastName" placeholder="Cooper" class="formbold-form-input">
+            <input type="text" formControlName="lastName" id="lastName" placeholder="Cooper" class="formbold-form-input" required>
             <div *ngIf="feedbackForm.get('lastName').touched && feedbackForm.get('lastName').errors?.['required']" class="error">
               Last name is required.
             </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="formbold-mb-5">
           <label for="email" class="formbold-form-label">Email Address</label>
-          <input type="email" formControlName="email" id="email" placeholder="julia.cooper@example.com" class="formbold-form-input">
+          <input type="email" formControlName="email" id="email" placeholder="julia.cooper@example.com" class="formbold-form-input" required>
           <div *ngIf="feedbackForm.get('email').touched && feedbackForm.get('email').errors?.['required']" class="error">
               Email is required.
           </div>
@@ -37,28 +37,37 @@
         </div>
         <div class="formbold-mb-5">
           <label for="liked" class="formbold-form-label">What did you like?</label>
-          <textarea formControlName="liked" id="liked" class="formbold-form-input"></textarea>
+          <textarea formControlName="liked" id="liked" class="formbold-form-input" required minlength="10"></textarea>
           <div *ngIf="feedbackForm.get('liked').touched && feedbackForm.get('liked').errors?.['required']" class="error">
               This field is required.
+          </div>
+          <div *ngIf="feedbackForm.get('liked').touched && feedbackForm.get('liked').errors?.['minlength']" class="error">
+              Minimum 10 characters required.
           </div>
         </div>
         <div class="formbold-mb-5">
           <label for="disliked" class="formbold-form-label">What did you not like?</label>
-          <textarea formControlName="disliked" id="disliked" class="formbold-form-input"></textarea>
+          <textarea formControlName="disliked" id="disliked" class="formbold-form-input" required minlength="10"></textarea>
           <div *ngIf="feedbackForm.get('disliked').touched && feedbackForm.get('disliked').errors?.['required']" class="error">
               This field is required.
+          </div>
+          <div *ngIf="feedbackForm.get('disliked').touched && feedbackForm.get('disliked').errors?.['minlength']" class="error">
+              Minimum 10 characters required.
           </div>
         </div>
         <div class="formbold-mb-5">
           <label for="suggestions" class="formbold-form-label">Any suggestions?</label>
-          <textarea formControlName="suggestions" id="suggestions" class="formbold-form-input"></textarea>
+          <textarea formControlName="suggestions" id="suggestions" class="formbold-form-input" required minlength="10"></textarea>
           <div *ngIf="feedbackForm.get('suggestions').touched && feedbackForm.get('suggestions').errors?.['required']" class="error">
               This field is required.
+          </div>
+          <div *ngIf="feedbackForm.get('suggestions').touched && feedbackForm.get('suggestions').errors?.['minlength']" class="error">
+              Minimum 10 characters required.
           </div>
         </div>
         <div class="formbold-mb-5">
           <label for="rating" class="formbold-form-label">Rating</label>
-          <select formControlName="rating" id="rating" class="formbold-form-input">
+          <select formControlName="rating" id="rating" class="formbold-form-input" required>
             <option value="">Select a rating</option>
             <option value="1">1 - Poor</option>
             <option value="2">2 - Fair</option>
@@ -74,6 +83,7 @@
       </form>
     </div>
   </div>
+  
 
 <Style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -87,12 +97,11 @@
     }
     .formbold-main-wrapper {
         display: flex;
-        align-items: center; /* Align vertically */
-        align-content: center;
-        justify-content: center; /* Align horizontally */
         min-height: 100%; /* Full viewport height */
         padding: 48px;
-        width: 60%;
+        width: 70%;
+        align-self: center;
+        margin: auto;
     }
 
     .formbold-form-wrapper {
@@ -104,9 +113,9 @@
     }
 
     .formbold-img {
-        width: 100%; /* Makes image responsive */
-        height: auto;
-        margin-bottom: 40px;
+        width: 79%; /* Makes image responsive */
+        height: 79%;
+        margin: auto;
     }
 
     .formbold-input-flex {
@@ -140,11 +149,30 @@
         width: 100%;
         background: white;
         padding: 40px;
+        align-items: center; /* Align vertically */
+        align-content: center;
+        justify-content: center; /* Align horizontally */
+        align-self: center;
     }
 
-    .formbold-img {
-        margin-bottom: 40px;
-    }
+    /* Additional styles for visual feedback */
+.formbold-form-input:invalid {
+  border-color: red; /* Change border color for invalid fields */
+}
+
+.formbold-form-input:invalid + .error {
+  display: block; /* Show error message for invalid fields */
+}
+
+.formbold-form-input:focus + .formbold-form-label {
+  color: #6a64f1; /* Highlight label when field is focused */
+}
+
+.formbold-form-input:focus + .formbold-form-label::after {
+  content: '*'; /* Add asterisk to label when field is focused */
+  color: red;
+  margin-left: 5px;
+}
 
     .formbold-input-flex {
         display: flex;
@@ -259,37 +287,100 @@
     }
 
     .error {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.formbold-form-input:focus {
+  border-color: #6a64f1;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formbold-btn:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Additional styles for visual feedback */
+.formbold-form-input:invalid {
+  border-color: red; /* Change border color for invalid fields */
+}
+
+.formbold-form-input:invalid + .error {
+  display: block; /* Show error message for invalid fields */
+}
+
+.formbold-form-input:focus + .formbold-form-label {
+  color: #6a64f1; /* Highlight label when field is focused */
+}
+
+.formbold-form-input:focus + .formbold-form-label::after {
+  content: '*'; /* Add asterisk to label when field is focused */
+  color: red;
+  margin-left: 5px;
 }
 
 .thank-you-modal {
   position: fixed;
   left: 0;
   top: 0;
-  width: 50%;
-  height: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 100, 0, 0.8); /* Green background */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: fadeIn 0.5s ease; /* Fade-in animation */
+  color: #000000; /* text color */
 }
 
 .modal-content {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 80%;
-  max-width: 500px;
+  max-width: 80%;
+  width: 400px;
 }
 
 .close-button {
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 28px;
+  color: #333; /* Choose a color that contrasts well with the background */
   cursor: pointer;
+  border-radius: 50%; /* Make the close button round */
+  width: 40px; /* Set a fixed width */
+  height: 40px; /* Set a fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease; /* Add transition for smoother hover effect */
+}
+
+.close-button:hover {
+  color: #555; /* Change to a slightly darker color on hover */
+  background-color: rgba(0, 0, 0, 0.1); /* Add a subtle background color on hover */
+}
+
+.thank-you-heading {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.thank-you-message {
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
     </style>
