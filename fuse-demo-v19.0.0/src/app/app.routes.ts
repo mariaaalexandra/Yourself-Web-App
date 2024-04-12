@@ -6,10 +6,6 @@ import { LayoutComponent } from 'app/layout/layout.component';
 import { LogComponent } from './log/log.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { StartPageComponent } from './start-page/start-page.component';
-import { DonateComponent } from './modules/donate/donate.component';
-import { ContributeComponent } from './modules/contribute/contribute.component';
-import { OpenSOurceComponent } from './modules/opensource/opensource.component';
-import { FeedbackComponent } from './modules/feedback/feedback.component';
 import { ResetPassComponent } from './modules/reset-pass/reset-pass.component';
 import { OtpVerificationPassComponent } from './modules/otp-verification-pass/otp-verification.component';
 import { CreateNewPassComponent } from './modules/create-new-pass/reset-pass.component';
@@ -23,14 +19,9 @@ export const appRoutes: Route[] = [
     { path: 'otp-verification', component: OtpVerificationComponent},
     { path: '', pathMatch : 'full', redirectTo: 'log'},
     { path: 'start', component: StartPageComponent},
-    { path: 'contribute', component: ContributeComponent},
-    { path: 'contribute/donate', component: DonateComponent},
-    { path: 'contribute/open-source', component: OpenSOurceComponent},
-    { path: 'contribute/feedback', component: FeedbackComponent},
     { path: 'reset-pass', component: ResetPassComponent},
     { path: 'reset-pass-verification', component: OtpVerificationPassComponent},
     { path: 'create-new-pass', component: CreateNewPassComponent},
-
 
     // Redirect empty path to '/apps/project'
     {path: '', pathMatch : 'full', redirectTo: 'apps/project'},
@@ -125,6 +116,13 @@ export const appRoutes: Route[] = [
                 {path: 'tasks', loadChildren: () => import('app/modules/admin/apps/tasks/tasks.routes')},
                 {path: 'task-management', loadChildren: () => import('app/modules/admin/apps/task-management/tasks.routes')},
                 {path: 'navigation', loadChildren: () => import('app/modules/admin/apps/bucharest-map/buchares-map.routes')},
+            ]},
+
+            // Contribute
+            {path: 'contribute', children: [
+                {path: 'donate', loadChildren: () => import('app/modules/admin/contribute/donate/donate.routes')},
+                {path: 'opensourcecontributions', loadChildren: () => import('app/modules/admin/contribute/opensourcecontributions/opensourcecontributions.routes')},
+                {path: 'constructivefeedback', loadChildren: () => import('app/modules/admin/contribute/constructivefeedback/constructivefeedback.routes')},
             ]},
 
             // Pages

@@ -201,8 +201,8 @@ body {
 
   .navbar .getstarted:hover,
   .navbar .getstarted:focus:hover {
-    color: #fff;
-    background: #31a9e1;
+    color: #ffffff;
+    background: #1d7da988;
   }
 
   .navbar .dropdown ul {
