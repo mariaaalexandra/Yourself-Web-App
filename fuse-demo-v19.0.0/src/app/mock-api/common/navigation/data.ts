@@ -16,27 +16,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:queue-list',
                 link : '/dashboards/dashboard-1',
             },
-            // {
-            //     id   : 'dashboards.analytics',
-            //     title: 'Analytics',
-            //     type : 'basic',
-            //     icon : 'heroicons_outline:chart-pie',
-            //     link : '/dashboards/analytics',
-            // },
-            // {
-            //     id   : 'dashboards.finance',
-            //     title: 'Finance',
-            //     type : 'basic',
-            //     icon : 'heroicons_outline:banknotes',
-            //     link : '/dashboards/finance',
-            // },
-            // {
-            //     id   : 'dashboards.crypto',
-            //     title: 'Crypto',
-            //     type : 'basic',
-            //     icon : 'heroicons_outline:currency-dollar',
-            //     link : '/dashboards/crypto',
-            // },
+            
         ],
     },
     {
@@ -51,21 +31,21 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 title: 'Analytics',
                 type : 'basic',
                 icon : 'heroicons_outline:chart-pie',
-                link : '/dashboards/analytics',
+                link : '/apps/analytics',
             },
             {
                 id   : 'dashboards.finance',
                 title: 'Finance',
                 type : 'basic',
                 icon : 'heroicons_outline:banknotes',
-                link : '/dashboards/finance',
+                link : '/apps/finance',
             },
             {
                 id   : 'dashboards.crypto',
                 title: 'Crypto',
                 type : 'basic',
                 icon : 'heroicons_outline:currency-dollar',
-                link : '/dashboards/crypto',
+                link : '/apps/crypto',
             },
             // {
             //     id   : 'apps.academy',

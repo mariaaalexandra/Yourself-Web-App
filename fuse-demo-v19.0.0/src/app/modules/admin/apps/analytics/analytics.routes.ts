@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
-import { AnalyticsComponent } from 'app/modules/admin/dashboards/analytics/analytics.component';
-import { AnalyticsService } from 'app/modules/admin/dashboards/analytics/analytics.service';
+import { AnalyticsComponent } from 'app/modules/admin/apps/analytics/analytics.component';
+import { AnalyticsService } from 'app/modules/admin/apps/analytics/analytics.service';
 
 export default [
     {

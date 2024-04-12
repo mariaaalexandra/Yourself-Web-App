@@ -7,7 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { FinanceService } from 'app/modules/admin/dashboards/finance/finance.service';
+import { FinanceService } from 'app/modules/admin/apps/finance/finance.service';
 import { ApexOptions, NgApexchartsModule } from 'ng-apexcharts';
 import { Subject, takeUntil } from 'rxjs';
 

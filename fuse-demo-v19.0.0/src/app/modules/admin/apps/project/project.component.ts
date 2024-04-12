@@ -9,7 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
-import { ProjectService } from 'app/modules/admin/dashboards/project/project.service';
+import { ProjectService } from 'app/modules/admin/apps/project/project.service';
 import { ApexOptions, NgApexchartsModule } from 'ng-apexcharts';
 import { Subject, takeUntil } from 'rxjs';
 

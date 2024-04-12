@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
-export class CryptoService
+export class AnalyticsService
 {
     private _data: BehaviorSubject<any> = new BehaviorSubject(null);
 
@@ -35,7 +35,7 @@ export class CryptoService
      */
     getData(): Observable<any>
     {
-        return this._httpClient.get('api/dashboards/crypto').pipe(
+        return this._httpClient.get('api/apps/analytics').pipe(
             tap((response: any) =>
             {
                 this._data.next(response);
