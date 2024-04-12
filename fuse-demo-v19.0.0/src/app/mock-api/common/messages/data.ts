@@ -28,7 +28,7 @@ export const messages = [
         description: 'Don\'t forget to pickup Jeremy after school!',
         time       : now.minus({hours: 3}).toISO(), // 3 hours ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -38,7 +38,7 @@ export const messages = [
         description: 'I\'ll proof read your bio on next Monday.',
         time       : now.minus({hours: 5}).toISO(), // 5 hours ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -48,7 +48,7 @@ export const messages = [
         description: 'Dude, I heard that they are going to promote you! Congrats man, tonight the drinks are on me!',
         time       : now.minus({hours: 7}).toISO(), // 7 hours ago
         read       : false,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -58,7 +58,7 @@ export const messages = [
         description: 'Boss, I\'ve sent all client invoices but Geoffrey refusing to pay.',
         time       : now.minus({hours: 9}).toISO(), // 9 hours ago
         read       : false,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -78,7 +78,7 @@ export const messages = [
         description: 'Why did\'t you still look at the kitten pictures I\'ve sent to you!',
         time       : now.minus({day: 3}).toISO(), // 3 days ago
         read       : false,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -88,7 +88,7 @@ export const messages = [
         description: 'Dude, Cheryl keeps bugging me with kitten pictures all the time :( What are we gonna do about it?',
         time       : now.minus({day: 4}).toISO(), // 4 days ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
 ];

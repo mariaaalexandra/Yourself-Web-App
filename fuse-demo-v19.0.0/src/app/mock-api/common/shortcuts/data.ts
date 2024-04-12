@@ -29,7 +29,7 @@ export const shortcuts = [
         label      : 'Dashboard',
         description: 'User analytics',
         icon       : 'heroicons_outline:chart-pie',
-        link       : '/dashboards/analytics',
+        link       : '/apps/analytics',
         useRouter  : true,
     },
     {
@@ -61,7 +61,7 @@ export const shortcuts = [
         label      : 'Reload',
         description: 'Reload the app',
         icon       : 'heroicons_outline:arrow-path',
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : false,
     },
 ];

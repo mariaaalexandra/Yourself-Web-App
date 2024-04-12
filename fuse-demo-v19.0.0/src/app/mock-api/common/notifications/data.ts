@@ -19,7 +19,7 @@ export const notifications = [
         description: '<strong>Leo Gill</strong> added you to <em>Top Secret Project</em> group and assigned you as a <em>Project Manager</em>',
         time       : now.minus({minute: 50}).toISO(), // 50 minutes ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -29,7 +29,7 @@ export const notifications = [
         description: 'You have 15 unread mails across 3 mailboxes',
         time       : now.minus({hour: 3}).toISO(), // 3 hours ago
         read       : false,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -39,7 +39,7 @@ export const notifications = [
         description: 'Your <em>Docker container</em> is ready to publish',
         time       : now.minus({hour: 5}).toISO(), // 5 hours ago
         read       : false,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -48,7 +48,7 @@ export const notifications = [
         description: '<strong>Roger Murray</strong> accepted your friend request',
         time       : now.minus({hour: 7}).toISO(), // 7 hours ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -57,7 +57,7 @@ export const notifications = [
         description: '<strong>Sophie Stone</strong> sent you a direct message',
         time       : now.minus({hour: 9}).toISO(), // 9 hours ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -67,7 +67,7 @@ export const notifications = [
         description: 'You have 3 new mails',
         time       : now.minus({day: 1}).toISO(), // 1 day ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -77,7 +77,7 @@ export const notifications = [
         description: 'Your submission has been accepted and you are ready to sign-up for the final assigment which will be ready in 2 days',
         time       : now.minus({day: 3}).toISO(), // 3 days ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
     {
@@ -87,7 +87,7 @@ export const notifications = [
         description: 'Your Vagrant container is ready to download',
         time       : now.minus({day: 4}).toISO(), // 4 days ago
         read       : true,
-        link       : '/dashboards/project',
+        link       : '/apps/project',
         useRouter  : true,
     },
 ];

@@ -32,15 +32,15 @@ export const appRoutes: Route[] = [
     { path: 'create-new-pass', component: CreateNewPassComponent},
 
 
-    // Redirect empty path to '/dashboards/project'
-    {path: '', pathMatch : 'full', redirectTo: 'dashboards/project'},
+    // Redirect empty path to '/apps/project'
+    {path: '', pathMatch : 'full', redirectTo: 'apps/project'},
 
-    // Redirect signed-in user to the '/dashboards/project'
+    // Redirect signed-in user to the '/apps/project'
     //
     // After the user signs in, the sign-in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'dashboards/project'},
+    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'apps/project'},
 
     // Auth routes for guests
     {
@@ -101,17 +101,14 @@ export const appRoutes: Route[] = [
             // Dashboards
             {path: 'dashboards', children: [
                 {path: 'dashboard-1', loadChildren: () => import('app/modules/admin/dashboards/dashboard-1/dashboard-1.component.routes')},
-                // {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
-                // {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
-                // {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
             ]},
 
             // Apps
             {path: 'apps', children: [
-                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
-                {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
-                {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
-                {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
+                {path: 'project', loadChildren: () => import('app/modules/admin/apps/project/project.routes')},
+                {path: 'analytics', loadChildren: () => import('app/modules/admin/apps/analytics/analytics.routes')},
+                {path: 'finance', loadChildren: () => import('app/modules/admin/apps/finance/finance.routes')},
+                {path: 'crypto', loadChildren: () => import('app/modules/admin/apps/crypto/crypto.routes')},
                 {path: 'academy', loadChildren: () => import('app/modules/admin/apps/academy/academy.routes')},
                 {path: 'ebook', loadChildren: () => import('app/modules/admin/apps/ebook/academy.routes')},
                 {path: 'chat', loadChildren: () => import('app/modules/admin/apps/chat/chat.routes')},
