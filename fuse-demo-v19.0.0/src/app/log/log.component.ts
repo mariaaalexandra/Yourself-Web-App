@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, NgModule, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, NgModule, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { FormsModule} from '@angular/forms';
@@ -10,9 +10,13 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [FormsModule,NgIf],
   templateUrl: './log.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrl: './log.component.css'
 })
 export class LogComponent {
+
+  errorMessage: string = ''; // Hold the error message
+  isSubmitted: boolean = false;
 
   @ViewChild('flip', { static: true })
   flipCheckbox!: ElementRef;
@@ -80,12 +84,39 @@ export class LogComponent {
   }
 
   onSignUp(userDataRegistration: { username: string, email: string, password: string }) {
-    console.log(userDataRegistration)
-
+    console.log('Attempting sign up with userDataRegistration:', userDataRegistration);
     this.http.post('http://localhost:8080/api/auth/signup', userDataRegistration)
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe(
+        (res: any) => {
+          console.log('Sign up response:', res);
+          if (res && res.message === "User registered successfully!") {
+            console.log('Sign up successful!');
+          } else {
+            console.log('Sign up failed. Response:', res);
+          }
+        },
+        (error) => {
+          console.error('Error during sign up:', error.error);
+          this.openModal(error.error.message); // Open the modal with the error message
+        }
+      );
   }
 
+  // Method to open the modal
+  openModal(message: string): void {
+    this.errorMessage = message;
+    const modal = document.getElementById('errorModal');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  // Method to close the modal
+  closeModal(): void {
+    this.errorMessage = '';
+    const modal = document.getElementById('errorModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
 }

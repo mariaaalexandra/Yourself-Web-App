@@ -105,5 +105,24 @@
     </div>
     </div>
   </div>
+
+<!-- Overlay -->
+<div class="modal-overlay" id="overlay" *ngIf="errorMessage"></div>
+
+<!-- Modal Container -->
+<div class="modal-container" *ngIf="errorMessage">
+  <div class="modal-header">
+    <h2>Error</h2>
+    <button class="close-button" (click)="closeModal()">&times;</button>
+  </div>
+  <div class="modal-body">
+    <p>{{ errorMessage }}</p>
+  </div>
+  <div class="modal-footer">
+    <button (click)="closeModal()">Close</button>
+  </div>
+</div>
+
+
 </body>
 </html>
