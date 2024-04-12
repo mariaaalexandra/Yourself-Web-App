@@ -1,56 +1,80 @@
-<div class="formbold-main-wrapper">
-    <div class="area">
-        <!-- Author: FormBold Team -->
-        <!-- Learn More: https://formbold.com -->
-        <div class="formbold-form-wrapper">
-            <img src="../../../../../assets/img/Contribute/Feedback.webp" width="50" height="50">
-            <form>
-                <div class="formbold-input-flex">
-                    <div>
-                        <label for="firstname" class="formbold-form-label" required>First name</label>
-                        <input type="text" name="firstname" id="firstname" placeholder="Julia" class="formbold-form-input" required>
-                    </div>
-                    <div>
-                        <label for="lastname" class="formbold-form-label" required>Last name</label>
-                        <input type="text" name="lastname" id="lastname" placeholder="Cooper" class="formbold-form-input" required>
-                    </div>
-                </div>
-                <div class="formbold-mb-5">
-                    <label for="email" class="formbold-form-label" required>Email address</label>
-                    <input type="email" name="email" id="email" placeholder="julia.cooper@example.com" class="formbold-form-input" required>
-                </div>
-                <div class="formbold-mb-5">
-                    <label for="liked" class="formbold-form-label" required>What did you like about the app?</label>
-                    <textarea id="liked" name="liked" class="formbold-form-input" placeholder="Share your thoughts..." required></textarea>
-                </div>
-
-                <div class="formbold-mb-5">
-                    <label for="disliked" class="formbold-form-label" required>What did you not like about the app?</label>
-                    <textarea id="disliked" name="disliked" class="formbold-form-input" placeholder="Share your concerns..." required></textarea>
-                </div>
-
-                <div class="formbold-mb-5">
-                    <label for="suggestions" class="formbold-form-label" required>Any suggestions for improvement?</label>
-                    <textarea id="suggestions" name="suggestions" class="formbold-form-input" placeholder="Your suggestions..." required></textarea>
-                </div>
-
-                <div class="formbold-mb-5">
-                    <label for="rating" class="formbold-form-label" required>How would you rate our app?</label>
-                    <select id="rating" name="rating" class="formbold-form-input" required>
-                        <option value="">Select a rating</option>
-                        <option value="1">1 - Poor</option>
-                        <option value="2">2 - Fair</option>
-                        <option value="3">3 - Good</option>
-                        <option value="4">4 - Very Good</option>
-                        <option value="5">5 - Excellent</option>
-                    </select>
-                </div>
-
-                <button class="formbold-btn">Submit</button>
-            </form>
-        </div>
+<div *ngIf="showThankYouModal" class="thank-you-modal">
+    <div class="modal-content">
+      <span (click)="closeThankYouModal()" class="close-button">&times;</span>
+      <h1>Thank You!</h1>
+      <p>Your feedback has been submitted successfully.</p>
     </div>
-</div>
+  </div>
+<div class="formbold-main-wrapper">
+    <div class="formbold-form-wrapper">
+      <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" method="post">
+        <img src="../../../../../assets/img/Contribute/Feedback.webp">
+        <div class="formbold-input-flex">
+          <div>
+            <label for="firstName" class="formbold-form-label">First Name</label>
+            <input type="text" formControlName="firstName" id="firstName" placeholder="Julia" class="formbold-form-input">
+            <div *ngIf="feedbackForm.get('firstName').touched && feedbackForm.get('firstName').errors?.['required']" class="error">
+              First name is required.
+            </div>
+          </div>
+          <div>
+            <label for="lastName" class="formbold-form-label">Last Name</label>
+            <input type="text" formControlName="lastName" id="lastName" placeholder="Cooper" class="formbold-form-input">
+            <div *ngIf="feedbackForm.get('lastName').touched && feedbackForm.get('lastName').errors?.['required']" class="error">
+              Last name is required.
+            </div>
+          </div>
+        </div>
+        <div class="formbold-mb-5">
+          <label for="email" class="formbold-form-label">Email Address</label>
+          <input type="email" formControlName="email" id="email" placeholder="julia.cooper@example.com" class="formbold-form-input">
+          <div *ngIf="feedbackForm.get('email').touched && feedbackForm.get('email').errors?.['required']" class="error">
+              Email is required.
+          </div>
+          <div *ngIf="feedbackForm.get('email').touched && feedbackForm.get('email').errors?.['email']" class="error">
+              Please enter a valid email address.
+          </div>
+        </div>
+        <div class="formbold-mb-5">
+          <label for="liked" class="formbold-form-label">What did you like?</label>
+          <textarea formControlName="liked" id="liked" class="formbold-form-input"></textarea>
+          <div *ngIf="feedbackForm.get('liked').touched && feedbackForm.get('liked').errors?.['required']" class="error">
+              This field is required.
+          </div>
+        </div>
+        <div class="formbold-mb-5">
+          <label for="disliked" class="formbold-form-label">What did you not like?</label>
+          <textarea formControlName="disliked" id="disliked" class="formbold-form-input"></textarea>
+          <div *ngIf="feedbackForm.get('disliked').touched && feedbackForm.get('disliked').errors?.['required']" class="error">
+              This field is required.
+          </div>
+        </div>
+        <div class="formbold-mb-5">
+          <label for="suggestions" class="formbold-form-label">Any suggestions?</label>
+          <textarea formControlName="suggestions" id="suggestions" class="formbold-form-input"></textarea>
+          <div *ngIf="feedbackForm.get('suggestions').touched && feedbackForm.get('suggestions').errors?.['required']" class="error">
+              This field is required.
+          </div>
+        </div>
+        <div class="formbold-mb-5">
+          <label for="rating" class="formbold-form-label">Rating</label>
+          <select formControlName="rating" id="rating" class="formbold-form-input">
+            <option value="">Select a rating</option>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+          </select>
+          <div *ngIf="feedbackForm.get('rating').touched && feedbackForm.get('rating').errors?.['required']" class="error">
+              Rating is required.
+          </div>
+        </div>
+        <button type="submit" class="formbold-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
 <Style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 * {
@@ -64,10 +88,11 @@
     .formbold-main-wrapper {
         display: flex;
         align-items: center; /* Align vertically */
+        align-content: center;
         justify-content: center; /* Align horizontally */
         min-height: 100%; /* Full viewport height */
         padding: 48px;
-        width: 100%;
+        width: 60%;
     }
 
     .formbold-form-wrapper {
@@ -232,4 +257,39 @@
     .formbold-btn:hover {
         box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
     }
+
+    .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.thank-you-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close-button {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+}
     </style>
