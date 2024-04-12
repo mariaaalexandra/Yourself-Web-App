@@ -122,7 +122,7 @@ export const appRoutes: Route[] = [
             {path: 'contribute', children: [
                 {path: 'donate', loadChildren: () => import('app/modules/admin/contribute/donate/donate.routes')},
                 {path: 'opensourcecontributions', loadChildren: () => import('app/modules/admin/contribute/opensourcecontributions/opensourcecontributions.routes')},
-                {path: 'constructivefeedback', loadChildren: () => import('app/modules/admin/contribute/constructivefeedback/constructivefeedback.routes')},
+                {path: 'constructivefeedback', loadChildren: () => import('app/modules/admin/contribute/constructivefeedback/constructivefeedback.component.routes')},
             ]},
 
             // Pages

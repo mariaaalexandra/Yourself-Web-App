@@ -4,39 +4,39 @@
         <!-- Learn More: https://formbold.com -->
         <div class="formbold-form-wrapper">
             <img src="../../../../../assets/img/Contribute/Feedback.webp" width="50" height="50">
-            <form action="https://formbold.com/s/FORM_ID" method="POST">
+            <form>
                 <div class="formbold-input-flex">
                     <div>
                         <label for="firstname" class="formbold-form-label" required>First name</label>
-                        <input type="text" name="firstname" id="firstname" placeholder="Julia" class="formbold-form-input">
+                        <input type="text" name="firstname" id="firstname" placeholder="Julia" class="formbold-form-input" required>
                     </div>
                     <div>
                         <label for="lastname" class="formbold-form-label" required>Last name</label>
-                        <input type="text" name="lastname" id="lastname" placeholder="Cooper" class="formbold-form-input">
+                        <input type="text" name="lastname" id="lastname" placeholder="Cooper" class="formbold-form-input" required>
                     </div>
                 </div>
                 <div class="formbold-mb-5">
-                    <label for="email" class="formbold-form-label">Email address</label>
+                    <label for="email" class="formbold-form-label" required>Email address</label>
                     <input type="email" name="email" id="email" placeholder="julia.cooper@example.com" class="formbold-form-input" required>
                 </div>
                 <div class="formbold-mb-5">
                     <label for="liked" class="formbold-form-label" required>What did you like about the app?</label>
-                    <textarea id="liked" name="liked" class="formbold-form-input" placeholder="Share your thoughts..."></textarea>
+                    <textarea id="liked" name="liked" class="formbold-form-input" placeholder="Share your thoughts..." required></textarea>
                 </div>
 
                 <div class="formbold-mb-5">
                     <label for="disliked" class="formbold-form-label" required>What did you not like about the app?</label>
-                    <textarea id="disliked" name="disliked" class="formbold-form-input" placeholder="Share your concerns..."></textarea>
+                    <textarea id="disliked" name="disliked" class="formbold-form-input" placeholder="Share your concerns..." required></textarea>
                 </div>
 
                 <div class="formbold-mb-5">
                     <label for="suggestions" class="formbold-form-label" required>Any suggestions for improvement?</label>
-                    <textarea id="suggestions" name="suggestions" class="formbold-form-input" placeholder="Your suggestions..."></textarea>
+                    <textarea id="suggestions" name="suggestions" class="formbold-form-input" placeholder="Your suggestions..." required></textarea>
                 </div>
 
                 <div class="formbold-mb-5">
                     <label for="rating" class="formbold-form-label" required>How would you rate our app?</label>
-                    <select id="rating" name="rating" class="formbold-form-input">
+                    <select id="rating" name="rating" class="formbold-form-input" required>
                         <option value="">Select a rating</option>
                         <option value="1">1 - Poor</option>
                         <option value="2">2 - Fair</option>

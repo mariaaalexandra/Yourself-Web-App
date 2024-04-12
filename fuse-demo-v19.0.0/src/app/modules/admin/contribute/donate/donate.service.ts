@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class donateService {
+export class DonateService {
     private _data: BehaviorSubject<any> = new BehaviorSubject(null);
 
     constructor() { }

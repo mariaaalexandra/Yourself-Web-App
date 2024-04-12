@@ -174,8 +174,6 @@ export class DirectoryStructureComponent implements OnInit
                             {name: 'vendors.scss'},
                         ],
                     },
-                    {name: 'favicon-16x16.png'},
-                    {name: 'favicon-32x32.png'},
                     {name: 'global.d.ts'},
                     {name: 'index.html'},
                     {name: 'main.ts'},

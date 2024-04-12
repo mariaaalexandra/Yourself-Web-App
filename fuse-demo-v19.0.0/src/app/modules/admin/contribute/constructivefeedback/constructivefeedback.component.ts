@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { constructivefeedbackService } from 'app/modules/admin/contribute/constructivefeedback/constructivefeedback.service';
+import { constructivefeedbackService } from 'app/modules/admin/contribute/constructivefeedback/constructivefeedback.component.service';
 import { DateTime } from 'luxon';
 import { ApexOptions, ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 import { Subject, takeUntil } from 'rxjs';
@@ -22,7 +22,7 @@ import { Subject, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [MatSidenavModule, NgFor, MatIconModule, NgClass, NgApexchartsModule, MatFormFieldModule, MatSelectModule, MatOptionModule, NgIf, FormsModule, MatInputModule, MatButtonModule, UpperCasePipe, DecimalPipe, CurrencyPipe],
 })
-export class constructivefeedbackComponent implements OnInit, OnDestroy
+export class constructivefeedbackComponent
 {
     @ViewChild('btcChartComponent') btcChartComponent: ChartComponent;
     appConfig: any;

@@ -5,17 +5,13 @@ import com.app.security.services.ShortcutsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/shortcuts")
 @CrossOrigin(origins = "http://localhost:8081")
-public class ShortcutController {
-
-    private static final Logger log = LoggerFactory.getLogger(ShortcutController.class);
+public class ShortcutsController {
 
     @Autowired
     private ShortcutsService shortcutsService;
@@ -38,7 +34,6 @@ public class ShortcutController {
 
     @GetMapping
     public ResponseEntity<List<Shortcuts>> getAllShortcuts() {
-        log.info("Fetching all shortcuts");
         return ResponseEntity.ok(shortcutsService.getAllShortcuts());
     }
 
