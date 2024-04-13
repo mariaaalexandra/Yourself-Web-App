@@ -16,6 +16,7 @@ import { NgIf } from '@angular/common';
 export class LogComponent {
 
   errorMessage: string = ''; // Hold the error message
+  successMessage: string = '';
   isSubmitted: boolean = false;
 
   @ViewChild('flip', { static: true })
@@ -91,8 +92,11 @@ export class LogComponent {
           console.log('Sign up response:', res);
           if (res && res.message === "User registered successfully!") {
             console.log('Sign up successful!');
+            this.openSuccessModal(res.message); // Open the modal with the success message
+            this.clearRegistrationForm(); // Clear the registration form field
           } else {
             console.log('Sign up failed. Response:', res);
+            this.openModal(res.message); // Open the modal with the error message
           }
         },
         (error) => {
@@ -119,4 +123,31 @@ export class LogComponent {
       modal.style.display = 'none';
     }
   }
+
+  // Method to open the success modal
+openSuccessModal(message: string): void {
+  this.successMessage = message;
+  const modal = document.getElementById('successModal');
+  if (modal) {
+    modal.style.display = 'block';
+  }
+}
+
+// Method to close the success modal
+closeSuccessModal(): void {
+  this.successMessage = '';
+  const modal = document.getElementById('successModal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
+
+// Method to clear the registration form fields
+clearRegistrationForm(): void {
+  this.userDataRegistration = {
+    username: '',
+    email: '',
+    password: ''
+  };
+}
 }

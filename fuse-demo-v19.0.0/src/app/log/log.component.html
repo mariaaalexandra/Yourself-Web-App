@@ -123,6 +123,20 @@
   </div>
 </div>
 
+<!-- Modal Container for Success State -->
+<div class="modal-container success" *ngIf="successMessage">
+  <div class="modal-header success">
+    <h2>Success</h2>
+    <button class="close-button success" (click)="closeSuccessModal()">&times;</button>
+  </div>
+  <div class="modal-body">
+    <p>{{ successMessage }}</p>
+  </div>
+  <div class="modal-footer success">
+    <button (click)="closeSuccessModal()">Close</button>
+  </div>
+</div>
+
 
 </body>
 </html>

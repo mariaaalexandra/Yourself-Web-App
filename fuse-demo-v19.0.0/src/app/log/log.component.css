@@ -583,3 +583,28 @@ body {
 .modal-footer.no-error button:hover {
   background-color: #00994d; /* Darker green on hover */
 }
+
+/* Modal Container for Success State */
+.modal-container.success {
+  background-color: #ffffff; /* Green background color */
+}
+
+.modal-header.success {
+  border-bottom: 2px solid #388e3c; /* Dark green border bottom */
+}
+
+.modal-header.success h2 {
+  color: #388e3c; /* Dark green header text */
+}
+
+.close-button.success:before, .close-button.success:after {
+  background-color: #388e3c; /* Dark green close button lines */
+}
+
+.modal-footer.success button {
+  background-color: #388e3c; /* Dark green button */
+}
+
+.modal-footer.success button:hover {
+  background-color: #2e7d32; /* Darker green on hover */
+}
