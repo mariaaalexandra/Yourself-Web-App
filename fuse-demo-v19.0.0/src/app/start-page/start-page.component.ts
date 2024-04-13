@@ -6,6 +6,7 @@ import Isotope from 'isotope-layout';
 import GLightbox from 'glightbox';
 import { ViewEncapsulation } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-start-page',
@@ -19,9 +20,18 @@ import { NgIf } from '@angular/common';
   export class StartPageComponent implements OnInit {
 
     checkLoginStatus(): boolean {
-        return localStorage.getItem('isLoggedIn') === 'etru';
+      return localStorage.getItem('isLoggedIn') === 'true';  // Make sure this is set to 'true' or 'false'
     }
 
+    constructor(private router: Router) {}
+
+    navigateBasedOnStatus() {
+      if (this.checkLoginStatus()) {
+        this.router.navigate(['/dashboards/dashboard-1']);
+      } else {
+        this.router.navigate(['/log']);
+      }
+    }
 
     ngOnInit(): void {
       // Initialize AOS (Animate On Scroll) library with a duration of 1000 milliseconds

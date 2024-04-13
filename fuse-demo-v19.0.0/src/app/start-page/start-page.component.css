@@ -1891,5 +1891,38 @@ body {
         opacity: 0;
         border-radius: 50%;
     }
+}
 
+.btn-get-started {
+  background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  outline: none;
+}
+
+.btn-get-started:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-get-started:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.scrollto {
+  transition: all 0.5s ease;
+}
+
+.scrollto:hover {
+  opacity: 0.8;
 }
