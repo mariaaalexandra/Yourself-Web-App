@@ -165,8 +165,7 @@ html {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 90%; /* Adjusted to be relative */
-  max-width: 400px; /* Maximum width */
+  width: 40%; /* Adjusted to be relative */
   padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,.5);
@@ -353,14 +352,14 @@ html {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: bold;
   color: rgb(185, 180, 180)
 }
 
 .message {
   color: #b9b7b7;
-  font-size: 14px;
+  font-size: 19px;
   margin-top: 4px;
   text-align: center
 }
@@ -370,8 +369,8 @@ html {
 }
 
 .inputs input {
-  width: 26px;
-  height: 26px;
+  width: 50%;
+  height: 25%;
   text-align: center;
   border: none;
   border-bottom: 1.5px solid #d2d2d2;
@@ -542,15 +541,6 @@ html {
   }
 }
 
-/* Further adjustments can be made for even smaller screens */
-@media (max-width: 480px) {
-  .login-box {
-    width: 95%; /* Further increase width for very small screens */
-  }
-
-  /* Adjust font sizes and other styles as necessary */
-}
-
 .e-input {
     display: flex;
     flex-direction: column;
@@ -562,7 +552,8 @@ html {
     position: relative; /* Add position relative */
     background-color: #c5d2f5;
     border-radius: 4px;
-       border: 1px solid #ccc;
+    border: 1px solid #ccc;
+    width: 100%;
   }
 
   .email-input {
@@ -571,7 +562,7 @@ html {
     /* border: 1px solid #ccc; */
     /* background-color: #c5d2f5; */
     border-radius: 4px;
-    width: 300px;
+    width: 100%;
     font-size: 15px;
     font-family: Arial, sans-serif;
   }
@@ -644,3 +635,121 @@ html {
   .e-input:focus-within .validation-popup {
     animation: popupAnimation 0.4s ease-out forwards;
   }
+/* Thank you modal */
+.thank-you-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.thank-you-modal .modal-content {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  text-align: center;
+  animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.thank-you-modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #aaa;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.thank-you-modal .close-button:hover {
+  color: #333;
+}
+
+.thank-you-modal .thank-you-heading {
+  font-size: 24px;
+  color: green;
+  margin-bottom: 20px;
+}
+
+.thank-you-modal .thank-you-message {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Error modal */
+.error-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.error-modal .modal-content {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  text-align: center;
+  animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.error-modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #aaa;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error-modal .close-button:hover {
+  color: #333;
+}
+
+.error-modal .error-heading {
+  font-size: 24px;
+  color: red;
+  margin-bottom: 20px;
+}
+
+.error-modal .error-message {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

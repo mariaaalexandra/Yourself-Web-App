@@ -465,4 +465,146 @@ body {
   animation: popupAnimation 0.4s ease-out forwards;
 }
 
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1000; /* Ensure the overlay is above other content */
+}
 
+/* Modal Container */
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Enhancing shadow effect */
+  z-index: 1001; /* Ensure the modal is above the overlay */
+  max-width: 500px; /* Adjust width as needed */
+  width: 80%; /* Responsive width */
+}
+
+/* Modal Header */
+.modal-header {
+  border-bottom: 2px solid #ff4d4d; /* Red border bottom */
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  position: relative; /* Positioning for close button */
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #ff4d4d; /* Red header text */
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.close-button:before, .close-button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background-color: #ff4d4d; /* Red close button lines */
+  transform-origin: center;
+}
+
+.close-button:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-button:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Modal Body */
+.modal-body {
+  padding-bottom: 30px;
+}
+
+/* Modal Footer */
+.modal-footer {
+  text-align: right;
+}
+
+.modal-footer button {
+  padding: 12px 24px;
+  background-color: #ff4d4d; /* Red button */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-footer button:hover {
+  background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Modal Header for No Error State */
+.modal-header.no-error {
+  border-bottom: 2px solid #00cc66; /* Green border bottom */
+}
+
+.modal-header.no-error h2 {
+  color: #00cc66; /* Green header text */
+}
+
+/* Close Button for No Error State */
+.close-button.no-error:before,
+.close-button.no-error:after {
+  background-color: #00cc66; /* Green close button lines */
+}
+
+/* Modal Footer for No Error State */
+.modal-footer.no-error button {
+  background-color: #00cc66; /* Green button */
+}
+
+.modal-footer.no-error button:hover {
+  background-color: #00994d; /* Darker green on hover */
+}
+
+/* Modal Container for Success State */
+.modal-container.success {
+  background-color: #ffffff; /* Green background color */
+}
+
+.modal-header.success {
+  border-bottom: 2px solid #388e3c; /* Dark green border bottom */
+}
+
+.modal-header.success h2 {
+  color: #388e3c; /* Dark green header text */
+}
+
+.close-button.success:before, .close-button.success:after {
+  background-color: #388e3c; /* Dark green close button lines */
+}
+
+.modal-footer.success button {
+  background-color: #388e3c; /* Dark green button */
+}
+
+.modal-footer.success button:hover {
+  background-color: #2e7d32; /* Darker green on hover */
+}

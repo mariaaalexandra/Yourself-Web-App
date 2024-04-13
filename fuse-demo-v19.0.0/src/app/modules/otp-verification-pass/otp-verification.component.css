@@ -548,3 +548,7 @@ html {
 
   /* Adjust font sizes and other styles as necessary */
 }
+
+.reset-text{
+  color: white;
+}

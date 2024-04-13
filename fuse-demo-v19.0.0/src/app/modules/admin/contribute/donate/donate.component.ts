@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { donateService } from 'app/modules/admin/contribute/donate/donate.service';
+import { DonateService } from 'app/modules/admin/contribute/donate/donate.service';
 import { DateTime } from 'luxon';
 import { ApexOptions, ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 import { Subject, takeUntil } from 'rxjs';
@@ -37,7 +37,7 @@ export class donateComponent implements OnInit, OnDestroy
      * Constructor
      */
     constructor(
-        private _donateService: donateService,
+        private _donateService: DonateService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
     )

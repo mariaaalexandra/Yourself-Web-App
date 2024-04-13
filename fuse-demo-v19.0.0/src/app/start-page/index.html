@@ -10,8 +10,6 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -52,7 +50,7 @@
           <li><a class="nav-link scrollto" href="#addons">Addons</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
         <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        <li><a class="getstarted scrollto" href="/dashboards/dashboard-1">MyDashboard</a></li>
+        <li><a class="getstarted scrollto" href="/dashboards/dashboard-1"> Dashboard</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
@@ -69,7 +67,7 @@
           <h2>All the things you need... <strong>in one place</strong></h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
 <!-- Assuming 'checkLoginStatus()' does not produce side effects and is simple -->
-        <a href="/log" class="btn-get-started scrollto" *ngIf="checkLoginStatus()">Login / Sign Up</a>
+        <button class="btn-get-started scrollto" (click)="navigateBasedOnStatus()">Dashboard</button>
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
@@ -259,7 +257,7 @@
             <p>Embrace efficiency and discover the benefits for yourself. Start your journey with "Yourself" today!</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="/log">Login / Sign Up</a>
+            <button class="btn-get-started scrollto" (click)="navigateBasedOnStatus()">Dashboard</button>
           </div>
         </div>
 
@@ -396,9 +394,9 @@
           <ul>
             <li><i class="bx bx-check"></i> Full access at zero cost</li>
             <li><i class="bx bx-check"></i> No pay-walls or premium tiers</li>
-            <li><i class="bx bx-check"></i> You can support us optionally by donating.</li>
+            <li><i class="bx bx-check"></i> You can support us with feedback</li>
           </ul>
-          <a href="http://localhost:8081/contribute/donate" class="buy-btn">Donate</a>
+          <a href="http://localhost:8081/contribute/constructivefeedback" class="buy-btn">Give us feedback</a>
         </div>
       </div>
 
@@ -409,9 +407,9 @@
           <ul>
             <li><i class="bx bx-check"></i> Unlimited access for businesses</li>
             <li><i class="bx bx-check"></i> Absolutely no hidden fees</li>
-            <li><i class="bx bx-check"></i> You can support us optionally by contributing to the code base.</li>
+            <li><i class="bx bx-check"></i> You can support us optionally by donating</li>
           </ul>
-          <a href="http://localhost:8081/contribute/opensourcecontributions" class="buy-btn">Code with us</a>
+          <a href="http://localhost:8081/contribute/donate" class="buy-btn">Donate</a>
         </div>
       </div>
 
@@ -422,9 +420,9 @@
           <ul>
             <li><i class="bx bx-check"></i> Full code access</li>
             <li><i class="bx bx-check"></i> Transparent, no-cost policy</li>
-            <li><i class="bx bx-check"></i> You can support us with feedback.</li>
+            <li><i class="bx bx-check"></i> You can support us optionally by contributing to the code base</li>
           </ul>
-          <a href="http://localhost:8081/contribute/constructivefeedback" class="buy-btn">Give us feedback</a>
+          <a href="http://localhost:8081/contribute/opensourcecontributions" class="buy-btn">Code with us</a>
         </div>
       </div>
     </div>
@@ -582,9 +580,9 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Contribute</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Donate</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Open-source Contributions</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Constructive Feedback</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://localhost:8081/contribute/constructivefeedback">Constructive Feedback</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://localhost:8081/contribute/donate">Donate</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://localhost:8081/contribute/opensourcecontributions">Open-source Contributions</a></li>
             </ul>
           </div>
 

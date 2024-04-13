@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../models/User';
 import { UserServiceService } from '../../user-service.service';
 import { FormsModule } from '@angular/forms';
 
@@ -11,47 +10,48 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './otp-verification.component.html',
   styleUrl: './otp-verification.component.css'
 })
-export class OtpVerificationPassComponent {
+export class OtpVerificationPassComponent implements OnInit {
   otp: string[] = ['', '', '', '', '', ''];
-  email!: any;
-  userId: any = 0;
-  user!: User;
+  email: string = '';
   isOtpInvalid: boolean = false;
-
 
   constructor(private userService: UserServiceService, private router: Router) {}
 
+  ngOnInit() {
+    this.loadInitialData();
+    console.log('Email from storage:', localStorage.getItem('emailForReset'));
+  }
 
-  loadUser() {
-    this.userService.getCurrentUser(this.userId).subscribe(
-      userData => {
-        this.user = userData; // userData is of type User
-        console.log(userData);
-      },
-      error => {
-        // Handle error scenario
-      }
-    );
+  loadInitialData() {
+    this.email = localStorage.getItem('emailForReset') || ''; // Retrieve email, fallback to empty if not found
+
+    if (!this.email) {
+      console.error('User ID or email not available from storage');
+      // Consider redirecting the user to an error page or display a message
+    }
   }
 
   verifyOtp() {
     const fullOtp = this.otp.join('');
-    this.userId = localStorage.getItem('userId');
-    this.loadUser;
-    console.log(this.user + " " + this.userId);
-    this.email = localStorage.getItem('email');
-    console.log(this.email + " " + fullOtp);
+    if (!fullOtp) {
+      console.error('OTP is empty');
+      this.isOtpInvalid = true; // Set flag for invalid OTP
+      return;
+    }
+
+    console.log('Verifying OTP for email:', this.email);
+    console.log('OTP to verify:', fullOtp);
+
     this.userService.verifyOtp(this.email, fullOtp).subscribe({
       next: () => {
-        // Handle successful verification
+        console.log('OTP Verification Success');
         this.router.navigate(['/create-new-pass']);
-        this.isOtpInvalid = false; // Reset on success
+        this.isOtpInvalid = false; // Reset flag on success
       },
-      error: () => {
-        // Handle error
-        this.isOtpInvalid = true; // Set to true on error
+      error: error => {
+        console.error('OTP Verification Failed:', error);
+        this.isOtpInvalid = true; // Set flag for invalid OTP
       }
     });
   }
-
 }
