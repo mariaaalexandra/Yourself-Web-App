@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
     imports        : [RouterLink],
+    styleUrls: ['./error-404.component.scss'],
 })
 export class Error404Component
 {
