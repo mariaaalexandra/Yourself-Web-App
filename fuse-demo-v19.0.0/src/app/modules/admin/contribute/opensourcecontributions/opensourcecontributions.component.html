@@ -1,1 +1,33 @@
-<p>Open Source</p>
+<div class="contributions-page">
+    <header>
+        <h1>Open Source Contributions</h1>
+    </header>
+    <main>
+        <section class="statistics">
+            <h2>Contribution Overview</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-value">{{ data.totalContributions }}</span>
+                    <span class="stat-label">Total Contributions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ data.totalContributors }}</span>
+                    <span class="stat-label">Contributors</span>
+                </div>
+            </div>
+        </section>
+        <section class="recent-contributions">
+            <h2>Recent Contributions</h2>
+            <ul>
+                <li *ngFor="let contribution of data.recentContributions">
+                    <span class="contributor">{{ contribution.contributor }}</span>
+                    <span class="commit">{{ contribution.message }}</span>
+                    <span class="date">{{ contribution.date | date: 'medium' }}</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>Want to contribute? Check our <a href="https://github.com/yourrepository">GitHub repository</a>.</p>
+    </footer>
+</div>

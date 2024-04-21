@@ -17,6 +17,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
     selector       : 'opensourcecontributions',
     templateUrl    : './opensourcecontributions.component.html',
+    styleUrls      : ['./opensourcecontributions.component.scss'],
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
