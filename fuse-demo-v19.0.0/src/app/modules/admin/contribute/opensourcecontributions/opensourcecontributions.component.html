@@ -1,6 +1,6 @@
     <body id="section_1">
         <main>
-            <section class="section-padding section-bg" id="section_2">
+            <section class="section-padding section-bg" id="section_1">
                 <div class="container">
                     <div class="row">
 
@@ -42,7 +42,7 @@
                                     <div class="custom-text-box mb-lg-0">
                                         <h5 class="mb-3">Contributors</h5>
 
-                                        <p>Unique contributors to date, making the platform better.</p>
+                                        <p>Unique contributors to date, from people like you and me, for one purpose.</p>
 
                                         <ul class="custom-list mt-2">
                                             <li class="custom-list-item d-flex">
@@ -61,11 +61,57 @@
                         </div>
                     </div>
                 </div>
+                <br><br>
                 <div class="github-link-container">
                     <a href = "https://github.com/mariaaalexandra/LicentaFinal" target="_blank">
                         <button class="github-link">View on GitHub</button>
                     </a>
                 </div>
             </section>
+
+            <section class="contributions-section mt-4">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="contributions-table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Avatar</th>
+                                    <th scope="col">Contributor</th>
+                                    <th scope="col">Commit SHA</th>
+                                    <th scope="col">Commit Date</th>
+                                    <th scope="col">Commit Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let contributor of contributors; let i = index">
+                                    <ng-container *ngFor="let commit of contributor.commits; let j = index">
+                                        <tr>
+                                            <!-- Avatar cell, only display avatar if it's the first commit of the contributor -->
+                                            <td *ngIf="j === 0" rowspan="{{ contributor.commits.length }}" class="avatar-cell">
+                                                <img [src]="contributor.avatar_url" alt="{{ contributor.login }}" class="avatar">
+                                            </td>
+                                            <!-- Contributor cell, only display contributor name if it's the first commit of the contributor -->
+                                            <td *ngIf="j === 0" rowspan="{{ contributor.commits.length }}" class="contributor-cell">
+                                                {{ contributor.login }}
+                                            </td>
+                                            <!-- Avatar cell, only display avatar if it's the first commit of the contributor -->
+                                            <td *ngIf="j != 0" rowspan="{{ contributor.commits.length }}" class="avatar-cell">
+                                            </td>
+                                            <!-- Contributor cell, only display contributor name if it's the first commit of the contributor -->
+                                            <td *ngIf="j != 0" rowspan="{{ contributor.commits.length }}" class="contributor-cell">
+                                            </td>
+                                            <td>{{ commit.sha.substring(0, 7) }}</td>
+                                            <td>{{ commit.commit.author.date | date: 'mediumDate' }}</td>
+                                            <td>{{ commit.commit.message }}</td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br><br>
+            </section>
+
         </main>
     </body>

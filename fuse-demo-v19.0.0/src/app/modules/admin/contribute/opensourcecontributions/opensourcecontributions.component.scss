@@ -175,8 +175,8 @@ strong {
   SECTION               
 -----------------------------------------*/
 .section-padding {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .section-bg {
@@ -1506,7 +1506,6 @@ strong {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px; /* Adjust as needed */
 }
 
 /* Button Styles */
@@ -1514,10 +1513,13 @@ strong {
   background-color: transparent;
   border: 2px solid #0366d6; /* GitHub link color */
   color: #0366d6;
-  font-size: 16px;
+  font-size: 32px;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 20px 20px;
+  margin-bottom: 10px;
   border-radius: 5px;
+  min-height: 100px; /* Minimum height */
+  min-width: 250px; /* Minimum width */
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
@@ -1540,4 +1542,71 @@ strong {
 
 .github-link:hover {
   animation: pulse 1s infinite alternate;
+}
+
+/*** TABLE *** /
+/* Adding a hover effect for rows */
+/* Section styling */
+.contributions-section {
+  text-align: center; /* Center the table horizontally */
+  width:90%;
+  margin: auto;
+}
+
+/* Table styling */
+.contributions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: auto; /* Center the table horizontally */
+}
+
+/* Header cell styling */
+.contributions-table th {
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Body cell styling */
+.contributions-table td {
+  padding: 10px;
+  color: #343a40; /* Dark text color */
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Avatar cell styling */
+.avatar-cell img {
+  width: 50px; /* Set the width of the avatar image */
+  height: 50px; /* Set the height of the avatar image */
+  border-radius: 50%; /* Make the avatar image circular */
+  display: block; /* Center the avatar image */
+  margin: 0 auto; /* Center the avatar image horizontally */
+}
+
+/* Contributor cell styling */
+.contributor-cell {
+  font-weight: bold; /* Make the contributor name bold */
+}
+
+/* Alternate row background color */
+.contributions-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa; /* Light gray background color */
+}
+
+/* Hover effect for rows */
+.contributions-table tbody tr:hover {
+  background-color: #e2e6ea; /* Light blue background color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Animation for row entry */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.contributions-table tbody tr {
+  animation: fadeIn 0.5s ease;
 }
