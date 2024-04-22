@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
@@ -5,7 +6,7 @@ import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 export class opensourcecontributionsService {
     private _data: BehaviorSubject<any> = new BehaviorSubject(null);
 
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
     get data$(): Observable<any> {
         return this._data.asObservable();

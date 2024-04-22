@@ -1,33 +1,71 @@
-<div class="contributions-page">
-    <header>
-        <h1>Open Source Contributions</h1>
-    </header>
-    <main>
-        <section class="statistics">
-            <h2>Contribution Overview</h2>
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-value">{{ data.totalContributions }}</span>
-                    <span class="stat-label">Total Contributions</span>
+    <body id="section_1">
+        <main>
+            <section class="section-padding section-bg" id="section_2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                            <img src="../../../../../assets/image/opensource/OpenSource.jpg" class="custom-text-box-image img-fluid" alt="">
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="custom-text-box">
+                                <h2 class="mb-2">Open Source Contributions</h2>
+
+                                <h5 class="mb-3">Use YOURSELF for FREE, forever!</h5>
+
+                                <p class="mb-0">The Platform "YOURSELF" is free to use forever, by anybody. We do take donations, but they are completely optional. Moreover, we hugely appreciate if people bring their own addons and extend the platform for everyone.</p>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-text-box mb-lg-0">
+                                        <h5 class="mb-3">Our Mission</h5>
+
+                                        <p>One platform - for everything you will ever need!</p>
+
+                                        <ul class="custom-list mt-2">
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Everything
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Really, everything you'll need
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-text-box mb-lg-0">
+                                        <h5 class="mb-3">Contributors</h5>
+
+                                        <p>Unique contributors to date, making the platform better.</p>
+
+                                        <ul class="custom-list mt-2">
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Contributors count: {{ contributorsCount }}
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Commits count: {{ commitsCount }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-value">{{ data.totalContributors }}</span>
-                    <span class="stat-label">Contributors</span>
+                <div class="github-link-container">
+                    <a href = "https://github.com/mariaaalexandra/LicentaFinal" target="_blank">
+                        <button class="github-link">View on GitHub</button>
+                    </a>
                 </div>
-            </div>
-        </section>
-        <section class="recent-contributions">
-            <h2>Recent Contributions</h2>
-            <ul>
-                <li *ngFor="let contribution of data.recentContributions">
-                    <span class="contributor">{{ contribution.contributor }}</span>
-                    <span class="commit">{{ contribution.message }}</span>
-                    <span class="date">{{ contribution.date | date: 'medium' }}</span>
-                </li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>Want to contribute? Check our <a href="https://github.com/yourrepository">GitHub repository</a>.</p>
-    </footer>
-</div>
+            </section>
+        </main>
+    </body>
