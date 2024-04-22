@@ -66,19 +66,24 @@ export class CreateNewPassComponent {
 
   processResetPassword(newPassword: string): void {
     const url = `http://localhost:8080/api/auth/reset-password`;
-    const email = localStorage.getItem("resetPassEmail");
-    const params = { email, newPassword }
-    console.log(newPassword)
+    const email = localStorage.getItem("emailForReset");
+    const params = { email, newPassword };
+    
+    console.log("Reset Password URL:", url);
+    console.log("Reset Password Email:", email);
+    console.log("Reset Password Params:", params);
+    console.log("New Password:", newPassword);
+
     this.http.post(url, null, { params }).subscribe(
         (response: any) => {
-          console.log(response); // Handle success response here
+          console.log("Reset Password Response:", response); // Handle success response here
           // Optionally, you can show a success message to the user
           this.router.navigate(['/log']);
         },
         (error: any) => {
-          console.error(error); // Handle error response here
+          console.error("Reset Password Error:", error); // Handle error response here
           // Optionally, you can show an error message to the user
         }
       );
-  }
+    }
 }

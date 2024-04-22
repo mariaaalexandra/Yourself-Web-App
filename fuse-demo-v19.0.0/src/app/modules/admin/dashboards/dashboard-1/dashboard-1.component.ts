@@ -37,6 +37,11 @@ export class Dashboard1Component implements OnDestroy {
     });
   }
 
+  ngAfterViewInit(): void {
+    // Call resetSliderPosition after the view has been initialized
+    this.resetSliderPosition();
+  }
+
   ngOnInit(): void {
   }
 
@@ -44,6 +49,8 @@ export class Dashboard1Component implements OnDestroy {
     // Unsubscribe from the subscription to prevent memory leaks
     this.subscription.unsubscribe();
   }
+
+  ngA
 
   toggleSlider() {
     this.sliderOpen = !this.sliderOpen;
@@ -59,6 +66,9 @@ export class Dashboard1Component implements OnDestroy {
   }
 
   private resetSliderPosition() {
-    document.querySelector('.slider').removeAttribute('style');
+    const sliderElement = document.querySelector('.slider');
+    if (sliderElement) {
+      sliderElement.removeAttribute('style');
+    }
   }
 }

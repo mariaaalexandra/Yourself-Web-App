@@ -25,14 +25,13 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class donateComponent implements OnInit, OnDestroy
 {
-    @ViewChild('btcChartComponent') btcChartComponent: ChartComponent;
-    appConfig: any;
-    btcOptions: ApexOptions = {};
-    data: any;
-    drawerMode: 'over' | 'side' = 'side';
-    drawerOpened: boolean = true;
-    watchlistChartOptions: ApexOptions = {};
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
+    raisedAmount: number = 222; // Set the raised amount dynamically
+    goalAmount: number = 500; // Set the goal amount dynamically
+    goalAmount2: number = 2000; // Set the goal amount dynamically
+    goalAmount3: number = 10000; // Set the goal amount dynamically
+    progressPercentage: number = 0;
+    progressPercentage2: number = 0;
+    progressPercentage3: number = 0;
 
     /**
      * Constructor
@@ -43,11 +42,26 @@ export class donateComponent implements OnInit, OnDestroy
         private _fuseMediaWatcherService: FuseMediaWatcherService,
     )
     {
+        this.calculateProgressPercentage();
+        this.calculateProgressPercentage2();
+        this.calculateProgressPercentage3();
     }
     ngOnDestroy(): void {
         
     }
     ngOnInit(): void {
         
+    }
+
+    calculateProgressPercentage() {
+        this.progressPercentage = (this.raisedAmount / this.goalAmount) * 100;
+    }
+
+    calculateProgressPercentage2() {
+        this.progressPercentage2 = (this.raisedAmount / this.goalAmount2) * 100;
+    }
+
+    calculateProgressPercentage3() {
+        this.progressPercentage3 = (this.raisedAmount / this.goalAmount3) * 100;
     }
 }

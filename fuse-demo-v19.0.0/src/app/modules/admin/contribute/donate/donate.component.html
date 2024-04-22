@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="en">
     <body>
         <main>
             <section class="donate-section">
@@ -10,8 +8,7 @@
                         <div class="col-lg-6 col-12 mx-auto">
                             <form class="custom-form donate-form" action="#" method="get" role="form">
                                 <h3 class="mb-4">Make a donation</h3>
-                                <p>It helps us sustain the project.</p>
-                                <p>Thank you!</p>
+                                <p>It helps us sustain the project. Thank you!</p>
 
                                 <div class="row">
                                     <div class="col-lg-12 col-12">
@@ -117,7 +114,7 @@
                                     </div>
 
                                     <div class="col-lg-12 col-12">
-                                        <h5 class="mt-4 pt-1">Choose Payment</h5>
+                                        <h5 class="mt-4 pt-1">Payment Method</h5>
                                     </div>
 
                                     <div class="col-lg-12 col-12 mt-2">
@@ -128,24 +125,117 @@
                                                 Debit or Credit card
                                             </label>
                                         </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="DonationPayment" id="flexRadioDefault10">
-                                            <label class="form-check-label" for="flexRadioDefault10">
-                                                <i class="bi-paypal custom-icon ms-1"></i>
-                                                Paypal
-                                            </label>
-                                        </div>
-
                                         <button type="submit" class="form-control mt-4">Submit Donation</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </section>
+            <br>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-12 text-center mb-4">
+                        <h2>Our Needs</h2>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="custom-block-wrap">
+                            <img src="../../../../../assets/image/opensource/Coffee.jpg" class="custom-block-image img-fluid" alt="">
+
+                            <div class="custom-block">
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">Coffee </h5>
+
+                                    <p>The devs need some energy, help us with coffee.</p>
+
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>Raised:</strong>
+                                            ${{ raisedAmount }}
+                                        </p>
+                                    
+                                        <p class="ms-auto mb-0">
+                                            <strong>Goal:</strong>
+                                            ${{ goalAmount }}
+                                        </p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+                                    </div>
+                                    
+                                </div>
+
+                                <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="custom-block-wrap">
+                            <img src="../../../../../assets/image/opensource/Server.jpg" class="custom-block-image img-fluid" alt="">
+
+                            <div class="custom-block">
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">Server hosting</h5>
+
+                                    <p>Help us support the cost of server hosting.</p>
+
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>Raised:</strong>
+                                            ${{ raisedAmount }}
+                                        </p>
+                                    
+                                        <p class="ms-auto mb-0">
+                                            <strong>Goal:</strong>
+                                            ${{ goalAmount2 }}
+                                        </p>
+                                    </div>
+                                    <div class="progress2">
+                                        <div class="progress2-bar" [style.width.%]="progressPercentage2"></div>
+                                    </div>
+                                    
+                                </div>
+
+                                <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="custom-block-wrap">
+                            <img src="../../../../../assets/image/opensource/Travel.jpg" class="custom-block-image img-fluid" alt="">
+
+                            <div class="custom-block">
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">A nice vacation</h5>
+
+                                    <p>If this platform really helped you, take us on a trip.</p>
+
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>Raised:</strong>
+                                            ${{ raisedAmount }}
+                                        </p>
+                                    
+                                        <p class="ms-auto mb-0">
+                                            <strong>Goal:</strong>
+                                            ${{ goalAmount3 }}
+                                        </p>
+                                    </div>
+                                    <div class="progress3">
+                                        <div class="progress3-bar" [style.width.%]="progressPercentage3"></div>
+                                    </div>                                    
+                                </div>
+
+                                <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
-</html>
