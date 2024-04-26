@@ -1,1 +1,117 @@
-<p>Open Source</p>
+    <body id="section_1">
+        <main>
+            <section class="section-padding section-bg" id="section_1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                            <img src="../../../../../assets/image/opensource/OpenSource.jpg" class="custom-text-box-image img-fluid" alt="">
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="custom-text-box">
+                                <h2 class="mb-2">Open Source Contributions</h2>
+
+                                <h5 class="mb-3">Use YOURSELF for FREE, forever!</h5>
+
+                                <p class="mb-0">The Platform "YOURSELF" is free to use forever, by anybody. We do take donations, but they are completely optional. Moreover, we hugely appreciate if people bring their own addons and extend the platform for everyone.</p>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-text-box mb-lg-0">
+                                        <h5 class="mb-3">Our Mission</h5>
+
+                                        <p>One platform - for everything you will ever need!</p>
+
+                                        <ul class="custom-list mt-2">
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Everything
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Really, everything you'll need
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-text-box mb-lg-0">
+                                        <h5 class="mb-3">Contributors</h5>
+
+                                        <p>Unique contributors to date, from people like you and me, for one purpose.</p>
+
+                                        <ul class="custom-list mt-2">
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Contributors count: {{ contributorsCount }}
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                Commits count: {{ commitsCount }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="github-link-container">
+                    <a href = "https://github.com/mariaaalexandra/LicentaFinal" target="_blank">
+                        <button class="github-link">View on GitHub</button>
+                    </a>
+                </div>
+            </section>
+
+            <section class="contributions-section mt-4">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="contributions-table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Avatar</th>
+                                    <th scope="col">Contributor</th>
+                                    <th scope="col">Commit SHA</th>
+                                    <th scope="col">Commit Date</th>
+                                    <th scope="col">Commit Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let contributor of contributors; let i = index">
+                                    <ng-container *ngFor="let commit of contributor.commits; let j = index">
+                                        <tr>
+                                            <!-- Avatar cell, only display avatar if it's the first commit of the contributor -->
+                                            <td *ngIf="j === 0" rowspan="{{ contributor.commits.length }}" class="avatar-cell">
+                                                <img [src]="contributor.avatar_url" alt="{{ contributor.login }}" class="avatar">
+                                            </td>
+                                            <!-- Contributor cell, only display contributor name if it's the first commit of the contributor -->
+                                            <td *ngIf="j === 0" rowspan="{{ contributor.commits.length }}" class="contributor-cell">
+                                                {{ contributor.login }}
+                                            </td>
+                                            <!-- Avatar cell, only display avatar if it's the first commit of the contributor -->
+                                            <td *ngIf="j != 0" rowspan="{{ contributor.commits.length }}" class="avatar-cell">
+                                            </td>
+                                            <!-- Contributor cell, only display contributor name if it's the first commit of the contributor -->
+                                            <td *ngIf="j != 0" rowspan="{{ contributor.commits.length }}" class="contributor-cell">
+                                            </td>
+                                            <td>{{ commit.sha.substring(0, 7) }}</td>
+                                            <td>{{ commit.commit.author.date | date: 'mediumDate' }}</td>
+                                            <td>{{ commit.commit.message }}</td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br><br>
+            </section>
+
+        </main>
+    </body>

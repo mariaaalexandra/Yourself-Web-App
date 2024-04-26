@@ -1,0 +1,46 @@
+.error-container {
+    text-align: center;
+    padding: 50px;
+    font-family: 'Arial', sans-serif;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; // This ensures all content is centered horizontally
+
+    h1 {
+        font-size: 5rem;
+        color: #2c3e50;
+    }
+
+    img {
+        width: 200px;
+        margin: 20px 0;
+        display: block; // Ensures the image is treated as a block-level element
+		height: 60%;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: #34495e;
+    }
+
+    p {
+        color: #7f8c8d;
+        font-size: 1.2rem;
+    }
+
+    button {
+        background-color: #3498db;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 10px;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #2980b9;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { CurrencyPipe, DecimalPipe, NgClass, NgFor, NgIf, UpperCasePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, DecimalPipe, NgClass, NgFor, NgIf, UpperCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,25 +13,28 @@ import { opensourcecontributionsService } from 'app/modules/admin/contribute/ope
 import { DateTime } from 'luxon';
 import { ApexOptions, ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 import { Subject, takeUntil } from 'rxjs';
+import axios from 'axios';
+import { HttpClient } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
     selector       : 'opensourcecontributions',
     templateUrl    : './opensourcecontributions.component.html',
+    styleUrls      : ['./opensourcecontributions.component.scss'],
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
-    imports        : [MatSidenavModule, NgFor, MatIconModule, NgClass, NgApexchartsModule, MatFormFieldModule, MatSelectModule, MatOptionModule, NgIf, FormsModule, MatInputModule, MatButtonModule, UpperCasePipe, DecimalPipe, CurrencyPipe],
+    imports        : [MatSidenavModule, NgFor, MatTableModule, DatePipe, MatIconModule, NgClass, NgApexchartsModule, MatFormFieldModule, MatSelectModule, MatOptionModule, NgIf, FormsModule, MatInputModule, MatButtonModule, UpperCasePipe, DecimalPipe, CurrencyPipe],
 })
+
 export class opensourcecontributionsComponent implements OnInit, OnDestroy
 {
-    @ViewChild('btcChartComponent') btcChartComponent: ChartComponent;
-    appConfig: any;
-    btcOptions: ApexOptions = {};
-    data: any;
-    drawerMode: 'over' | 'side' = 'side';
-    drawerOpened: boolean = true;
-    watchlistChartOptions: ApexOptions = {};
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
+    
+    contributorsCount: number = 0; // Set the goal amount dynamically
+    commitsCount: number = 0; // Set the goal amount dynamically
+    contributors: any[];
+    commits: any[];
+
 
     /**
      * Constructor
@@ -40,6 +43,9 @@ export class opensourcecontributionsComponent implements OnInit, OnDestroy
         private _opensourcecontributionsService: opensourcecontributionsService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
+        private http: HttpClient,
+        private cdr: ChangeDetectorRef,
+        private http2: HttpClient
     )
     {
     }
@@ -53,38 +59,7 @@ export class opensourcecontributionsComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        // Subscribe to media changes
-        this._fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) =>
-            {
-                // Set the drawerMode and drawerOpened if 'lg' breakpoint is active
-                if ( matchingAliases.includes('lg') )
-                {
-                    this.drawerMode = 'side';
-                    this.drawerOpened = true;
-                }
-                else
-                {
-                    this.drawerMode = 'over';
-                    this.drawerOpened = false;
-                }
-
-                // Mark for check
-                this._changeDetectorRef.markForCheck();
-            });
-
-        // Get the data
-        this._opensourcecontributionsService.data$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((data) =>
-            {
-                // Store the data
-                this.data = data;
-
-                // Prepare the chart data
-                this._prepareChartData();
-            });
+        this.getContributors();
     }
 
     /**
@@ -92,157 +67,67 @@ export class opensourcecontributionsComponent implements OnInit, OnDestroy
      */
     ngOnDestroy(): void
     {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next(null);
-        this._unsubscribeAll.complete();
+        
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Prepare the chart data from the data
-     *
-     * @private
-     */
-    private _prepareChartData(): void
-    {
-        // BTC
-        this.btcOptions = {
-            chart     : {
-                animations: {
-                    enabled: false,
+    getContributors() {
+        console.log('Starting getContributors() method...');
+        console.log('Before HTTP GET request...');
+        this.http.get<any[]>('https://api.github.com/repos/ClaudiuChelcea/Tanktions---a-tank-game/contributors')
+            .subscribe(
+                (data) => {
+                    console.log('Received data:', data);
+                    this.contributors = data.map(contributor => ({
+                        id: contributor.id,
+                        login: contributor.login,
+                        avatar_url: contributor.avatar_url,
+                        commits: [] // Initialize an empty array for commits
+                    }));
+    
+                    // After loading contributors, fetch commits for each
+                    this.contributors.forEach(contributor => {
+                        this.getCommits(contributor);
+                    });
+    
+                    this.contributorsCount = data.length;
+                    this.cdr.detectChanges();
+                    console.log("Contributors count: " + this.contributorsCount);
                 },
-                fontFamily: 'inherit',
-                foreColor : 'inherit',
-                width     : '100%',
-                height    : '100%',
-                type      : 'line',
-                toolbar   : {
-                    show: false,
+                (error) => {
+                    console.error('Error fetching contributors:', error);
+                }
+            );
+        console.log('After HTTP GET request...');
+    }
+    
+    getCommits(contributor: any) {
+        console.log('Starting getCommits() method for:', contributor.login);
+        console.log('Before HTTP GET request for commits...');
+    
+        this.http.get<any[]>('https://api.github.com/repos/ClaudiuChelcea/Tanktions---a-tank-game/commits')
+            .subscribe(
+                (commitsData) => {
+                    console.log('Received commits data:', commitsData);
+    
+                    // Filter commits based on contributor's login
+                    const filteredCommits = commitsData.filter(commit => commit.author.login === contributor.login);
+                    
+                    console.log('Filtered commits for contributor', contributor.login, ':', filteredCommits);
+                    
+                    // Assign filtered commits to contributor object
+                    contributor.commits = filteredCommits;
+                    
+                    // Update the commits count
+                    this.commitsCount += contributor.commits.length;
+    
+                    // Trigger change detection to update the view
+                    this.cdr.detectChanges();
                 },
-                zoom      : {
-                    enabled: false,
-                },
-            },
-            colors    : ['#5A67D8'],
-            dataLabels: {
-                enabled: false,
-            },
-            grid      : {
-                borderColor    : 'var(--fuse-border)',
-                position       : 'back',
-                show           : true,
-                strokeDashArray: 6,
-                xaxis          : {
-                    lines: {
-                        show: true,
-                    },
-                },
-                yaxis          : {
-                    lines: {
-                        show: true,
-                    },
-                },
-            },
-            legend    : {
-                show: false,
-            },
-            series    : this.data.btc.price.series,
-            stroke    : {
-                width: 2,
-                curve: 'straight',
-            },
-            tooltip   : {
-                shared: true,
-                theme : 'dark',
-                y     : {
-                    formatter: (value: number): string => '$' + value.toFixed(2),
-                },
-            },
-            xaxis     : {
-                type      : 'numeric',
-                crosshairs: {
-                    show    : true,
-                    position: 'back',
-                    fill    : {
-                        type : 'color',
-                        color: 'var(--fuse-border)',
-                    },
-                    width   : 3,
-                    stroke  : {
-                        dashArray: 0,
-                        width    : 0,
-                    },
-                    opacity : 0.9,
-                },
-                tickAmount: 8,
-                axisTicks : {
-                    show : true,
-                    color: 'var(--fuse-border)',
-                },
-                axisBorder: {
-                    show: false,
-                },
-                tooltip   : {
-                    enabled: false,
-                },
-                labels    : {
-                    show                 : true,
-                    trim                 : false,
-                    rotate               : 0,
-                    minHeight            : 40,
-                    hideOverlappingLabels: true,
-                    formatter            : (value): string => DateTime.now().minus({minutes: Math.abs(parseInt(value, 10))}).toFormat('HH:mm'),
-                    style                : {
-                        colors: 'currentColor',
-                    },
-                },
-            },
-            yaxis     : {
-                axisTicks     : {
-                    show : true,
-                    color: 'var(--fuse-border)',
-                },
-                axisBorder    : {
-                    show: false,
-                },
-                forceNiceScale: true,
-                labels        : {
-                    minWidth : 40,
-                    formatter: (value: number): string => '$' + value.toFixed(0),
-                    style    : {
-                        colors: 'currentColor',
-                    },
-                },
-            },
-        };
-
-        // Watchlist options
-        this.watchlistChartOptions = {
-            chart  : {
-                animations: {
-                    enabled: false,
-                },
-                width     : '100%',
-                height    : '100%',
-                type      : 'line',
-                sparkline : {
-                    enabled: true,
-                },
-            },
-            colors : ['#A0AEC0'],
-            stroke : {
-                width: 2,
-                curve: 'smooth',
-            },
-            tooltip: {
-                enabled: false,
-            },
-            xaxis  : {
-                type: 'category',
-            },
-        };
+                (error) => {
+                    console.error('Error fetching commits for', contributor.login, ':', error);
+                }
+            );
+    
+        console.log('After HTTP GET request for commits...');
     }
 }
