@@ -183,7 +183,7 @@ public class AuthController {
         mailMessage.setTo(userDetails.getEmail());
         mailMessage.setSubject("Verify OTP");
         mailMessage.setText("This is your OTP for login:\n"+
-                "http://localhost:8080/api/auth/verify-account?email=" + userDetails.getEmail() + "&otp=" + otp + "\n" + otp);
+                "http://localhost:8080/api/auth/verify-account?email=" + userDetails.getEmail() + "&otp=" + otp);
 
         mailSender.send(mailMessage);
 
