@@ -655,6 +655,18 @@ body {
     }
   }
 
+  #my-clients .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#my-clients .row {
+    width: 100%;
+    justify-content: center; /* Center the columns in the middle of the row */
+}
+
+
   /*--------------------------------------------------------------
   # About Us
   --------------------------------------------------------------*/
@@ -1925,4 +1937,11 @@ body {
 
 .scrollto:hover {
   opacity: 0.8;
+}
+
+.btn-get-started-large {
+  padding: 15px 30px;  /* Increase padding to make the button larger */
+  font-size: 20px;     /* Larger font size for better readability */
+  border-radius: 5px;  /* Optional: adjust the border radius for rounded corners */
+  font-weight: bold;   /* Optional: make the font bold */
 }

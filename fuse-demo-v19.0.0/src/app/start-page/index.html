@@ -83,37 +83,22 @@
   <main id="main">
 
 <!-- ======= Clients Section ======= -->
-<section id="my-clients" class="my-clients my-bg-for-section"  style="margin-top: -170px!important;">
-    <div class="container">
-
-     <div class="row" data-aos="zoom-in">
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-        <img src="assets/img/clients/1.png"  style="height: 80px !important; width: 80px !important; vertical-align: baseline !important;" alt="">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-        <img src="assets/img/clients/2.png" style="height: 80px !important; width: 150px !important; vertical-align: baseline !important;" alt="">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-        <img src="assets/img/clients/3.png" style="height: 90px !important; width: 150px !important; vertical-align: baseline !important;" alt="">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-        <img src="assets/img/clients/4.jpg" style="height: 80px !important; width: 80px !important; vertical-align: baseline !important;" alt="">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-        <img src="assets/img/clients/5.jpg" style="height: 80px !important; width: 80px !important; vertical-align: baseline !important;" alt="">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-        <img src="assets/img/clients/6.jpeg" style="height: 80px !important; width: 80px !important; vertical-align: baseline !important;" alt="">
-        </div>
-    </div>
-
-    </div>
+<section id="my-clients" class="my-clients my-bg-for-section" style="margin-top: -170px!important;">
+  <div class="container" style="margin:auto">
+      <div class="row" data-aos="zoom-in">
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="assets/img/clients/1.png" style="height: 80px !important; width: 80px !important; vertical-align: baseline !important;" alt="">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="assets/img/clients/2.png" style="height: 80px !important; width: 150px !important; vertical-align: baseline !important;" alt="">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+              <img src="assets/img/clients/3.png" style="height: 90px !important; width: 150px !important; vertical-align: baseline !important;" alt="">
+          </div>
+      </div>
+  </div>
 </section>
+
 <!-- End Clients Section -->
 
     <!-- ======= About Us Section ======= -->
@@ -214,7 +199,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">All-in-One platform</a></h4>
+              <h4><a href="dashboards/dashboard-1">All-in-One platform</a></h4>
               <p>"Yourself" is designed to be your daily go-to for managing personal expenses, health, and journaling. This comprehensive platform streamlines all your tools in one accessible location.</p>
             </div>
           </div>
@@ -222,7 +207,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Comprehensive Toolset</a></h4>
+              <h4><a href="dashboards/dashboard-1">Comprehensive Toolset</a></h4>
               <p>We provide a diverse range of tools covering finance, health, sports, and more, ensuring all your needs are met in one platform.</p>
             </div>
           </div>
@@ -230,7 +215,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Lifetime Free Access</a></h4>
+              <h4><a href="dashboards/dashboard-1">Lifetime Free Access</a></h4>
               <p>Enjoy full access to all features without any cost. While the platform is free, we gratefully accept donations to support and enhance our services.</p>
             </div>
           </div>
@@ -238,7 +223,7 @@
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-layer"></i></div>
-              <h4><a href="">Community-Driven Development</a></h4>
+              <h4><a href="dashboards/dashboard-1">Community-Driven Development</a></h4>
               <p>As an open-source project, we invite developers to contribute, creating and sharing add-ons, enriching the platform for the entire community. </p>
             </div>
           </div>
@@ -258,7 +243,7 @@
             <p>Embrace efficiency and discover the benefits for yourself. Start your journey with "Yourself" today!</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <button class="btn-get-started scrollto" (click)="navigateBasedOnStatus()">Dashboard</button>
+            <button class="btn-get-started scrollto btn-get-started-large" (click)="navigateBasedOnStatus()">Dashboard</button>
           </div>
         </div>
 
@@ -278,11 +263,10 @@
           <li data-filter="*" class="filter-active">All</li>
           <li data-filter=".filter-app">Financial</li>
           <li data-filter=".filter-card">Time tracking</li>
-          <li data-filter=".filter-web">Sports</li>
+          <li data-filter=".filter-web">Contribute</li>
         </ul>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-img"><img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt=""></div>
             <div class="portfolio-info">
@@ -293,37 +277,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Addon title</h4>
-              <p>Description of addon</p>
-              <a href="assets/img/portfolio/placeholder.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Addon title"><i class="bx bx-plus"></i></a>
-              <a href="" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Addon title</h4>
-              <p>Description of addon</p>
-              <a href="assets/img/portfolio/placeholder.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Addon title"><i class="bx bx-plus"></i></a>
-              <a href="" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Addon title</h4>
-              <p>Description of addon</p>
-              <a href="assets/img/portfolio/placeholder.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Addon title"><i class="bx bx-plus"></i></a>
-              <a href="" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-img"><img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt=""></div>
             <div class="portfolio-info">
               <h4>Addon title</h4>
@@ -363,7 +317,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
             <div class="portfolio-img"><img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt=""></div>
             <div class="portfolio-info">
               <h4>Addon title</h4>
@@ -373,8 +327,36 @@
             </div>
           </div>
 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-img"><img src="../../assets/images/addons/Donate.png" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Donate</h4>
+              <p>Support the team with a small donation</p>
+              <a href="../../assets/images/addons/Donate.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Donate"><i class="bx bx-plus"></i></a>
+              <a href="contribute/donate" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-img"><img src="../../assets/images/addons/OpenSourceContributions.png" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Open Source Contributions</h4>
+              <p>Contribute to the code of the project</p>
+              <a href="../../assets/images/addons/OpenSourceContributions.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Open Source Contributions"><i class="bx bx-plus"></i></a>
+              <a href="/contribute/opensourcecontributions" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-img"><img src="../../assets/images/addons/ConstructiveFeedback.png" class="img-fluid" alt=""></div>
+            <div class="portfolio-info">
+              <h4>Constructive Feedback</h4>
+              <p>Send the team constructive feedback</p>
+              <a href="../../assets/images/addons/ConstructiveFeedback.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Constructive Feedback"><i class="bx bx-plus"></i></a>
+              <a href="/contribute/constructivefeedback" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
         </div>
-
       </div>
     </section><!-- End Portfolio Section -->
 

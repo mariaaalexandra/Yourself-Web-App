@@ -273,27 +273,27 @@ import { Router } from '@angular/router';
     }
 
     private initPortfolioIsotope(): void {
+      // Use window.onload event to ensure all resources are loaded
       window.onload = () => {
         const portfolioContainer = document.querySelector('.portfolio-container') as HTMLElement;
         if (portfolioContainer) {
-          const portfolioIsotope: any = new Isotope(portfolioContainer, {
+          const portfolioIsotope = new Isotope(portfolioContainer, {
             itemSelector: '.portfolio-item',
             layoutMode: 'fitRows',
           });
-
+    
+          // Trigger layout immediately after initialization
+          portfolioIsotope.layout();
+    
           const portfolioFilters = document.querySelectorAll('#portfolio-flters li');
-
           portfolioFilters.forEach((filter) => {
             filter.addEventListener('click', (e) => {
               e.preventDefault();
-              portfolioFilters.forEach((el) => {
-                el.classList.remove('filter-active');
-              });
+              portfolioFilters.forEach((el) => el.classList.remove('filter-active'));
               filter.classList.add('filter-active');
-
+    
               const filterValue = filter.getAttribute('data-filter');
-
-              if (filterValue !== null) {
+              if (filterValue) {
                 portfolioIsotope.arrange({ filter: filterValue });
               }
             });
@@ -301,6 +301,7 @@ import { Router } from '@angular/router';
         }
       };
     }
+
     private initAccordion(): void {
       const accordionItems = document.querySelectorAll('.accordion-list a');
       accordionItems.forEach(item => {
