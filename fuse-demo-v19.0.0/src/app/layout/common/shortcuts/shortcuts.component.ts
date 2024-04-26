@@ -135,7 +135,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     changeMode(mode: 'view' | 'modify' | 'add' | 'edit'): void
     {
 
-        if(this.mode == 'add')
+        if(mode == 'add')
             this.shortcutForm.reset();
 
         // Change the mode
