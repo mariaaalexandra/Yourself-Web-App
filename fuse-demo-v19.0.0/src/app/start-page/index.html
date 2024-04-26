@@ -516,7 +516,23 @@
       </div>
     </section><!-- End Contact Section -->
   </section>
+  <!-- Add the thank you modal -->
+  <div *ngIf="showThankYouModal" class="thank-you-modal">
+    <div class="modal-content">
+      <span (click)="closeThankYouModal()" class="close-button">&times;</span>
+      <h1 class="thank-you-heading">Thank You!</h1>
+      <p class="thank-you-message">You have been successfully subscribed to the newsletter!</p>
+    </div>
+  </div>
 
+  <!-- Add error modal -->
+  <div *ngIf="showErrorModal" class="error-modal">
+    <div class="modal-content">
+      <span (click)="closeErrorModal()" class="close-button">&times;</span>
+      <h1 class="error-heading">Error!</h1>
+      <p class="error-message">{{ errorMessage }}</p>
+    </div>
+  </div>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -527,15 +543,16 @@
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <h4>Join Our Newsletter</h4>
-            <p>Stay informed about our latest updates, including new releases and patch notes.
-            </p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+            <p>Stay informed about our latest updates, including new releases and patch notes.</p>
+            <form (ngSubmit)="onSubmitNewsletter()">
+              <input type="email" name="email" [(ngModel)]="email" #emailInput required placeholder="Enter your email">
+              <button type="submit">Subscribe</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+    
 
     <div class="footer-top">
       <div class="container">
