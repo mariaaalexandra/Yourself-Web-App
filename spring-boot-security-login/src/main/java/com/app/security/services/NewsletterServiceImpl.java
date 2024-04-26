@@ -3,6 +3,8 @@ package com.app.security.services;
 import com.app.models.Newsletter;
 import com.app.repository.NewsletterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +12,9 @@ import java.util.regex.Pattern;
 
 @Service
 public class NewsletterServiceImpl implements NewsletterService {
+
+    @Autowired
+    private JavaMailSender emailSender;
 
     @Autowired
     private NewsletterRepository newsletterRepository;
@@ -29,8 +34,23 @@ public class NewsletterServiceImpl implements NewsletterService {
             throw new IllegalArgumentException("Email already exists in the database!");
         }
 
-        // Proceed with insertion
-        return newsletterRepository.save(newsletter);
+        // Save the newsletter to the database
+        Newsletter savedNewsletter = newsletterRepository.save(newsletter);
+
+        // Send email to the user
+        sendSubscriptionConfirmationEmail(savedNewsletter.getEmail());
+
+        return savedNewsletter;
+    }
+
+    // Method to send subscription confirmation email
+    private void sendSubscriptionConfirmationEmail(String email) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Subscription Confirmation");
+        message.setText("Thank you for subscribing to our newsletter!");
+
+        emailSender.send(message);
     }
 
     // Validate email format using regex
