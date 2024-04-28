@@ -55,6 +55,7 @@
         "@types/chroma-js": "2.4.3",
         "@types/crypto-js": "3.1.47",
         "@types/highlight.js": "10.1.0",
+        "@types/imagesloaded": "^4.1.6",
         "@types/isotope-layout": "^3.0.13",
         "@types/jasmine": "5.1.2",
         "@types/lodash": "4.14.201",

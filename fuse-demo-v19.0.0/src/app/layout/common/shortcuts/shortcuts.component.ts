@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 import { ShortcutsService } from 'app/layout/common/shortcuts/shortcuts.service';
 import { Shortcuts } from 'app/layout/common/shortcuts/shortcuts.types';
 import { Subject, takeUntil } from 'rxjs';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector       : 'shortcuts',
@@ -30,10 +31,10 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     @ViewChild('shortcutsPanel') private _shortcutsPanel: TemplateRef<any>;
 
     mode: 'view' | 'modify' | 'add' | 'edit' = 'view';
-    shortcutForm: UntypedFormGroup;
     shortcuts: Shortcuts[];
     private _overlayRef: OverlayRef;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    shortcutForm: FormGroup;
 
     /**
      * Constructor
@@ -66,6 +67,10 @@ export class ShortcutsComponent implements OnInit, OnDestroy
             useRouter: [false, Validators.required],
         });
     
+        this.loadShortcuts();
+    }
+
+    loadShortcuts(): void {
         this._shortcutsService.getAll().subscribe((shortcuts: Shortcuts[]) => {
             this.shortcuts = shortcuts;
             console.log('Shortcuts loaded:', this.shortcuts); // Log loaded shortcuts to console
@@ -129,6 +134,10 @@ export class ShortcutsComponent implements OnInit, OnDestroy
      */
     changeMode(mode: 'view' | 'modify' | 'add' | 'edit'): void
     {
+
+        if(mode == 'add')
+            this.shortcutForm.reset();
+
         // Change the mode
         this.mode = mode;
     }
@@ -138,9 +147,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
      */
     newShortcut(): void
     {
-        // Reset the form
         this.shortcutForm.reset();
-
         // Enter the add mode
         this.mode = 'add';
     }
@@ -165,8 +172,10 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     
         if (Shortcuts.id) {
             this._shortcutsService.update(Shortcuts.id, Shortcuts).subscribe();
+            this.loadShortcuts();
         } else {
             this._shortcutsService.create(Shortcuts).subscribe();
+            this.loadShortcuts();
         }
     
         this.mode = 'modify'; // Switch back to modify mode
@@ -185,6 +194,8 @@ export class ShortcutsComponent implements OnInit, OnDestroy
 
         // Go back the modify mode
         this.mode = 'modify';
+
+        this.loadShortcuts();
     }
 
     /**

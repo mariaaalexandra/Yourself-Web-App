@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import AOS from 'aos';
 import Swiper from 'swiper'; // Import Swiper
 import Isotope from 'isotope-layout';
@@ -7,11 +7,15 @@ import GLightbox from 'glightbox';
 import { ViewEncapsulation } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { NewsletterService } from './newsletter.service';
+import { Newsletter } from './newsletter.types';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-start-page',
     standalone: true,
-    imports: [NgIf],
+    imports: [NgIf, FormsModule],
     templateUrl: './index.html',
     styleUrl: './start-page.component.css',
     encapsulation: ViewEncapsulation.Emulated
@@ -19,11 +23,24 @@ import { Router } from '@angular/router';
 
   export class StartPageComponent implements OnInit {
 
+    @ViewChild('emailInput') emailInput: ElementRef; // More specific name, ensure ViewChild is correct
+
+    email: string = ''; // This binds directly to your input via ngModel
+
+    // Add a boolean variable to control the modal visibility
+    showThankYouModal: boolean = false;
+    // Add a boolean variable to control the error modal visibility
+    showErrorModal: boolean = false;
+    errorMessage: string = '';
+
     checkLoginStatus(): boolean {
       return localStorage.getItem('isLoggedIn') === 'true';  // Make sure this is set to 'true' or 'false'
     }
 
-    constructor(private router: Router) {}
+    constructor(private router: Router,
+      private _newsletterService: NewsletterService,
+      private http: HttpClient
+    ) {}
 
     navigateBasedOnStatus() {
       if (this.checkLoginStatus()) {
@@ -273,27 +290,27 @@ import { Router } from '@angular/router';
     }
 
     private initPortfolioIsotope(): void {
+      // Use window.onload event to ensure all resources are loaded
       window.onload = () => {
         const portfolioContainer = document.querySelector('.portfolio-container') as HTMLElement;
         if (portfolioContainer) {
-          const portfolioIsotope: any = new Isotope(portfolioContainer, {
+          const portfolioIsotope = new Isotope(portfolioContainer, {
             itemSelector: '.portfolio-item',
             layoutMode: 'fitRows',
           });
-
+    
+          // Trigger layout immediately after initialization
+          portfolioIsotope.layout();
+    
           const portfolioFilters = document.querySelectorAll('#portfolio-flters li');
-
           portfolioFilters.forEach((filter) => {
             filter.addEventListener('click', (e) => {
               e.preventDefault();
-              portfolioFilters.forEach((el) => {
-                el.classList.remove('filter-active');
-              });
+              portfolioFilters.forEach((el) => el.classList.remove('filter-active'));
               filter.classList.add('filter-active');
-
+    
               const filterValue = filter.getAttribute('data-filter');
-
-              if (filterValue !== null) {
+              if (filterValue) {
                 portfolioIsotope.arrange({ filter: filterValue });
               }
             });
@@ -301,6 +318,7 @@ import { Router } from '@angular/router';
         }
       };
     }
+
     private initAccordion(): void {
       const accordionItems = document.querySelectorAll('.accordion-list a');
       accordionItems.forEach(item => {
@@ -409,5 +427,50 @@ import { Router } from '@angular/router';
         }
       });
     }
-  }
+
+     /**
+     * Save Newsletter Email
+     */
+     onSubmitNewsletter() {
+      console.log('Attempting to submit newsletter with email:', this.email); // Debug: log email being submitted
+  
+      const newsletter: Newsletter = { email: this.email, id: '' };
+  
+      console.log('Newsletter object created:', newsletter); // Debug: log the newsletter object
+  
+      this._newsletterService.create(newsletter).subscribe(
+        response => {
+          console.log('Newsletter subscription successful', response); // Debug: successful response
+          this.openThankYouModal();
+        },
+        error => {
+          console.error('Error submitting newsletter:', error);
+          // Assume the backend sends structured error messages under error.error.message
+          const errorMessage = error.error.message || 'An unexpected error occurred.';
+          this.openErrorModal(errorMessage);
+        }
+      );
+    }
+
+    // Method to open the error modal
+    openErrorModal(message: string) {
+      this.errorMessage = message; // Set the error message to be displayed
+      this.showErrorModal = true; // Set the modal to be visible
+    }
+
+    // Method to close the error modal
+    closeErrorModal() {
+      this.showErrorModal = false;
+    }
+
+    // Method to open the modal
+    openThankYouModal() {
+      this.showThankYouModal = true;
+    }
+
+    // Method to close the modal
+    closeThankYouModal() {
+      this.showThankYouModal = false;
+    }
+}
 

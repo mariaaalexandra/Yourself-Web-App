@@ -45,12 +45,6 @@ export class OtherComponentsComponent implements OnInit, OnDestroy
                         link : '/ui/other-components/common/overview',
                     },
                     {
-                        id   : 'other-components.common.languages',
-                        title: 'Languages',
-                        type : 'basic',
-                        link : '/ui/other-components/common/languages',
-                    },
-                    {
                         id   : 'other-components.common.messages',
                         title: 'Messages',
                         type : 'basic',
