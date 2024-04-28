@@ -204,6 +204,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:list-bullet',
                 link : '/apps/task-management',
             },
+            {
+                id   : 'apps.fitness',
+                title: 'Fitness',
+                type : 'basic',
+                icon : 'heroicons_outline:scale',
+                link : '/apps/fitness',
+            },
         ],
     },
     {

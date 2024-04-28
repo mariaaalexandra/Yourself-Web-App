@@ -1,0 +1,168 @@
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Wrapper styles */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styles */
+.hero_intro h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.hero_intro p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* BMI Calculator styles */
+.bmi_calculator {
+  background-color: #fff;
+  padding: 40px;
+  margin-top: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.bmi_calculator h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.choose_method {
+  margin-bottom: 30px;
+}
+
+.stats, .stats_imperial {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.stats div, .stats_imperial div {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.stats div:last-child, .stats_imperial div:last-child {
+  margin-right: 0;
+}
+
+.stats input,
+.stats_imperial input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.stats p,
+.stats_imperial p {
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Result output styles */
+.result_output {
+  margin-top: 40px;
+}
+
+.wrap_result p {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+/* Means wrap styles */
+.means_text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.means_text p {
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+/* BMI Components wrap styles */
+.component {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.component img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.component h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.component p {
+  font-size: 1.4rem;
+  color: #555;
+}
+
+.component:hover img {
+  transform: scale(1.1);
+}
+
+/* Limitations wrap styles */
+.limotations_text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.limotations_text p {
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.elements {
+  margin-bottom: 40px;
+}
+
+.important img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.important h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.elements p {
+  font-size: 1.4rem;
+  color: #555;
+}
