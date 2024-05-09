@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, of, tap, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class FitnessService {
-    private apiUrl = 'http://localhost:8080/api/fitness';
+export class BMIService {
+    private apiUrl = 'http://localhost:8080/api/BMI';
     private _data: BehaviorSubject<any> = new BehaviorSubject(null);
 
     constructor(private http: HttpClient) {}
