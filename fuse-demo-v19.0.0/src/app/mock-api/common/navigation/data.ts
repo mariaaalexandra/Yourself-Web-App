@@ -103,6 +103,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     },
                 ],
             },
+            /*
             {
                 id   : 'apps.file-manager',
                 title: 'File Manager',
@@ -110,6 +111,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:cloud',
                 link : '/apps/file-manager',
             },
+            */
+            /*
             {
                 id      : 'apps.help-center',
                 title   : 'Help Center',
@@ -144,6 +147,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                     },
                 ],
             },
+            */
             // {
             //     id   : 'apps.mailbox',
             //     title: 'Mailbox',
