@@ -102,6 +102,7 @@ export const appRoutes: Route[] = [
                 {path: 'task-management', loadChildren: () => import('app/modules/admin/apps/task-management/tasks.routes')},
                 {path: 'navigation', loadChildren: () => import('app/modules/admin/apps/bucharest-map/buchares-map.routes')},
                 {path: 'BMI', loadChildren: () => import('app/modules/admin/apps/BMI/BMI.component.routes')},
+                {path: 'Pomodoro', loadChildren: () => import('app/modules/admin/apps/pomodoro/pomodoro.component.routes')},
             ]},
 
             // Contribute

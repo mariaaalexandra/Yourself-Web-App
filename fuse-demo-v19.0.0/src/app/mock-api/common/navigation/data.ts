@@ -211,6 +211,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:scale',
                 link : '/apps/BMI',
             },
+            {
+                id   : 'apps.Pomodoro',
+                title: 'Pomodoro',
+                type : 'basic',
+                icon : 'heroicons_outline:clock',
+                link : '/apps/Pomodoro',
+            },
         ],
     },
     {
