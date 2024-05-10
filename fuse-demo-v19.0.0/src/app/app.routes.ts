@@ -103,6 +103,7 @@ export const appRoutes: Route[] = [
                 {path: 'navigation', loadChildren: () => import('app/modules/admin/apps/bucharest-map/buchares-map.routes')},
                 {path: 'BMI', loadChildren: () => import('app/modules/admin/apps/BMI/BMI.component.routes')},
                 {path: 'Pomodoro', loadChildren: () => import('app/modules/admin/apps/pomodoro/pomodoro.component.routes')},
+                {path: 'InvestmentGrowth', loadChildren: () => import('app/modules/admin/apps/investmentgrowth/investmentgrowth.component.routes')},
             ]},
 
             // Contribute

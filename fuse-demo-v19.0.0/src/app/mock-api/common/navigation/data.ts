@@ -218,6 +218,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:clock',
                 link : '/apps/Pomodoro',
             },
+            {
+                id   : 'apps.InvestmentGrowth',
+                title: 'Investment Growth',
+                type : 'basic',
+                icon : 'heroicons_outline:chart-bar',
+                link : '/apps/InvestmentGrowth',
+            },
         ],
     },
     {

@@ -1,0 +1,113 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <!-- Title -->
+      <div class="col-md-12">
+        <h1 class="title">Investment Calculator</h1>
+      </div>
+    </div>
+
+    <!-- Form Content -->
+    <div class="row">
+      <!-- Initial Deposit -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="initial_deposit">Initial Deposit</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button class="btn btn-primary btn-left" min="0" type="button" (click)="updateValue('initialDeposit', 'sub', 100)">&minus;</button>
+            </div>
+            <input class="form-control text-center" id="initial_deposit" type="text" name="initialDeposit" [(ngModel)]="initialDeposit" (input)="onInputChange()">
+            <div class="input-group-append">
+              <button class="btn btn-primary btn-right" type="button" (click)="updateValue('initialDeposit', 'add', 100)">&plus;</button>
+            </div>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="EUR" type="radio" name="currency" [(ngModel)]="currency" value="1" (input)="onInputChange()">
+            <label class="form-check-label" for="EUR">EUR</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="USD" type="radio" name="currency" value="2" [(ngModel)]="currency" (input)="onInputChange()">
+            <label class="form-check-label" for="USD">USD</label>
+          </div>
+        </div>
+      </div>
+      <!-- Contributions -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="contribution_amount">Contributions</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button class="btn btn-primary btn-left" min="0" type="button" (click)="updateValue('contributionAmount', 'sub', 50)">&minus;</button>
+            </div>
+            <input class="form-control text-center" id="contribution_amount" type="text" name="contributionAmount" [(ngModel)]="contributionAmount" (input)="onInputChange()">
+            <div class="input-group-append">
+              <button class="btn btn-primary btn-right" type="button" (click)="updateValue('contributionAmount', 'add', 50)">&plus;</button>
+            </div>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="contribution_period_monthly" type="radio" name="contributionPeriod" [(ngModel)]="contributionPeriod" value="3" (input)="onInputChange()">
+            <label class="form-check-label" for="contribution_period_monthly">monthly</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="contribution_period_annually" type="radio" name="contributionPeriod" value="4" [(ngModel)]="contributionPeriod" (input)="onInputChange()">
+            <label class="form-check-label" for="contribution_period_annually">annually</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Investment Time Span -->
+    <div class="row">
+        <div class="col-md-12">
+        <div class="form-group">
+            <label for="investment_timespan">Investment Time Span</label>
+            <input class="form-control"
+                id="investment_timespan"
+                type="range"
+                name="investmentTimespan"
+                [(ngModel)]="investmentTimespan"
+                (input)="onTimeSpanChange()"
+                min="1"
+                max="50"
+                step="1">
+            <span id="investment_timespan_text">{{ investmentTimespan }} years</span>
+        </div>
+        </div>
+    </div>
+
+    <!-- Estimated Yearly Rate of Return -->
+    <div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="estimated_return">Estimated Yearly Rate of Return</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <button class="btn btn-primary btn-left" min="0" type="button" (click)="updateValue('estimatedReturn', 'sub', 0.25)">&minus;</button>
+                </div>
+                <input class="form-control text-center" id="estimated_return" type="text" name="estimatedReturn" [(ngModel)]="estimatedReturn" (input)="onInputChange()">
+                <div class="input-group-append">
+                <button class="btn btn-primary btn-right" type="button" (click)="updateValue('estimatedReturn', 'add', 0.25)">&plus;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Future Balance -->
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="subtitle">Future Balance</h2>
+        <div class="h3" id="future_balance">{{ calculateFutureValue(investmentTimespan) | currency:currencyResult }}</div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="row">
+        <p>{{ textPlaceholder }}</p>
+      <div class="col-md-12">
+        <canvas #myChart></canvas>
+      </div>
+    </div>
+  </div>
+</body>
