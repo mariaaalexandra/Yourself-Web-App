@@ -19,7 +19,7 @@ export const activities = [
         description  : '<strong>Leo Gill</strong> added you to <strong>Top Secret Project</strong> group and assigned you as a <strong>Project Manager</strong>',
         date         : now.minus({minutes: 50}).toISO(), // 50 minutes ago
         linkedContent: 'Top Secret Project',
-        link         : '/dashboards/project',
+        link         : '/apps/project',
         useRouter    : true,
     },
     {

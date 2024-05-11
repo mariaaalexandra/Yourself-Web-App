@@ -2878,7 +2878,7 @@
 </symbol>
 <symbol id="short_text" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 9h16v2H4V9zm0 4h10v2H4v-2z"/>
 </symbol>
-<symbol id="shortcut" viewBox="0 0 24 24"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M15,5l-1.41,1.41L15,7.83L17.17,10H8c-2.76,0-5,2.24-5,5v4h2v-4c0-1.65,1.35-3,3-3h9.17L15,14.17l-1.41,1.41L15,17l6-6 L15,5z"/></g>
+<symbol id="Shortcuts" viewBox="0 0 24 24"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M15,5l-1.41,1.41L15,7.83L17.17,10H8c-2.76,0-5,2.24-5,5v4h2v-4c0-1.65,1.35-3,3-3h9.17L15,14.17l-1.41,1.41L15,17l6-6 L15,5z"/></g>
 </symbol>
 <symbol id="show_chart" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99l1.5 1.5z"/>
 </symbol>

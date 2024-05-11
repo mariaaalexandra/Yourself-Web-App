@@ -1,0 +1,27 @@
+<body class="full-size">
+  <main>
+  <header>
+    <div class="row settings">
+      <div class="break col-md-6">
+        <p>BREAK LENGTH</p>
+        <button (click)="breakIncrement(-1)" class="minus">-</button>
+        <span class="time">{{breakLength}}</span>
+        <button (click)="breakIncrement(1)" class="plus">+</button>
+      </div>
+      <div class="session col-md-6">
+        <p>SESSION LENGTH</p>
+        <button (click)="sessionIncrement(-1)" class="minus">-</button>
+        <span class="time">{{sessionLength}}</span>
+        <button (click)="sessionIncrement(1)" class="plus">+</button>
+      </div>
+    </div>
+  </header>
+  <section (click)="timerStartStop()">
+    <div class="timer">
+      <p class="title">{{sessionType}}</p>
+      <p>{{timeLeft}}</p>
+      <span [style.height]="fillHeight" [style.background]="fillColor" class="fill"></span>
+    </div>
+  </section>
+</main>
+</body>

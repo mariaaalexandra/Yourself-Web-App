@@ -201,8 +201,8 @@ body {
 
   .navbar .getstarted:hover,
   .navbar .getstarted:focus:hover {
-    color: #fff;
-    background: #31a9e1;
+    color: #ffffff;
+    background: #1d7da988;
   }
 
   .navbar .dropdown ul {
@@ -655,6 +655,18 @@ body {
     }
   }
 
+  #my-clients .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#my-clients .row {
+    width: 100%;
+    justify-content: center; /* Center the columns in the middle of the row */
+}
+
+
   /*--------------------------------------------------------------
   # About Us
   --------------------------------------------------------------*/
@@ -847,13 +859,17 @@ body {
     }
   }
 
-  .hidden {
+  /* .hidden {
     display: none;
-  }
+  } */
 
   .visible {
     display: inline-block;
   }
+
+  .why-us .collapse {
+    visibility: visible !important;
+}
 
   /*--------------------------------------------------------------
   # Benefits
@@ -1628,6 +1644,41 @@ body {
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   }
 
+  #footer .footer-newsletter form {
+    margin-top: 30px;
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+    text-align: left;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+  }
+  
+  #footer .footer-newsletter form input[type=email] {
+    border: 0;
+    padding: 4px 8px;
+    width: calc(100% - 100px); /* Adjusted width to make space for the button */
+  }
+  
+  #footer .footer-newsletter form button[type=submit] {
+    border: 0;
+    background: #47b2e4;
+    color: #fff;
+    font-size: 16px;
+    padding: 4px 20px; /* Adjusted padding */
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* Optional: Hover effect */
+  #footer .footer-newsletter form button[type=submit]:hover {
+    background: #1a8bb8; /* Darker blue color on hover */
+  }
+
   #footer .footer-newsletter form input[type=submit]:hover {
     background: #209dd8;
   }
@@ -1887,5 +1938,183 @@ body {
         opacity: 0;
         border-radius: 50%;
     }
+}
 
+.btn-get-started {
+  background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  outline: none;
+}
+
+.btn-get-started:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-get-started:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.scrollto {
+  transition: all 0.5s ease;
+}
+
+.scrollto:hover {
+  opacity: 0.8;
+}
+
+.btn-get-started-large {
+  padding: 15px 30px;  /* Increase padding to make the button larger */
+  font-size: 20px;     /* Larger font size for better readability */
+  border-radius: 5px;  /* Optional: adjust the border radius for rounded corners */
+  font-weight: bold;   /* Optional: make the font bold */
+}
+
+ /* Animation for the popup */
+ @keyframes popupAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.e-input:hover .validation-popup,
+.e-input:focus-within .validation-popup {
+  animation: popupAnimation 0.4s ease-out forwards;
+}
+/* Thank you modal */
+.thank-you-modal {
+display: flex;
+align-items: center;
+justify-content: center;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.thank-you-modal .modal-content {
+background-color: #fff;
+padding: 40px;
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+max-width: 80%;
+text-align: center;
+animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.thank-you-modal .close-button {
+position: absolute;
+top: 10px;
+right: 10px;
+color: #aaa;
+font-size: 24px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.thank-you-modal .close-button:hover {
+color: #333;
+}
+
+.thank-you-modal .thank-you-heading {
+font-size: 24px;
+color: green;
+margin-bottom: 20px;
+}
+
+.thank-you-modal .thank-you-message {
+font-size: 18px;
+color: #333;
+}
+
+/* Error modal */
+.error-modal {
+display: flex;
+align-items: center;
+justify-content: center;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.error-modal .modal-content {
+background-color: #fff;
+padding: 40px;
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+max-width: 80%;
+text-align: center;
+animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.error-modal .close-button {
+position: absolute;
+top: 10px;
+right: 10px;
+color: #aaa;
+font-size: 24px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.error-modal .close-button:hover {
+color: #333;
+}
+
+.error-modal .error-heading {
+font-size: 24px;
+color: red;
+margin-bottom: 20px;
+}
+
+.error-modal .error-message {
+font-size: 18px;
+color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+@keyframes slideIn {
+from {
+  transform: translateY(-50px);
+}
+to {
+  transform: translateY(0);
+}
 }

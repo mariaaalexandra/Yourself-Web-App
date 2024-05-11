@@ -71,18 +71,30 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: User not found!"));
         }
 
-        // Create token
-        PasswordResetToken token = new PasswordResetToken();
-        token.setUser(user);
-        token.setToken(UUID.randomUUID().toString());
-        token.setExpiryDate(calculateExpiryDate(24 * 60)); // 24 hours for token validity
 
-        passwordResetTokenRepository.save(token);
+        String otp = OtpUtil.generateOtp();
+        User userUpdate = userRepository.findByEmail(user.getEmail());
+        userUpdate.setOtpGeneratedTime(LocalDateTime.now());
+        // Set the OTP for the user
+        userUpdate.setOtp(otp);
 
-        // Send email with reset link
-        sendResetEmail(userEmail, token.getToken());
+        // Save the user with the updated OTP
+        userRepository.save(userUpdate);
 
-        return ResponseEntity.ok(new MessageResponse("Reset link sent to email"));
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(senderEmail);
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setSubject("Verify OTP");
+        mailMessage.setText("This is your OTP for login: "+ otp + "\n" +
+                "Please access the following link for creating a new password:\n"+
+                "http://localhost:8081/reset-pass-verification");
+
+        mailSender.send(mailMessage);
+
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE)
+                .body(new UserInfoResponse(user.getId(),
+                        user.getUsername(),
+                        user.getEmail()));
     }
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
@@ -104,20 +116,10 @@ public class AuthController {
         mailSender.send(mailMessage);
     }
     @PostMapping("/reset-password")
-    public ResponseEntity<?> processResetPassword(@RequestParam("token") String token, @RequestParam("newPassword") String newPassword) {
-        // Find token and user
-        PasswordResetToken resetToken = passwordResetTokenRepository.findByToken(token);
-        if (resetToken == null) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Invalid token."));
-        }
-
-        // Validate token expiry
-        if (resetToken.getExpiryDate().before(new Date())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Token has expired."));
-        }
+    public ResponseEntity<?> processResetPassword(@RequestParam("email") String email, @RequestParam("newPassword") String newPassword) {
 
         // Update user's password
-        User user = resetToken.getUser();
+        User user = userRepository.findByEmail(email);
         if (user == null) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: User not found."));
         }
@@ -125,8 +127,6 @@ public class AuthController {
         user.setPassword(encoder.encode(newPassword));
         userRepository.save(user);
 
-        // Remove the reset token
-        passwordResetTokenRepository.delete(resetToken);
 
         return ResponseEntity.ok(new MessageResponse("Password successfully reset."));
     }

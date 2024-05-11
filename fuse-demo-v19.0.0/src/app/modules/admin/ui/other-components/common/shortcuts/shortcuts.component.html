@@ -54,7 +54,7 @@
         <!-- @formatter:off -->
         <textarea fuse-highlight
                   lang="typescript">
-            export interface Shortcut
+            export interface Shortcuts
             {
                 id: string;
                 label: string;
@@ -79,7 +79,7 @@
                             <div>id</div>
                         </td>
                         <td>
-                            Unique id of the shortcut.
+                            Unique id of the Shortcuts.
                         </td>
                     </tr>
                     <tr>
@@ -87,7 +87,7 @@
                             <div>label</div>
                         </td>
                         <td>
-                            Label of the shortcut.
+                            Label of the Shortcuts.
                         </td>
                     </tr>
                     <tr>
@@ -95,7 +95,7 @@
                             <div>description</div>
                         </td>
                         <td>
-                            Description of the shortcut.
+                            Description of the Shortcuts.
                         </td>
                     </tr>
                     <tr>
@@ -103,7 +103,7 @@
                             <div>icon</div>
                         </td>
                         <td>
-                            Icon name for the shortcut.
+                            Icon name for the Shortcuts.
                         </td>
                     </tr>
                     <tr>
@@ -111,7 +111,7 @@
                             <div>link</div>
                         </td>
                         <td>
-                            Link of the shortcut.
+                            Link of the Shortcuts.
                         </td>
                     </tr>
                     <tr>
@@ -138,7 +138,7 @@
         </p>
         <div class="bg-card rounded shadow mt-4">
             <div class="px-6 py-3 font-mono text-secondary border-b">
-                shortcuts$: Observable&lt;Shortcut[]&gt;
+                shortcuts$: Observable&lt;Shortcuts[]&gt;
             </div>
             <div class="p-6">
                 Getter for shortcuts.
@@ -146,7 +146,7 @@
         </div>
         <div class="bg-card rounded shadow mt-4">
             <div class="px-6 py-3 font-mono text-secondary border-b">
-                getAll(): Observable&lt;Shortcut[]&gt;
+                getAll(): Observable&lt;Shortcuts[]&gt;
             </div>
             <div class="p-6">
                 Get all shortcuts from the server.
@@ -154,18 +154,18 @@
         </div>
         <div class="bg-card rounded shadow mt-4">
             <div class="px-6 py-3 font-mono text-secondary border-b">
-                create(shortcut: Shortcut): Observable&lt;Shortcut&gt;
+                create(Shortcuts: Shortcuts): Observable&lt;Shortcuts&gt;
             </div>
             <div class="p-6">
-                Create a new shortcut on the server.
+                Create a new Shortcuts on the server.
             </div>
         </div>
         <div class="bg-card rounded shadow mt-4">
             <div class="px-6 py-3 font-mono text-secondary border-b">
-                update(id: string, shortcut: Shortcut): Observable&lt;Shortcut&gt;
+                update(id: string, Shortcuts: Shortcuts): Observable&lt;Shortcuts&gt;
             </div>
             <div class="p-6">
-                Update the shortcut on the server.
+                Update the Shortcuts on the server.
             </div>
         </div>
         <div class="bg-card rounded shadow mt-4">
@@ -173,7 +173,7 @@
                 delete(id: string): Observable&lt;boolean&gt;
             </div>
             <div class="p-6">
-                Delete the shortcut on the server.
+                Delete the Shortcuts on the server.
             </div>
         </div>
 

@@ -198,10 +198,10 @@ export class ChangelogComponent
                         '(layout/common/messages) Fixed: Wrong color classes on "No Messages" icon',
                         '(layout/common/notifications) Fixed: Wrong color classes on "No Notifications" icon',
                         '(layout/common/shortcuts) Fixed: Wrong color classes on "No Shortcuts" icon',
-                        '(dashboards/project) Removed unnecessary classes from the buttons',
+                        '(apps/project) Removed unnecessary classes from the buttons',
                         '(apps/mailbox) Better label toggle behavior',
                         '(apps/tasks) Better tag toggle behavior',
-                        '(docs) Fixed: Typos',
+                        '(apps) Fixed: Typos',
                     ],
                 },
             ],
@@ -457,7 +457,7 @@ export class ChangelogComponent
                     type: 'Added',
                     list: [
                         '(dashboards/finance) Added finance dashboard',
-                        '(dashboards/crypto) Added crypto dashboard',
+                        '(apps/crypto) Added crypto dashboard',
                     ],
                 },
                 {

@@ -548,3 +548,9 @@ html {
 
   /* Adjust font sizes and other styles as necessary */
 }
+
+.otp-input {
+  color: white; /* Sets the text color to white */
+  border: 1px solid #555; /* Optional: sets a border color that works well with dark backgrounds */
+}
+

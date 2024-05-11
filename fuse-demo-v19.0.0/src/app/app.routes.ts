@@ -1,15 +1,12 @@
 import { Route } from '@angular/router';
 import { initialDataResolver } from 'app/app.resolvers';
-import { AuthGuard } from 'app/core/auth/guards/auth.guard';
-import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { LogComponent } from './log/log.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { StartPageComponent } from './start-page/start-page.component';
-import { DonateComponent } from './modules/donate/donate.component';
-import { ContributeComponent } from './modules/contribute/contribute.component';
-import { OpenSOurceComponent } from './modules/opensource/opensource.component';
-import { FeedbackComponent } from './modules/feedback/feedback.component';
+import { ResetPassComponent } from './modules/reset-pass/reset-pass.component';
+import { OtpVerificationPassComponent } from './modules/otp-verification-pass/otp-verification.component';
+import { CreateNewPassComponent } from './modules/create-new-pass/reset-pass.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -20,53 +17,39 @@ export const appRoutes: Route[] = [
     { path: 'otp-verification', component: OtpVerificationComponent},
     { path: '', pathMatch : 'full', redirectTo: 'log'},
     { path: 'start', component: StartPageComponent},
-    { path: 'contribute', component: ContributeComponent},
-    { path: 'contribute/donate', component: DonateComponent},
-    { path: 'contribute/open-source', component: OpenSOurceComponent},
-    { path: 'contribute/feedback', component: FeedbackComponent},
+    { path: 'reset-pass', component: ResetPassComponent},
+    { path: 'reset-pass-verification', component: OtpVerificationPassComponent},
+    { path: 'create-new-pass', component: CreateNewPassComponent},
 
-    
+    // Redirect empty path to '/apps/project'
+    {path: '', pathMatch : 'full', redirectTo: 'apps/project'},
 
-    // Redirect empty path to '/dashboards/project'
-    {path: '', pathMatch : 'full', redirectTo: 'dashboards/project'},
-
-    // Redirect signed-in user to the '/dashboards/project'
+    // Redirect signed-in user to the '/apps/project'
     //
     // After the user signs in, the sign-in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'dashboards/project'},
+    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'apps/project'},
 
     // Auth routes for guests
     {
         path: '',
-        canActivate: [NoAuthGuard],
-        canActivateChild: [NoAuthGuard],
         component: LayoutComponent,
         data: {
             layout: 'empty'
         },
         children: [
-            {path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.routes')},
-            {path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.routes')},
-            {path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.routes')},
-            {path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.routes')},
-            {path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.routes')}
         ]
     },
 
     // Auth routes for authenticated users
     {
         path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
         component: LayoutComponent,
         data: {
             layout: 'empty'
         },
         children: [
-            {path: 'sign-out', loadChildren: () => import('app/modules/auth/sign-out/sign-out.routes')},
-            {path: 'unlock-session', loadChildren: () => import('app/modules/auth/unlock-session/unlock-session.routes')}
         ]
     },
 
@@ -85,8 +68,6 @@ export const appRoutes: Route[] = [
     // Admin routes
     {
         path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
             initialData: initialDataResolver
@@ -96,17 +77,14 @@ export const appRoutes: Route[] = [
             // Dashboards
             {path: 'dashboards', children: [
                 {path: 'dashboard-1', loadChildren: () => import('app/modules/admin/dashboards/dashboard-1/dashboard-1.component.routes')},
-                // {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
-                // {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
-                // {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
             ]},
 
             // Apps
             {path: 'apps', children: [
-                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
-                {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
-                {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
-                {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
+                {path: 'project', loadChildren: () => import('app/modules/admin/apps/project/project.routes')},
+                {path: 'analytics', loadChildren: () => import('app/modules/admin/apps/analytics/analytics.routes')},
+                {path: 'finance', loadChildren: () => import('app/modules/admin/apps/finance/finance.routes')},
+                {path: 'crypto', loadChildren: () => import('app/modules/admin/apps/crypto/crypto.routes')},
                 {path: 'academy', loadChildren: () => import('app/modules/admin/apps/academy/academy.routes')},
                 {path: 'ebook', loadChildren: () => import('app/modules/admin/apps/ebook/academy.routes')},
                 {path: 'chat', loadChildren: () => import('app/modules/admin/apps/chat/chat.routes')},
@@ -123,6 +101,16 @@ export const appRoutes: Route[] = [
                 {path: 'tasks', loadChildren: () => import('app/modules/admin/apps/tasks/tasks.routes')},
                 {path: 'task-management', loadChildren: () => import('app/modules/admin/apps/task-management/tasks.routes')},
                 {path: 'navigation', loadChildren: () => import('app/modules/admin/apps/bucharest-map/buchares-map.routes')},
+                {path: 'BMI', loadChildren: () => import('app/modules/admin/apps/BMI/BMI.component.routes')},
+                {path: 'Pomodoro', loadChildren: () => import('app/modules/admin/apps/pomodoro/pomodoro.component.routes')},
+                {path: 'InvestmentGrowth', loadChildren: () => import('app/modules/admin/apps/investmentgrowth/investmentgrowth.component.routes')},
+            ]},
+
+            // Contribute
+            {path: 'contribute', children: [
+                {path: 'donate', loadChildren: () => import('app/modules/admin/contribute/donate/donate.routes')},
+                {path: 'opensourcecontributions', loadChildren: () => import('app/modules/admin/contribute/opensourcecontributions/opensourcecontributions.routes')},
+                {path: 'constructivefeedback', loadChildren: () => import('app/modules/admin/contribute/constructivefeedback/constructivefeedback.component.routes')},
             ]},
 
             // Pages
@@ -130,12 +118,6 @@ export const appRoutes: Route[] = [
 
                 // Activities
                 {path: 'activities', loadChildren: () => import('app/modules/admin/pages/activities/activities.routes')},
-
-                // Authentication
-                {path: 'authentication', loadChildren: () => import('app/modules/admin/pages/authentication/authentication.routes')},
-
-                // Coming Soon
-                {path: 'coming-soon', loadChildren: () => import('app/modules/admin/pages/coming-soon/coming-soon.routes')},
 
                 // Error
                 {path: 'error', children: [

@@ -35,8 +35,6 @@
                             "quill"
                         ],
                         "assets": [
-                            "src/favicon-16x16.png",
-                            "src/favicon-32x32.png",
                             "src/assets",
                             {
                                 "glob": "_redirects",
@@ -51,11 +49,11 @@
                         },
                         "styles": [
                             "src/@fuse/styles/tailwind.scss",
+                            "src/styles/tailwind.scss",
                             "src/@fuse/styles/themes.scss",
                             "src/styles/vendors.scss",
                             "src/@fuse/styles/main.scss",
                             "src/styles/styles.scss",
-                            "src/styles/tailwind.scss",
                             "node_modules/aos/dist/aos.css",
                             "src/assets/vendor/aos/aos.css",
                             "src/assets/vendor/bootstrap/css/bootstrap.min.css",
@@ -127,8 +125,6 @@
                         "tsConfig": "tsconfig.spec.json",
                         "inlineStyleLanguage": "scss",
                         "assets": [
-                            "src/favicon-16x16.png",
-                            "src/favicon-32x32.png",
                             "src/assets"
                         ],
                         "styles": [

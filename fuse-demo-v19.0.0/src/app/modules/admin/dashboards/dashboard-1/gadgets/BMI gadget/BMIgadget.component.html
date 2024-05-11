@@ -1,0 +1,94 @@
+  <div class="bmi_calculator">
+    <div class="result_output">
+      <div class="wrap_result">
+        <p id="welcome">Welcome!</p>
+        <p id="top_bmi">Your BMI is...</p>
+        <p id="result"></p>
+        <p id="welcome_more">
+          Enter your height and weight to see your BMI result here.
+        </p>
+      </div>
+      <p id="ideal_bmi_info"></p>
+    </div>
+    <br>
+    <form>
+      <h3>Enter your details below</h3>
+      <div class="choose_method">
+        <div>
+          <label for="metric" class="radio_wrap">
+            <input type="radio" name="method" id="metric" value="metric" checked>
+            Metric
+            <span></span>
+          </label>
+        </div>
+        <div>
+          <label for="imperial" class="radio_wrap">
+            <input type="radio" name="method" id="imperial" value="imperial">
+            Imperial
+            <span></span>
+          </label>
+        </div>
+      </div>
+      <div class="stats">
+        <div>
+          <label for="height">Height</label>
+          <input type="number" name="height" id="height" placeholder="0">
+          <p class="cm">cm</p>
+        </div>
+        <div>
+          <label for="weight">Weight</label>
+          <input type="number" name="weight" id="weight" placeholder="0">
+          <p class="kg">kg</p>
+        </div>
+        <div class="gender_age">
+          <div>
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Age">
+          </div>
+        </div>
+      </div>
+      <div class="stats_imperial">
+        <div>
+          <label for="height_ft">Height</label>
+          <input type="number" name="height_ft" id="height_ft" placeholder="0">
+          <p class="ft">ft</p>
+        </div>
+        <div>
+          <input type="number" name="height_in" id="height_in" placeholder="0">
+          <p class="in">in</p>
+        </div>
+        <div>
+          <label for="weight">Weight</label>
+          <input type="number" name="weight_st" id="weight_st" placeholder="0">
+          <p class="st">st</p>
+        </div>
+        <div>
+          <input type="number" name="weight_lbs" id="weight_lbs" placeholder="0">
+          <p class="lbs">lbs</p>
+        </div>
+        <div class="gender_age">
+          <div>
+            <label for="gender">Gender</label>
+            <select id="gender2">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <label for="age">Age</label>
+            <input type="number" id="age2" placeholder="Age">
+          </div>
+        </div>
+      </div>
+    </form>
