@@ -1,51 +1,28 @@
-<div class="container">
-  <div class="slider" [ngClass]="{'slider-open': sliderOpen}">
-    <ul class="slider-list">
-      <!-- Repeat for more image-text pairs -->
-      <li class="slider-item">
-        <img src="../../../../../assets/img/clients/4.jpg" alt="Description" class="slider-image">
-        <div class="slider-content">
-          <div class="slider-title">NowReading Tracker</div>
-          <div class="slider-description">Shows your current book and progress, keeping your reading journey clearly in view.</div>
-        </div>
-      </li>
-      <li class="slider-item">
-        <img src="../../../../../assets/img/clients/4.jpg" alt="Description" class="slider-image">
-        <div class="slider-content">
-          <div class="slider-title">Deadline Dash</div>
-          <div class="slider-description">Highlights your most urgent task, ensuring top priorities are never overlooked.</div>
-        </div>
-      </li>
-      <li class="slider-item">
-        <img src="../../../../../assets/img/clients/4.jpg" alt="Description" class="slider-image">
-        <div class="slider-content">
-          <div class="slider-title">Note Nudge</div>
-          <div class="slider-description">Brings your key notes to the forefront, making important information readily accessible.</div>
-        </div>
-      </li>
-      <li class="slider-item">
-        <img src="../../../../../assets/img/clients/4.jpg" alt="Description" class="slider-image">
-        <div class="slider-content">
-          <div class="slider-title">Budget Beacon</div>
-          <div class="slider-description">Displays current budget status and upcoming expenses, guiding your financial decisions.</div>
-        </div>
-      </li>
-      <li class="slider-item">
-        <img src="../../../../../assets/img/clients/4.jpg" alt="Description" class="slider-image">
-        <div class="slider-content">
-          <div class="slider-title">Invest Insight</div>
-          <div class="slider-description">Provides a snapshot of investment trends and metrics, simplifying financial oversight.</div>
-        </div>
-      </li>
-      <li class="slider-item">
-        <img src="../../../../../assets/img/clients/4.jpg" alt="Description" class="slider-image">
-        <div class="slider-content">
-          <div class="slider-title">QuickPath Picker</div>
-          <div class="slider-description">Instantly select the best route, optimizing your journey with a tap.</div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <!-- Plus (ADD) symbol -->
-  <button (click)="toggleSlider()" class="toggle-btn">&#43;</button> 
+<body>
+<!-- Slider with dynamic class for open/close state -->
+<div class="slider" [ngClass]="{'slider-open': sliderOpen}" #slider>
+  <ul class="slider-list">
+    <!-- Dynamically generated list of slider items -->
+    <li *ngFor="let item of sliderItems" class="slider-item" (click)="addWidget(item.component)">
+      <img [src]="item.image" alt="{{item.description}}" class="slider-image">
+      <div class="slider-content">
+        <div class="slider-title">{{item.title}}</div>
+        <div class="slider-description">{{item.description}}</div>
+      </div>
+    </li>
+  </ul>
 </div>
+
+<!-- Toggle button for slider -->
+<button (click)="toggleSlider()" class="toggle-btn" [style.margin-top]="sliderOpen ? '67vh' : '87vh'">&#43;</button>
+
+<!-- Placeholder for dynamically inserted components -->
+<div #dynamicInsert></div>
+
+<!-- Gridster component for widget layout -->
+<gridster [options]="gridOptions">
+  <gridster-item *ngFor="let widget of widgets" [item]="widget">
+    <ng-container *ngComponentOutlet="widget.component"></ng-container>
+  </gridster-item>
+</gridster>
+</body>
