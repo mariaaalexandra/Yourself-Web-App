@@ -17,9 +17,10 @@ public class WidgetLayoutServiceImpl implements WidgetLayoutService {
 
     @Override
     public WidgetLayout createWidgetLayout(WidgetLayout widgetLayout) {
-        System.out.println("Received widget layout: " + widgetLayout);
-        System.out.println("Received widget layout: id " + widgetLayout.getId());
-        return widgetLayoutRepository.save(widgetLayout);
+        WidgetLayout savedWidgetLayout = widgetLayoutRepository.save(widgetLayout);
+        System.out.println("Generated UUID: " + savedWidgetLayout.getId()); // Log the UUID here
+        widgetLayoutRepository.flush(); // Ensures the ID is generated
+        return savedWidgetLayout;
     }
 
     @Override

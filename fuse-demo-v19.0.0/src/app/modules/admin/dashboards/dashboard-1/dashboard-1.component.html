@@ -3,11 +3,16 @@
 <div class="slider" [ngClass]="{'slider-open': sliderOpen}" #slider>
   <ul class="slider-list">
     <!-- Dynamically generated list of slider items -->
-    <li *ngFor="let item of sliderItems" class="slider-item" (click)="addWidget(item.component)">
+    <!-- Dynamically generated list of slider items -->
+    <li *ngFor="let item of sliderItems" class="slider-item" (click)="addWidget(item.component)"
+    [ngClass]="{
+      'widget-exists': widgetExists(item.component.name),
+      'widget-new': !widgetExists(item.component.name)
+    }">
       <img [src]="item.image" alt="{{item.description}}" class="slider-image">
       <div class="slider-content">
-        <div class="slider-title">{{item.title}}</div>
-        <div class="slider-description">{{item.description}}</div>
+      <div class="slider-title">{{item.title}}</div>
+      <div class="slider-description">{{item.description}}</div>
       </div>
     </li>
   </ul>

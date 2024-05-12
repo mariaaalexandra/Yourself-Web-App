@@ -8,6 +8,7 @@
   transition: transform 0.3s ease-out;
   transform: translateY(100%);
   z-index: 6;
+  overflow-y: hidden;
   overflow-x: auto; /* Key for horizontal scrolling */
   white-space: nowrap; /* Prevents wrapping of inline elements */
   padding: 10px 0;
@@ -49,11 +50,19 @@
 .slider-list {
   display: flex;
   padding-left: 10px;
+  padding-right: 10px; /* Adds padding to the right to balance the padding on the left */
   margin: 0;
   list-style-type: none;
   flex-wrap: nowrap;
-  width: max-content; /* Set a fixed width */
-  overflow-x:scroll; /* Enable horizontal scrolling */
+  width: max-content;
+  overflow-x: scroll; /* Enable horizontal scrolling */
+  box-sizing: border-box; /* Ensures padding and border are included in width/height */
+}
+
+.slider-list::after {
+  content: "";
+  width: 80px; /* Adjust this value based on your needs */
+  flex: 0 0 auto;
 }
 
 .slider-item {
@@ -66,7 +75,7 @@
   border-radius: 12px; /* Smoother border radius */
   background: rgba(255, 255, 255, 0.95); /* High transparency for a glass-like effect */
   width: 700px; /* Increased width */
-  height: calc(20vh - 20px);
+  height: calc(17vh);
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease-out, box-shadow 0.3s ease;
@@ -92,7 +101,7 @@
 }
 
 .slider-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.005);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -113,6 +122,24 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
+}
+
+/* Existing widget */
+.widget-exists {
+  background-color: #ffcccc; /* Light red background */
+  border-color: red; /* Red border */
+}
+
+/* New widget */
+.widget-new {
+  background-color: #ccffcc; /* Light green background */
+  border-color: green; /* Green border */
+}
+
+.gridster {
+  overflow: auto; // Enables scrolling within the Gridster container
+  height: 100%;   // Adjust based on your layout needs
+  width: 100%;    // Ensure it fills the intended area
 }

@@ -1,0 +1,190 @@
+/* General body styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hero section styling */
+  .hero_wrap {
+    background: linear-gradient(to right, #5a67d8, #805ad5);
+    color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero_wrap:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero_intro h1 {
+    font-size: 2rem;
+  }
+  
+  .hero_intro p {
+    font-size: 1rem;
+  }
+  
+  /* Form and Calculator styling */
+  .bmi_calculator {
+    background: #ffffff;
+    color: #000000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bmi_calculator:hover {
+    transform: translateY(-3px);
+  }
+  
+  .bmi_calculator form {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .choose_method {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .radio_wrap {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+  }
+  
+  .radio_wrap input[type="radio"] {
+    all: unset;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 2px solid #5a67d8;
+    border-radius: 50%;
+  }
+  
+  .radio_wrap input[type="radio"]:checked {
+    background-color: #5a67d8;
+  }
+  
+  .stats, .stats_imperial {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  input[type="number"]:focus {
+    border-color: #5a67d8;
+  }
+  
+  /* Result display styling */
+  .result_output {
+    margin-top: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border: 2px solid #ddd;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .result_output:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Additional information sections */
+  .means_wrap, .limitations_wrap {
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .means_wrap:hover, .limitations_wrap:hover {
+    border-color: #5a67d8;
+  }
+  
+  .component, .elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .component img, .elements img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto; /* This centers the image horizontally */
+  }
+  
+  .component p, .elements p {
+    text-align: center;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .wrapper, .bmi_calculator form, .result_output {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .choose_method {
+      flex-direction: column;
+    }
+  }
+  
+  /* Limitations block and elements styling */
+  .blocks_limit {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px 0;
+  }
+  
+  .elements {
+    flex: 1 1 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .elements:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  

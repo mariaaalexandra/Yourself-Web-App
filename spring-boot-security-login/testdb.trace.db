@@ -16697,3 +16697,32 @@ select shortcut0_.id as id1_24_, shortcut0_.description as descript2_24_, shortc
 2024-05-12 13:54:49 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "BIGINT, BINARY"; SQL statement:
 select widgetlayo0_.id as id1_33_0_, widgetlayo0_.cols as cols2_33_0_, widgetlayo0_.component_type as componen3_33_0_, widgetlayo0_.rows as rows4_33_0_, widgetlayo0_.x as x5_33_0_, widgetlayo0_.y as y6_33_0_ from widget_layout widgetlayo0_ where widgetlayo0_.id=? [22018-214]
+2024-05-12 17:13:46 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP [*]WIDGET_LAYOUT"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL OBJECTS, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP WIDGET_LAYOUT [42001-214]
+2024-05-12 17:13:57 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WIDGET_LAYOUT" not found; SQL statement:
+select widgetlayo0_.id as id1_33_, widgetlayo0_.cols as cols2_33_, widgetlayo0_.component_type as componen3_33_, widgetlayo0_.rows as rows4_33_, widgetlayo0_.x as x5_33_, widgetlayo0_.y as y6_33_ from widget_layout widgetlayo0_ [42102-214]
+2024-05-12 17:43:42 jdbc[15]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-214]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:190)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:132)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 17 more

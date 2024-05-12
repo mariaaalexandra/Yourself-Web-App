@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, ReplaySubject, switchMap, take, tap, throwError } from 'rxjs';
 
@@ -54,25 +54,41 @@ export class WidgetLayoutService
     }
 
     create(widgetLayout: WidgetLayout): Observable<WidgetLayout> {
-      console.log('Sending request to create widget with data:', widgetLayout);
-      return this._httpClient.post<WidgetLayout>('http://localhost:8080/api/widgets', widgetLayout).pipe(
-          tap((newWidget) => {
-              console.log('Received new widget from server:', newWidget);
-              this.widgets$.pipe(
-                  take(1),
-                  tap(widgets => {
-                      console.log('Current widgets in cache before adding new one:', widgets);
-                      this._widgets.next([...widgets, newWidget]);
-                      console.log('Updated widgets in cache:', [...widgets, newWidget]);
-                  })
-              ).subscribe();
-          }),
-          catchError(error => {
-              console.error('Failed to create widget:', error);
-              return throwError(() => new Error('Failed to create widget'));
-          })
-      );
-  }
+        const url = 'http://localhost:8080/api/widgets';
+        console.log('Attempting to create widget with URL:', url, 'and data:', widgetLayout);
+    
+        // Define headers
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            // Add other headers as needed
+        });
+    
+        // Check if widget of the same componentType already exists before creating a new one
+        return this.widgets$.pipe(
+            take(1),
+            switchMap(widgets => {
+                const existingWidget = widgets.find(w => w.componentType === widgetLayout.componentType);
+                if (existingWidget) {
+                    console.error('Widget with same componentType already exists:', existingWidget);
+                    return throwError(() => new Error('Widget with same componentType already exists'));
+                } else {
+                    return this._httpClient.post<WidgetLayout>(url, widgetLayout, {headers: headers}).pipe(
+                        tap(newWidget => {
+                            console.log('Received new widget from server:', newWidget);
+                            const updatedWidgets = [...widgets, newWidget];
+                            this._widgets.next(updatedWidgets);
+                            console.log('Updated widgets in cache:', updatedWidgets);
+                        }),
+                        catchError(error => {
+                            console.error('Failed to create widget:', error);
+                            return throwError(() => new Error('Failed to create widget'));
+                        })
+                    );
+                }
+            })
+        );
+    }
+    
   
   update(id: String, widgetLayout: WidgetLayout): Observable<WidgetLayout> {
       console.log(`Sending request to update widget with id ${id} and data:`, widgetLayout);

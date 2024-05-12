@@ -3,7 +3,9 @@ import { Subscription } from 'rxjs';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { BMIComponent } from './gadgets/BMI gadget/BMIgadget.component';
+import { investmentgrowthComponent } from './gadgets/Investment Gadget/investmentgadget.component';
 import { pomodoroComponent } from './gadgets/Pomodoro/pomodoro.component';
+import { BucharestMapComponent } from './gadgets/Bucharest Map/bucharestmap.component';
 import { SliderStateService } from './slider-state.service';
 import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2';
 import { MatIconModule } from '@angular/material/icon';
@@ -56,11 +58,12 @@ export class Dashboard1Component implements OnDestroy {
   }
 
   getComponentType(typeName: string): Type<any> {
-    // Map type name to component, for example:
     switch (typeName) {
       case 'BMIComponent': return BMIComponent;
       case 'pomodoroComponent': return pomodoroComponent;
-      default: return null; // Default or error handling
+      case 'BucharestMapComponent': return BucharestMapComponent;
+      case 'investmentgrowthComponent': return investmentgrowthComponent;
+      default: return null;
     }
   }
 
@@ -127,7 +130,10 @@ export class Dashboard1Component implements OnDestroy {
       });
     }
   }
-  
+
+  widgetExists(componentType: string): boolean {
+    return this.widgets.some(widget => widget.component && widget.component.name === componentType);
+  }
 
   deleteWidget(widget: GridsterItem, index: number): void {
     if (widget.id) {
@@ -139,13 +145,22 @@ export class Dashboard1Component implements OnDestroy {
 
   convertToWidgetLayout(widget: GridsterItem): WidgetLayout {
     return {
-      id: widget.id,
-      cols: widget.cols,
-      rows: widget.rows,
-      x: widget.x,
-      y: widget.y,
-      componentType: (widget.component as Type<any>).name
+        id: widget.id,
+        cols: widget.cols,
+        rows: widget.rows,
+        x: widget.x,
+        y: widget.y,
+        componentType: widget.component ? (widget.component as Type<any>).name : 'UnknownComponent'
     };
+  }
+
+  checkGridExpansion() {
+    // Check if the number of rows needs to be increased based on widget count
+    const requiredRows = Math.ceil(this.widgets.length / this.gridOptions.columns);
+    if (this.gridOptions.maxRows < requiredRows) {
+      this.gridOptions.maxRows = requiredRows;
+      this.gridOptions.api.optionsChanged(); // Refresh gridster with new settings
+    }
   }
 
   initializeGridOptions(): void {
@@ -164,6 +179,7 @@ export class Dashboard1Component implements OnDestroy {
       itemResizeCallback: (item, itemComponent) => {
         console.log('Item was resized', item);
         this.saveWidget(item);
+        this.checkGridExpansion();
       },
       resizable: {
         enabled: true, // Allows resizing of grid items
@@ -182,13 +198,11 @@ export class Dashboard1Component implements OnDestroy {
       pushItems: true, // Pushes other items away on move or resize
       swap: false, // Swap instead of push
       minCols: 10,
-      maxCols: 100,
+      //maxCols: 100,
       minRows: 10,
-      //maxRows: 100
+      //maxRows: 1000,
       fixedColWidth: 105, // Fixed width of columns in pixels
       fixedRowHeight: 105, // Fixed height of rows in pixels
-      keepFixedHeightInMobile: true, // Keeps the height fixed on mobile devices
-      keepFixedWidthInMobile: true, // Keeps the width fixed on mobile devices
       scrollSensitivity: 10, // Pixels to scroll when dragging near edge
       scrollSpeed: 20, // Speed of scrolling
       enableEmptyCellClick: false, // Enables clicking on empty cells
@@ -208,9 +222,8 @@ export class Dashboard1Component implements OnDestroy {
     this.sliderItems = [
       { image: '../../../../../assets/img/Gadgets/BMIGadget.png', title: 'BMI Gadget', description: 'Calculate your BMI in seconds', component: BMIComponent },
       { image: '../../../../../assets/img/Gadgets/PomodoroGadget.png', title: 'Pomodoro Gadget', description: 'Pomodoro for productivity', component: pomodoroComponent },
-      { image: '../../../../../assets/img/Gadgets/MapGadget.png', title: 'Map Gadget', description: 'Plan your trips', component: pomodoroComponent },
-      { image: '../../../../../assets/img/Gadgets/InvestmentGadget.png', title: 'Investment Gadget', description: 'Reach financial freedom', component: pomodoroComponent },
-      { image: '../../../../../assets/img/Gadgets/BookReader.png', title: 'Book Reader Gadget', description: 'Cultivate yourself daily', component: pomodoroComponent },
+      { image: '../../../../../assets/img/Gadgets/MapGadget.png', title: 'Map Gadget', description: 'Plan your trips', component: BucharestMapComponent },
+      { image: '../../../../../assets/img/Gadgets/InvestmentGadget.png', title: 'Investment Gadget', description: 'Reach financial freedom', component: investmentgrowthComponent },
       // Define other components as needed
     ];
   }
@@ -233,31 +246,53 @@ export class Dashboard1Component implements OnDestroy {
   activeComponents: Set<Type<any>> = new Set();
 
   addWidget(component: Type<any>): void {
-    if (this.widgets.some(widget => widget.component === component)) {
-      // If the component is already added to the Gridster, do nothing
-      return;
-    }
-    
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
-    
-    // Create the component reference without attaching it to the view
-    const componentRef = componentFactory.create(this.injector);
+    // Find the index of the widget if it exists
+    const widgetIndex = this.widgets.findIndex(widget => widget.component === component);
   
-    // Adjust the number of rows and columns to fit the content
+    if (widgetIndex !== -1) {
+      // If the component is already added to the Gridster, delete it from the database
+      this.deleteWidgetFromDB(this.widgets[widgetIndex]);
+    } else {
+      // Else, proceed to add it
+      this.addNewWidget(component);
+    }
+  }
+
+  deleteWidgetFromDB(widget: GridsterItem): void {
+    if (widget.id) {
+      this.widgetLayoutService.delete(widget.id).subscribe(() => {
+        // Remove the widget from the array on successful deletion
+        const index = this.widgets.findIndex(w => w.id === widget.id);
+        if (index !== -1) {
+          this.widgets.splice(index, 1);
+          console.log(`Widget with id ${widget.id} deleted successfully.`);
+        }
+      });
+    }
+  }
+
+  addNewWidget(component: Type<any>): void {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    const componentRef = componentFactory.create(this.injector);
+    
     const newWidget: GridsterItem = {
       cols: 5,
-      rows: 6, // Adjust this value based on the height of your component's body
+      rows: 6,
       y: 0,
       x: 0,
       component: component,
-      dragEnabled: true, // Ensure dragging is enabled
-      resizeEnabled: true, // Ensure resizing is enabled
+      dragEnabled: true,
+      resizeEnabled: true,
       componentRef: componentRef
     };
     
     this.widgets.push(newWidget);
     this.appRef.tick(); // Ensure global change detection is aware of the new component
-}
+    console.log('New widget added:', component.name);
+  }
+  
+  
+  
 
   removeWidget(index: number): void {
     const widget = this.widgets[index];

@@ -1,0 +1,204 @@
+/* Base Styles */
+
+/* Colors */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #0056b3;
+  --background-color: #f8f9fa;
+  --text-color: #333;
+  --accent-color: #ffc107;
+}
+
+/* Container */
+.container {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 18px;
+  width: 80%;
+  margin: 50px auto;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Rows and Columns */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.col-md-6 {
+  flex: 0 0 48%;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 40px;
+}
+
+.label {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group .btn {
+    position: absolute;
+    top: 50%; /* Vertically center */
+    transform: translateY(-50%); /* Vertically center */
+    z-index: 100; /* Ensure buttons appear above input */
+}
+
+.input-group .btn-left {
+    left: 0;
+}
+
+.input-group .btn-right {
+    right: 0;
+}
+
+/* Buttons */
+.btn {
+  background-color: #4c80fb;
+  color: #f7f7f7;
+  border: none;
+  font-size: 1.8em;
+  padding: 15px 15px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 5px;
+}
+
+
+.btn:hover {
+  background-color: #2e67ec;
+}
+
+/* Form Controls */
+.form-control {
+    width: 100%;
+    padding: 12px; /* Adjust the padding */
+    border-radius: 10px;
+    border: 2px solid #ced4da;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 16px; /* Adjust the font size */
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+}
+
+/* Form Validation */
+.form-control:invalid {
+  border-color: #dc3545;
+}
+
+.form-control:invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-control:valid {
+  border-color: #28a745;
+}
+
+.form-control:valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Headings */
+.h3 {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Chart */
+#myChart {
+  margin-top: 40px;
+}
+
+/* Range Input */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%; /* Ensure the slider takes the full width of its container */
+    height: 25px;
+    border-radius: 12px;
+    background: #ffffff;
+    outline: none;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px; /* Adjust the width of the slider thumb */
+    height: 25px; /* Adjust the height of the slider thumb */
+    border-radius: 50%;
+    background: #4c80fb;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: #0e03e8;
+  }
+
+/* Additional Enhancements */
+
+/* Hover Effects */
+.row:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Validation */
+.form-control:invalid {
+  border-color: #dc3545;
+}
+
+.form-control:invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-control:valid {
+  border-color: #28a745;
+}
+
+.form-control:valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Styling for the text placeholder */
+p {
+  padding: 10px;
+  background-color: #f4f4f4; /* Light grey background */
+  border-left: 5px solid #4CAF50; /* Green accent on the left */
+  font-family: Arial, sans-serif; /* Ensures text is easily readable */
+  font-size: 16px; /* Adequate font size for readability */
+  margin-top: 20px; /* Adds space above the paragraph */
+  color: #333; /* Dark grey text for better contrast */
+}
