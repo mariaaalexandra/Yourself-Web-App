@@ -8,6 +8,7 @@ import { SliderStateService } from './slider-state.service';
 import { GridsterConfig, GridsterItem, GridsterModule } from 'angular-gridster2';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { WidgetLayout, WidgetLayoutService } from './widget-layout.service';
 
 @Component({
   selector: 'app-dashboard-1',
@@ -30,14 +31,121 @@ export class Dashboard1Component implements OnDestroy {
               private sliderStateService: SliderStateService,
               private appRef: ApplicationRef,
               private injector: Injector,
-              private renderer: Renderer2) {
+              private renderer: Renderer2,
+              private widgetLayoutService: WidgetLayoutService) {
     this.initializeGridOptions();
     this.initializeWidgets();
     this.initializeSliderItems();
     this.subscription = this.sliderStateService.enlargedSlider$.subscribe(enlarged => {
       this.enlargedSlider = enlarged;
-      this.adjustSliderPosition();
     });
+  }
+
+  ngOnInit(): void {
+    this.loadWidgetLayouts(); // Fetch widget layouts when the component initializes
+  }
+
+  ngAfterViewInit(): void {
+    this.adjustSliderPosition();
+  }
+
+  loadWidgetLayouts(): void {
+    this.widgetLayoutService.getAll().subscribe(layouts => {
+      this.widgets = layouts.map(layout => this.createGridsterItemFromLayout(layout));
+    });
+  }
+
+  getComponentType(typeName: string): Type<any> {
+    // Map type name to component, for example:
+    switch (typeName) {
+      case 'BMIComponent': return BMIComponent;
+      case 'pomodoroComponent': return pomodoroComponent;
+      default: return null; // Default or error handling
+    }
+  }
+
+  createGridsterItemFromLayout(layout: WidgetLayout): GridsterItem {
+    return {
+      cols: layout.cols,
+      rows: layout.rows,
+      x: layout.x,
+      y: layout.y,
+      id: layout.id,
+      component: this.getComponentType(layout.componentType)
+    };
+  }
+
+  saveWidget(widget: GridsterItem): void {
+    // First, log the widget and layout to be saved for debugging purposes
+    console.log('Attempting to save widget:', widget);
+  
+    // Convert the widget to a layout object
+    const layout = this.convertToWidgetLayout(widget);
+    console.log('Converted widget to layout:', layout);
+  
+    // Check if the widget already has an ID (existing widget)
+    if (widget.id) {
+      console.log(`Updating existing widget layout with ID: ${widget.id}`);
+      this.widgetLayoutService.update(widget.id, layout).subscribe({
+        next: () => {
+          console.log('Layout updated successfully');
+        },
+        error: error => {
+          console.error('Error updating layout', error);
+          if (error.error instanceof ErrorEvent) {
+            console.error('Client-side error:', error.error.message);
+          } else {
+            console.error(`Backend returned code ${error.status}, body was: `, error.error);
+          }
+        },
+        complete: () => console.log('Update widget layout request completed.')
+      });
+    } else { // This is a new widget
+      console.log('Creating new widget layout');
+      this.widgetLayoutService.create(layout).subscribe({
+        next: (savedLayout) => {
+          console.log('Pre id:', widget.id);
+          widget.id = savedLayout.id; // Update id of newly created widget
+          console.log('Widget id:', widget.id);
+          console.log('SavedLayoutId:', savedLayout.id);
+          console.log('Layout created successfully:', savedLayout);
+        },
+        error: error => {
+          console.error('Error creating layout', error);
+          if (error.error instanceof ErrorEvent) {
+            console.error('Client-side error:', error.error.message);
+          } else {
+            console.error(`Backend returned code ${error.status}, body was: `, error.error);
+          }
+          if (error.status === 404) {
+            console.error('Endpoint not found. Ensure the URL is correct and the server is reachable.');
+          } else if (error.status === 500) {
+            console.error('Internal server error. Check server logs for more details.');
+          }
+        },
+        complete: () => console.log('Create widget layout request completed.')
+      });
+    }
+  }
+  
+
+  deleteWidget(widget: GridsterItem, index: number): void {
+    if (widget.id) {
+      this.widgetLayoutService.delete(widget.id).subscribe(() => {
+        this.widgets.splice(index, 1); // Remove the widget from the array on successful deletion
+      });
+    }
+  }
+
+  convertToWidgetLayout(widget: GridsterItem): WidgetLayout {
+    return {
+      id: widget.id,
+      cols: widget.cols,
+      rows: widget.rows,
+      x: widget.x,
+      y: widget.y,
+      componentType: (widget.component as Type<any>).name
+    };
   }
 
   initializeGridOptions(): void {
@@ -48,6 +156,14 @@ export class Dashboard1Component implements OnDestroy {
         ignoreContentClass: 'no-drag', // Ignore drag action when clicking on elements with this class
         ignoreContent: false, // Set to true to only drag on handle
         dragHandleClass: 'drag-handler' // CSS class applied to drag handles
+      },
+      itemChangeCallback: (item, itemComponent) => {
+        console.log('Item was changed', item);
+        this.saveWidget(item);
+      },
+      itemResizeCallback: (item, itemComponent) => {
+        console.log('Item was resized', item);
+        this.saveWidget(item);
       },
       resizable: {
         enabled: true, // Allows resizing of grid items
@@ -153,14 +269,14 @@ export class Dashboard1Component implements OnDestroy {
   }
 
   private adjustSliderPosition(): void {
-    if (this.enlargedSlider) {
-      // Reset position to the normal state
-      this.renderer.setStyle(this.slider.nativeElement, 'left', '0');
-      this.renderer.setStyle(this.slider.nativeElement, 'transition', 'left 0.5s ease');
-    } else {
-      // Move slider to the right by 10% of the container width
-      this.renderer.setStyle(this.slider.nativeElement, 'left', '4.5%');
-      this.renderer.setStyle(this.slider.nativeElement, 'transition', 'left 0.5s ease');
+    if (this.slider.nativeElement) {
+      if (this.enlargedSlider) {
+        this.renderer.setStyle(this.slider.nativeElement, 'left', '0');
+        this.renderer.setStyle(this.slider.nativeElement, 'transition', 'left 0.5s ease');
+      } else {
+        this.renderer.setStyle(this.slider.nativeElement, 'left', '4.5%');
+        this.renderer.setStyle(this.slider.nativeElement, 'transition', 'left 0.5s ease');
+      }
     }
   }
 

@@ -16694,3 +16694,6 @@ DROP SHORTCUT [42001-214]
 2024-04-11 20:55:10 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SHORTCUT" not found; SQL statement:
 select shortcut0_.id as id1_24_, shortcut0_.description as descript2_24_, shortcut0_.icon as icon3_24_, shortcut0_.label as label4_24_, shortcut0_.link as link5_24_, shortcut0_.use_router as use_rout6_24_ from shortcuts shortcut0_ [42102-214]
+2024-05-12 13:54:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "BIGINT, BINARY"; SQL statement:
+select widgetlayo0_.id as id1_33_0_, widgetlayo0_.cols as cols2_33_0_, widgetlayo0_.component_type as componen3_33_0_, widgetlayo0_.rows as rows4_33_0_, widgetlayo0_.x as x5_33_0_, widgetlayo0_.y as y6_33_0_ from widget_layout widgetlayo0_ where widgetlayo0_.id=? [22018-214]
