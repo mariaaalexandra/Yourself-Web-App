@@ -16726,3 +16726,40 @@ Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection wa
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 17 more
+2024-06-02 22:05:49 database: close
+org.h2.message.DbException: IO Exception: "Closing" [90028-214]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.close(Store.java:402)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1261)
+	at org.h2.engine.Database.closeImpl(Database.java:1225)
+	at org.h2.engine.Database.close(Database.java:1144)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "Closing" [90028-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 7 more
+Caused by: org.h2.mvstore.MVStoreException: Writing to sun.nio.ch.FileChannelImpl@42c4d395 failed; length 16384 at 245760 [2.1.214/2]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.DataUtils.writeFully(DataUtils.java:493)
+	at org.h2.mvstore.FileStore.writeFully(FileStore.java:113)
+	at org.h2.mvstore.MVStore.write(MVStore.java:1269)
+	at org.h2.mvstore.MVStore.moveChunk(MVStore.java:2246)
+	at org.h2.mvstore.MVStore.compactMoveChunks(MVStore.java:2133)
+	at org.h2.mvstore.MVStore.compactMoveChunks(MVStore.java:2068)
+	at org.h2.mvstore.MVStore.compactMoveChunks(MVStore.java:2041)
+	at org.h2.mvstore.MVStore.compactFile(MVStore.java:2282)
+	at org.h2.mvstore.MVStore.closeStore(MVStore.java:1329)
+	at org.h2.mvstore.MVStore.close(MVStore.java:1291)
+	at org.h2.mvstore.db.Store.close(Store.java:386)
+	... 5 more
+Caused by: java.io.IOException: There is not enough space on the disk
+	at java.base/sun.nio.ch.FileDispatcherImpl.pwrite0(Native Method)
+	at java.base/sun.nio.ch.FileDispatcherImpl.pwrite(FileDispatcherImpl.java:81)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:135)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:102)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:72)
+	at java.base/sun.nio.ch.FileChannelImpl.writeInternal(FileChannelImpl.java:1030)
+	at java.base/sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:1011)
+	at org.h2.mvstore.DataUtils.writeFully(DataUtils.java:489)
+	... 15 more

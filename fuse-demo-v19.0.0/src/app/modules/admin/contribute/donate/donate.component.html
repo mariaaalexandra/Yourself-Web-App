@@ -11,30 +11,7 @@
                                 <p>It helps us sustain the project. Thank you!</p>
 
                                 <div class="row">
-                                    <div class="col-lg-12 col-12">
-                                        <h5 class="mb-3">Donation Frequency</h5>
-                                    </div>
-
-                                    <div class="col-lg-6 col-6 form-check-group form-check-group-donation-frequency">
-                                        <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="DonationFrequency" id="DonationFrequencyOne" checked>
-
-                                            <label class="form-check-label" for="DonationFrequencyOne">
-                                                One Time
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-6 form-check-group form-check-group-donation-frequency">
-                                        <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="DonationFrequency" id="DonationFrequencyMonthly">
-
-                                            <label class="form-check-label" for="DonationFrequencyMonthly">
-                                                Monthly
-                                            </label>
-                                        </div>
-                                    </div>
-
+                                    
                                     <div class="col-lg-12 col-12">
                                         <h5 class="mt-2 mb-3">Select an amount</h5>
                                     </div>
@@ -100,19 +77,6 @@
                                         </div>
                                       </div>
 
-
-                                    <div class="col-lg-12 col-12">
-                                        <h5 class="mt-1">Personal Info</h5>
-                                    </div>
-
-                                    <div class="col-lg-6 col-12 mt-2">
-                                        <input type="text" name="donation-name" id="donation-name" class="form-control" placeholder="Name" required>
-                                    </div>
-
-                                    <div class="col-lg-6 col-12 mt-2">
-                                        <input type="email" name="donation-email" id="donation-email" pattern="[^ ]*[^ ]*" class="form-control" placeholder="Email" required>
-                                    </div>
-
                                     <div class="col-lg-12 col-12">
                                         <h5 class="mt-4 pt-1">Payment Method</h5>
                                     </div>
@@ -137,104 +101,84 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-12 col-12 text-center mb-4">
-                        <h2>Our Needs</h2>
-                    </div>
-
+                  <div class="container text-center mb-4">
+                    <h2 class="section-title">Our Needs</h2>
+                </div>
+                
+                <div class="row">
+                    <!-- Coffee Donation Block -->
                     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                        <div class="custom-block-wrap">
-                            <img src="../../../../../assets/image/opensource/Coffee.jpg" class="custom-block-image img-fluid" alt="">
-
-                            <div class="custom-block">
-                                <div class="custom-block-body">
-                                    <h5 class="mb-3">Coffee </h5>
-
-                                    <p>The devs need some energy, help us with coffee.</p>
-
-                                    <div class="d-flex align-items-center my-2">
-                                        <p class="mb-0">
-                                            <strong>Raised:</strong>
-                                            ${{raisedAmount}}
-                                        </p>
-
-                                        <p class="ms-auto mb-0">
-                                            <strong>Goal:</strong>
-                                            ${{ goalAmount }}
-                                        </p>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" [style.width.%]="progressPercentage"></div>
-                                    </div>
-
+                        <div class="donation-block">
+                            <img src="../../../../../assets/image/opensource/Coffee.jpg" class="donation-image" alt="Coffee">
+                
+                            <div class="donation-content">
+                                <h5 class="donation-title mb-3">Coffee</h5>
+                                <p class="donation-description">The devs need some energy, help us with coffee.</p>
+                                <div class="donation-info my-2">
+                                    <p class="raised-amount mb-0">
+                                        <strong>Raised:</strong> {{ raisedAmount }}
+                                    </p>
+                                    <p class="goal-amount ms-auto mb-0">
+                                        <strong>Goal:</strong> {{ goalAmount }}
+                                    </p>
                                 </div>
-
-                                <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
+                                <div class="progress">
+                                    <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+                                </div>
+                                <a href="/contribute/donate" class="btn custom-btn">Donate now</a>
                             </div>
                         </div>
                     </div>
-
+                
+                    <!-- Server Hosting Donation Block -->
                     <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                        <div class="custom-block-wrap">
-                            <img src="../../../../../assets/image/opensource/Server.jpg" class="custom-block-image img-fluid" alt="">
-
-                            <div class="custom-block">
-                                <div class="custom-block-body">
-                                    <h5 class="mb-3">Server hosting</h5>
-
-                                    <p>Help us support the cost of server hosting for this app.</p>
-
-                                    <div class="d-flex align-items-center my-2">
-                                        <p class="mb-0">
-                                            <strong>Raised:</strong>
-                                            ${{ raisedAmount }}
-                                        </p>
-
-                                        <p class="ms-auto mb-0">
-                                            <strong>Goal:</strong>
-                                            ${{ goalAmount2 }}
-                                        </p>
-                                    </div>
-                                    <div class="progress2">
-                                        <div class="progress2-bar" [style.width.%]="progressPercentage2"></div>
-                                    </div>
-
+                        <div class="donation-block">
+                            <img src="../../../../../assets/image/opensource/Server.jpg" class="donation-image" alt="Server hosting">
+                
+                            <div class="donation-content">
+                                <h5 class="donation-title mb-3">Server hosting</h5>
+                                <p class="donation-description">Help us support the cost of server hosting for this app.</p>
+                                <div class="donation-info my-2">
+                                    <p class="raised-amount mb-0">
+                                        <strong>Raised:</strong> {{ raisedAmount }}
+                                    </p>
+                                    <p class="goal-amount ms-auto mb-0">
+                                        <strong>Goal:</strong> {{ goalAmount2 }}
+                                    </p>
                                 </div>
-
-                                <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
+                                <div class="progress">
+                                    <div class="progress-bar" [style.width.%]="progressPercentage2"></div>
+                                </div>
+                                <a href="/contribute/donate" class="btn custom-btn">Donate now</a>
                             </div>
                         </div>
                     </div>
-
+                
+                    <!-- Vacation Donation Block -->
                     <div class="col-lg-4 col-md-6 col-12">
-                        <div class="custom-block-wrap">
-                            <img src="../../../../../assets/image/opensource/Travel.jpg" class="custom-block-image img-fluid" alt="">
-
-                            <div class="custom-block">
-                                <div class="custom-block-body">
-                                    <h5 class="mb-3">A nice vacation</h5>
-
-                                    <p>If this platform really helped you, take us on a trip.</p>
-
-                                    <div class="d-flex align-items-center my-2">
-                                        <p class="mb-0">
-                                            <strong>Raised:</strong>
-                                            ${{ raisedAmount }}
-                                        </p>
-
-                                        <p class="ms-auto mb-0">
-                                            <strong>Goal:</strong>
-                                            ${{ goalAmount3 }}
-                                        </p>
-                                    </div>
-                                    <div class="progress3">
-                                        <div class="progress3-bar" [style.width.%]="progressPercentage3"></div>
-                                    </div>
+                        <div class="donation-block">
+                            <img src="../../../../../assets/image/opensource/Travel.jpg" class="donation-image" alt="Vacation">
+                
+                            <div class="donation-content">
+                                <h5 class="donation-title mb-3">A nice vacation</h5>
+                                <p class="donation-description">If this platform really helped you, take us on a trip.</p>
+                                <div class="donation-info my-2">
+                                    <p class="raised-amount mb-0">
+                                        <strong>Raised:</strong> {{ raisedAmount }}
+                                    </p>
+                                    <p class="goal-amount ms-auto mb-0">
+                                        <strong>Goal:</strong> {{ goalAmount3 }}
+                                    </p>
                                 </div>
-
-                                <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
+                                <div class="progress">
+                                    <div class="progress-bar" [style.width.%]="progressPercentage3"></div>
+                                </div>
+                                <a href="/contribute/donate" class="btn custom-btn">Donate now</a>
                             </div>
                         </div>
                     </div>
+                </div>
+                
                 </div>
             </div>
             <br>

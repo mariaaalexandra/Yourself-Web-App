@@ -52,9 +52,6 @@ export class donateComponent implements OnInit, OnDestroy
 
     )
     {
-        this.calculateProgressPercentage();
-        this.calculateProgressPercentage2();
-        this.calculateProgressPercentage3();
     }
     ngOnDestroy(): void {
 
@@ -63,7 +60,12 @@ export class donateComponent implements OnInit, OnDestroy
         this._donateService.getTotalAmount().subscribe(
             (amount: number) => {
               this.raisedAmount = amount;
-              console.log("Sum " + this.raisedAmount)
+              console.log("Sum " + this.raisedAmount);
+              this.calculateProgressPercentage();
+              this.calculateProgressPercentage2();
+              this.calculateProgressPercentage3();
+
+              console.log("Progress percentage" + this.progressPercentage);
               this._changeDetectorRef.detectChanges(); // Manually trigger change detection
 
             },
