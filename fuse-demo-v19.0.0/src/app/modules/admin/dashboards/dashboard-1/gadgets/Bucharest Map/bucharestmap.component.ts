@@ -19,7 +19,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-arcgis-map',
   templateUrl: './bucharestmap.component.html',
-  styleUrls: ['./bucharestmap.component.css'],
+  styleUrls: ['./bucharestmap.component.scss'],
   encapsulation  : ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone     : true,

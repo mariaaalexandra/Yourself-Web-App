@@ -1,0 +1,53 @@
+<div class="form-container">
+    <form [formGroup]="transactionForm" (ngSubmit)="submit()">
+    <!-- First Row -->
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="datePicker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Time</mat-label>
+        <input matInput type="time" formControlName="time">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
+    </div>
+
+    <!-- Second Row -->
+    <div class="form-row">
+        <mat-form-field appearance="fill" style="width: 150px;">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" >
+            <mat-label>Payment</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType">
+                {{ paymentType }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Balance</mat-label>
+        <input matInput type="number" formControlName="balance">
+      </mat-form-field>
+    </div>
+
+
+    </form>
+
+  </div>
+  <button mat-raised-button color="primary" (click)="submit()" class="submit-button">Submit</button>

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
@@ -5,7 +6,7 @@ import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 export class DonateService {
     private _data: BehaviorSubject<any> = new BehaviorSubject(null);
 
-    constructor() { }
+    constructor(private http:HttpClient) { }
 
     get data$(): Observable<any> {
         return this._data.asObservable();
@@ -25,4 +26,12 @@ export class DonateService {
             })
         );
     }
+
+
+  private apiUrl = 'http://localhost:8080/api'; // Adjust the URL to match your backend
+
+
+  getTotalAmount(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total-amount`);
+  }
 }

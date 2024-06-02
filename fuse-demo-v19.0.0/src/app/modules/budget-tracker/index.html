@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="/assets/css/bootstrap-icons.css" rel="stylesheet">
+
+        <link href="/assets/css/apexcharts.css" rel="stylesheet">
+
+        <link href="/assets/css/tooplate-mini-finance.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="navbar flex-md-nowrap">
+            <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
+                <a class="navbar-brand">
+                    <i hero-icons="banknotes"></i>
+                    Budget Tracker
+                </a>
+            </div>
+        </header>
+
+        <div>
+            <div>
+                <main class="col-md-12 ms-sm-auto py-4 col-lg-12 px-md-4 border-start">
+                    <div class="title-group mb-3">
+                        <h1 class="h2 mb-0">Overview</h1>
+
+                        <small class="text-muted">Welcome back!</small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-7 col-12">
+                            <div class="custom-block custom-block-balance">
+                                <small>Your Balance</small>
+
+                                <h2 class="mt-2 mb-3">{{totalIncome}}</h2>
+
+                                <div class="custom-block-numbers d-flex align-items-center">
+                                    <span>****</span>
+                                    <span>****</span>
+                                    <span>****</span>
+                                    <span>****</span>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="ms-auto">
+                                        <small>Card Holder</small>
+                                        <p>Thomas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+
+
+                            <div class="custom-block custom-block-bottom d-flex flex-wrap" style="height:230px">
+                                <div style="display: flex; align-items: center; justify-content: center; width: 100px; height: 100px; background-color: #DAEEC2; border-radius: 50%; margin: auto; cursor: pointer;">
+                                    <a style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;" onclick="alert('Please insert your money amount for the debit card')">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+                                      </svg>
+                                      <small style="margin-top: 4px;">Credit Card</small>
+                                    </a>
+                                  </div>
+
+
+                                <div style="display: flex; align-items: center; justify-content: center; width: 100px; height: 100px; background-color: #FEDCEC; border-radius: 50%; margin: auto;">
+                                    <a style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+                                        </svg>
+                                        <small style="margin-top: 4px;">Debit Card</small>
+                                    </a>
+                                </div>
+                                <div style="display: flex; align-items: center; justify-content: center; width: 100px; height: 100px; background-color: #c3d3ed; border-radius: 50%; margin: auto;">
+                                    <a style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                          </svg>
+
+                                        <small style="margin-top: 4px;">Meal Vouchers</small>
+                                    </a>
+                                </div>
+
+                                <div style="display: flex; align-items: center; justify-content: center; width: 100px; height: 100px; background-color: #FFDFD3; border-radius: 50%; margin: auto;">
+                                    <a style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+                                          </svg>
+
+                                        <small style="margin-top: 4px;">Holiday Vouchers</small>
+                                    </a>
+                                </div>
+
+                                <!-- SVG Icon as a clickable button to open the modal -->
+                                <div style="cursor: pointer; display: flex; justify-content: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" (click)="openModal()">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Modal Popup with Stylish Design -->
+                                <div *ngIf="showModal" style="position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;">
+                                    <div style="background-color: white; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                        <h4 style="margin-bottom: 20px; color: #333;">Enter Income Details</h4>
+                                            <label for="creditCard" style="display: block; margin-bottom: 5px; color: #666;">Credit Card:</label>
+                                            <input type="text" id="creditCard" formControlName="creditCard" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                                            <label for="debitCard" style="display: block; margin-bottom: 5px; color: #666;">Debit Card:</label>
+                                            <input type="text" id="debitCard" formControlName="debitCard" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                                            <label for="mealVouchers" style="display: block; margin-bottom: 5px; color: #666;">Meal Vouchers:</label>
+                                            <input type="text" id="mealVouchers" formControlName="mealVouchers" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                                            <label for="holidayVouchers" style="display: block; margin-bottom: 5px; color: #666;">Holiday Vouchers:</label>
+                                            <input type="text" id="holidayVouchers" formControlName="holidayVouchers" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+                                        <button (click)="onSubmit()" type="submit" style="width: 100%; padding: 10px 0; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Save</button>
+
+                                    </form>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                         <div class="custom-block bg-white" style="align-self: center;">
+                            <h5 class="mb-4">History</h5>
+                                <div id="pie-chart">
+                                  <apx-chart [series]="chartOptions1.series"
+                                             [chart]="chartOptions1.chart"
+                                             [labels]="chartOptions1.labels"
+                                             [colors]="chartOptions1.colors"
+                                             [responsive]="chartOptions1.responsive">
+                                  </apx-chart>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="custom-block bg-white" style="align-self: center;">
+                            <h5 class="mb-4">Financial Overview</h5>
+                            <apx-chart
+                              [series]="chartOptions.series"
+                              [chart]="chartOptions.chart"
+                              [xaxis]="chartOptions.xaxis"
+                              [yaxis]="chartOptions.yaxis"
+                              [stroke]="chartOptions.stroke"
+                              [tooltip]="chartOptions.tooltip"
+                              [dataLabels]="chartOptions.dataLabels"
+                              [plotOptions]="chartOptions.plotOptions"
+                              [fill]="chartOptions.fill"
+                              [colors]="chartOptions.colors">
+                            </apx-chart>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <div class="custom-block custom-block-exchange col-md-5">
+                            <h5 class="mb-4">Exchange Rate</h5>
+
+                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="assets/images/flag/united-kingdom.png" class="exchange-image img-fluid" alt="">
+
+                                    <div>
+                                        <p>USD</p>
+                                        <h6>1 US Dollar</h6>
+                                    </div>
+                                </div>
+
+                                <div class="ms-auto me-4">
+                                    <small>Sell</small>
+                                    <h6>1.0931</h6>
+                                </div>
+
+                                <div>
+                                    <small>Buy</small>
+                                    <h6>1.0821</h6>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="assets/images/flag/singapore.png" class="exchange-image img-fluid" alt="">
+
+                                    <div>
+                                        <p>SGD</p>
+                                        <h6>1 Singapore Dollar</h6>
+                                    </div>
+                                </div>
+
+                                <div class="ms-auto me-4">
+                                    <small>Sell</small>
+                                    <h6>0.6901</h6>
+                                </div>
+
+                                <div>
+                                    <small>Buy</small>
+                                    <h6>0.6201</h6>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="assets/images/flag/united-kingdom.png" class="exchange-image img-fluid" alt="">
+
+                                    <div>
+                                        <p>GPD</p>
+                                        <h6>1 British Pound</h6>
+                                    </div>
+                                </div>
+
+                                <div class="ms-auto me-4">
+                                    <small>Sell</small>
+                                    <h6>1.1520</h6>
+                                </div>
+
+                                <div>
+                                    <small>Buy</small>
+                                    <h6>1.1412</h6>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="assets/images/flag/australia.png" class="exchange-image img-fluid" alt="">
+
+                                    <div>
+                                        <p>AUD</p>
+                                        <h6>1 Australian Dollar</h6>
+                                    </div>
+                                </div>
+
+                                <div class="ms-auto me-4">
+                                    <small>Sell</small>
+                                    <h6>0.6110</h6>
+                                </div>
+
+                                <div>
+                                    <small>Buy</small>
+                                    <h6>0.5110</h6>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="assets/images/flag/european-union.png" class="exchange-image img-fluid" alt="">
+
+                                    <div>
+                                        <p>EUR</p>
+                                        <h6>1 Euro</h6>
+                                    </div>
+                                </div>
+
+                                <div class="ms-auto me-4">
+                                    <small>Sell</small>
+                                    <h6>1.1020</h6>
+                                </div>
+
+                                <div>
+                                    <small>Buy</small>
+                                    <h6>1.1010</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="custom-block custom-block-transations">
+                                <h5 class="mb-4">Recent Transations</h5>
+
+                                <div *ngFor="let transaction of transactions">
+
+                                    <div class="d-flex flex-wrap align-items-center mb-4">
+                                        <div class="d-flex align-items-center">
+
+                                            <div>
+                                                <p>
+                                                    <a>{{ transaction.description }}</a>
+                                                </p>
+
+                                                <small class="text-muted">{{ transaction.paymentType }}</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <small>{{ transaction.date }}</small>
+                                            <strong class="d-block text-danger"><span class="me-1">-</span> $ {{ transaction.balance }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-top pt-4 mt-4 text-center">
+                                    <a class="btn custom-btn" href="apps/budget-tracker/wallet">
+                                        View all transations
+                                        <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+            </div>
+        </div>
+
+    </body>
+</html>

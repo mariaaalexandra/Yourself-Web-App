@@ -36,10 +36,11 @@
                         ],
                         "assets": [
                             "src/assets",
+                            "src/assets/images",
                             {
-                                "glob": "_redirects",
-                                "input": "src",
-                                "output": "/"
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets/"
                             }
                         ],
                         "stylePreprocessorOptions": {
@@ -61,9 +62,18 @@
                             "src/assets/vendor/boxicons/css/boxicons.min.css",
                             "src/assets/vendor/glightbox/css/glightbox.min.css",
                             "src/assets/vendor/remixicon/remixicon.css",
-                            "src/assets/vendor/swiper/swiper-bundle.min.css"
+                            "src/assets/vendor/swiper/swiper-bundle.min.css",
+                            "src/assets/css/apexcharts.css",
+                            "src/assets/css/bootstrap-icons.css",
+                            "src/assets/css/bootstrap.min.css",
+                            "src/assets/css/tooplate-mini-finance.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "src/assets/css/apexcharts.css",
+                            "src/assets/css/tooplate-mini-finance.css"
                         ],
                         "scripts": [
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
                             "node_modules/glightbox/dist/js/glightbox.min.js",
                             "node_modules/swiper/swiper-bundle.min.js",
                             "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
