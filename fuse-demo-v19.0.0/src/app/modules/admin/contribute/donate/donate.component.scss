@@ -6,7 +6,10 @@ https://templatemo.com/tm-581-kind-heart-charity
 
 */
 
-
+.modal {
+    display: block; /* Show the modal */
+    background: rgba(0, 0, 0, 0.5); /* Background overlay */
+  }
 
 @font-face {
     font-family: 'Metropolis';
@@ -45,7 +48,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 }
 
 /*---------------------------------------
-  CUSTOM PROPERTIES ( VARIABLES )             
+  CUSTOM PROPERTIES ( VARIABLES )
 -----------------------------------------*/
 :root {
   --white-color:                  #ffffff;
@@ -83,12 +86,12 @@ https://templatemo.com/tm-581-kind-heart-charity
 
 body {
   background-color: var(--white-color);
-  font-family: var(--body-font-family); 
+  font-family: var(--body-font-family);
 }
 
 
 /*---------------------------------------
-  TYPOGRAPHY               
+  TYPOGRAPHY
 -----------------------------------------*/
 
 h2,
@@ -150,7 +153,7 @@ ul li {
   font-weight: var(--font-weight-normal);
 }
 
-a, 
+a,
 button {
   touch-action: manipulation;
   transition: all 0.3s;
@@ -172,7 +175,7 @@ strong {
 
 
 /*---------------------------------------
-  SECTION               
+  SECTION
 -----------------------------------------*/
 .section-padding {
   padding-top: 10px;
@@ -199,7 +202,7 @@ strong {
 
 
 /*---------------------------------------
-  CUSTOM BLOCK               
+  CUSTOM BLOCK
 -----------------------------------------*/
 .custom-block-wrap {
   background: var(--white-color);
@@ -231,7 +234,7 @@ strong {
 
 
 /*---------------------------------------
-  PROGRESS BAR               
+  PROGRESS BAR
 -----------------------------------------*/
 .progress {
   background: var(--border-color);
@@ -270,7 +273,7 @@ strong {
 
 
 /*---------------------------------------
-  CUSTOM ICON COLOR               
+  CUSTOM ICON COLOR
 -----------------------------------------*/
 .custom-icon {
   color: var(--secondary-color);
@@ -278,7 +281,7 @@ strong {
 
 
 /*---------------------------------------
-  CUSTOM LIST               
+  CUSTOM LIST
 -----------------------------------------*/
 .custom-list {
   margin-bottom: 0;
@@ -293,7 +296,7 @@ strong {
 
 
 /*---------------------------------------
-  CUSTOM TEXT BOX               
+  CUSTOM TEXT BOX
 -----------------------------------------*/
 .custom-text-box {
   background: var(--white-color);
@@ -324,7 +327,7 @@ strong {
 
 
 /*---------------------------------------
-  AVATAR IMAGE - TESTIMONIAL, AUTHOR               
+  AVATAR IMAGE - TESTIMONIAL, AUTHOR
 -----------------------------------------*/
 .avatar-image {
   border-radius: var(--border-radius-large);
@@ -335,7 +338,7 @@ strong {
 
 
 /*---------------------------------------
-  CUSTOM BUTTON               
+  CUSTOM BUTTON
 -----------------------------------------*/
 .custom-btn {
   background: var(--secondary-color);
@@ -374,7 +377,7 @@ strong {
 
 
 /*---------------------------------------
-  NAVIGATION              
+  NAVIGATION
 -----------------------------------------*/
 .navbar {
   background: var(--white-color);
@@ -423,7 +426,7 @@ strong {
   padding-bottom: 15px;
 }
 
-.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   background: transparent;
   color: var(--primary-color);
@@ -452,9 +455,9 @@ strong {
   padding-top: 0;
 }
 
-.dropdown-item.active, 
+.dropdown-item.active,
 .dropdown-item:active,
-.dropdown-item:focus, 
+.dropdown-item:focus,
 .dropdown-item:hover {
   background: transparent;
   color: var(--primary-color);
@@ -553,7 +556,7 @@ strong {
 
 
 /*---------------------------------------
-  SITE HEADER              
+  SITE HEADER
 -----------------------------------------*/
 .site-header {
   background: var(--primary-color);
@@ -582,7 +585,7 @@ strong {
 
 
 /*---------------------------------------
-  HERO & HERO SLIDE         
+  HERO & HERO SLIDE
 -----------------------------------------*/
 .hero-section-full-height {
   height: 680px;
@@ -590,7 +593,7 @@ strong {
   position: relative;
 }
 
-.carousel:hover .carousel-control-next-icon, 
+.carousel:hover .carousel-control-next-icon,
 .carousel:hover .carousel-control-prev-icon {
   opacity: 1;
 }
@@ -633,12 +636,12 @@ strong {
   justify-content: inherit;
 }
 
-.carousel-control-next, 
+.carousel-control-next,
 .carousel-control-prev {
   opacity: 1;
 }
 
-.carousel-control-next-icon, 
+.carousel-control-next-icon,
 .carousel-control-prev-icon {
   background-color: var(--secondary-color);
   border-radius: var(--border-radius-large);
@@ -649,14 +652,14 @@ strong {
   transition: all 0.5s;
 }
 
-.carousel-control-next-icon:hover, 
+.carousel-control-next-icon:hover,
 .carousel-control-prev-icon:hover {
   background-color: var(--primary-color);
 }
 
 
 /*---------------------------------------
-  FEATURE BLOCK              
+  FEATURE BLOCK
 -----------------------------------------*/
 .featured-block {
   text-align: center;
@@ -694,7 +697,7 @@ strong {
 
 
 /*---------------------------------------
-  ABOUT              
+  ABOUT
 -----------------------------------------*/
 .about-section {
   background-repeat: no-repeat;
@@ -716,7 +719,7 @@ strong {
 
 
 /*---------------------------------------
-  COUNTER NUMBERS              
+  COUNTER NUMBERS
 -----------------------------------------*/
 .counter-thumb {
   margin: 20px;
@@ -739,7 +742,7 @@ strong {
 
 
 /*---------------------------------------
-  VOLUNTEER              
+  VOLUNTEER
 -----------------------------------------*/
 .volunteer-section {
   background: var(--secondary-color);
@@ -784,7 +787,7 @@ strong {
 
 
 /*---------------------------------------
-  DONATE              
+  DONATE
 -----------------------------------------*/
 .donate-section {
   background-image: url('./images/DonateBackground.jpg');
@@ -805,7 +808,7 @@ strong {
 }
 
 /*---------------------------------------
-  TESTIMONIAL CAROUSEL              
+  TESTIMONIAL CAROUSEL
 -----------------------------------------*/
 .testimonial-section {
   position: relative;
@@ -908,30 +911,30 @@ strong {
 #testimonial-carousel .carousel-indicators li {
   text-indent: inherit;
   background: transparent;
-  margin: 0 10px; 
+  margin: 0 10px;
 }
 
 #testimonial-carousel .carousel-indicators li,
 #testimonial-carousel .carousel-indicators li::before {
   width: 45px;
-  height: 45px; 
+  height: 45px;
 }
 
 #testimonial-carousel .carousel-indicators .avatar-image {
   width: 45px;
-  height: 45px; 
+  height: 45px;
 }
 
 #testimonial-carousel .carousel-indicators .active,
 #testimonial-carousel .carousel-indicators .active .avatar-image {
   background: transparent;
-  width: 50px; 
+  width: 50px;
   height: 50px;
 }
 
 
 /*---------------------------------------
-  CONTACT               
+  CONTACT
 -----------------------------------------*/
 .contact-section {
   background: var(--white-color);
@@ -957,7 +960,7 @@ strong {
 
 
 /*---------------------------------------
-  CUSTOM FORM               
+  CUSTOM FORM
 -----------------------------------------*/
 .custom-form .form-control,
 .input-group-file {
@@ -1097,7 +1100,7 @@ strong {
 
 
 /*---------------------------------------
-  CONTACT SEARCH & DONATE & SUBCRIBE FORM              
+  CONTACT SEARCH & DONATE & SUBCRIBE FORM
 -----------------------------------------*/
 .contact-form .form-control {
   background: var(--white-color);
@@ -1142,7 +1145,7 @@ strong {
 
 
 /*---------------------------------------
-  SITE FOOTER              
+  SITE FOOTER
 -----------------------------------------*/
 .site-footer {
   background-color: var(--site-footer-bg-color);
@@ -1186,7 +1189,7 @@ strong {
 
 
 /*---------------------------------------
-  FOOTER MENU               
+  FOOTER MENU
 -----------------------------------------*/
 .footer-menu {
   column-count: 2;
@@ -1210,7 +1213,7 @@ strong {
 
 
 /*---------------------------------------
-  SOCIAL ICON               
+  SOCIAL ICON
 -----------------------------------------*/
 .social-icon {
   margin: 0;
@@ -1243,7 +1246,7 @@ strong {
 
 
 /*---------------------------------------
-  RESPONSIVE STYLES               
+  RESPONSIVE STYLES
 -----------------------------------------*/
 @media screen and (min-width: 1600px) {
   .featured-block {
@@ -1254,7 +1257,7 @@ strong {
     width: 450px;
     height: 450px;
   }
-  
+
   .volunteer-image {
     width: 350px;
     height: 350px;
@@ -1318,7 +1321,7 @@ strong {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 8px 20px;
   }
-  
+
   .dropdown:hover .dropdown-menu {
     display: block;
     position: relative;
@@ -1336,7 +1339,7 @@ strong {
     height: inherit;
   }
 
-  .carousel:hover .carousel-control-next-icon, 
+  .carousel:hover .carousel-control-next-icon,
   .carousel:hover .carousel-control-prev-icon {
     opacity: 1;
   }
@@ -1353,7 +1356,7 @@ strong {
     right: 12px;
   }
 
-  .carousel-control-next-icon, 
+  .carousel-control-next-icon,
   .carousel-control-prev-icon {
     opacity: 1;
     width: 60px;
@@ -1424,7 +1427,7 @@ strong {
     padding: 30px;
   }
 
-  .counter-number, 
+  .counter-number,
   .counter-number-text {
     font-size: var(--h2-font-size);
   }
@@ -1493,7 +1496,7 @@ strong {
     padding-bottom: 30px;
   }
 
-  .carousel-control-next-icon, 
+  .carousel-control-next-icon,
   .carousel-control-prev-icon {
     width: 45px;
     height: 45px;

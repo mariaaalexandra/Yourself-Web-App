@@ -13,6 +13,10 @@ import { DonateService } from 'app/modules/admin/contribute/donate/donate.servic
 import { DateTime } from 'luxon';
 import { ApexOptions, ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 import { Subject, takeUntil } from 'rxjs';
+import { environment } from '../../../../../../src/environment';
+import { HttpClient } from '@angular/common/http';
+import { loadStripe } from '@stripe/stripe-js';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector       : 'donate',
@@ -25,13 +29,16 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class donateComponent implements OnInit, OnDestroy
 {
-    raisedAmount: number = 222; // Set the raised amount dynamically
+    showThankYouModal: boolean = false;
+
+    raisedAmount: number; // Set the raised amount dynamically
     goalAmount: number = 500; // Set the goal amount dynamically
     goalAmount2: number = 2000; // Set the goal amount dynamically
     goalAmount3: number = 10000; // Set the goal amount dynamically
     progressPercentage: number = 0;
     progressPercentage2: number = 0;
     progressPercentage3: number = 0;
+    selectedAmount: number; // Variable to hold the selected amount
 
     /**
      * Constructor
@@ -40,6 +47,9 @@ export class donateComponent implements OnInit, OnDestroy
         private _donateService: DonateService,
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
+        private http: HttpClient,
+        private route: ActivatedRoute
+
     )
     {
         this.calculateProgressPercentage();
@@ -47,11 +57,29 @@ export class donateComponent implements OnInit, OnDestroy
         this.calculateProgressPercentage3();
     }
     ngOnDestroy(): void {
-        
+
     }
     ngOnInit(): void {
-        
-    }
+        this._donateService.getTotalAmount().subscribe(
+            (amount: number) => {
+              this.raisedAmount = amount;
+              console.log("Sum " + this.raisedAmount)
+              this._changeDetectorRef.detectChanges(); // Manually trigger change detection
+
+            },
+            (error) => {
+              console.error('Error fetching total amount:', error);
+            }
+          );
+
+          this.route.queryParams.subscribe(params => {
+            if (params['status'] === 'success') {
+              this.showThankYouModal = true;
+
+            }
+          });
+        }
+
 
     calculateProgressPercentage() {
         this.progressPercentage = (this.raisedAmount / this.goalAmount) * 100;
@@ -64,4 +92,38 @@ export class donateComponent implements OnInit, OnDestroy
     calculateProgressPercentage3() {
         this.progressPercentage3 = (this.raisedAmount / this.goalAmount3) * 100;
     }
+
+    stripePromise = loadStripe('pk_test_51PLVHkRvWgDRXXMzPPCKnHyGsHynCF3UXKgHdm8w27cjfPyaTZhs7jIZfvvS5J3SZNVs4KCcA1YtIxwhoEKlXhme00CGsh9HSK');
+
+    async pay(): Promise<void> {
+      const payment = {
+        name: 'Donation',
+        currency: 'usd',
+        amount: this.selectedAmount * 100,
+        quantity: '1',
+        cancelUrl: 'http://localhost:4200/cancel',
+        successUrl: 'http://localhost:8081/contribute/donate?status=success',
+    };
+
+      const stripe = await this.stripePromise;
+
+      // this is a normal http calls for a backend api
+      this.http
+        .post(`http://localhost:8080/api/payment`, payment)
+        .subscribe((data: any) => {
+          // I use stripe to redirect To Checkout page of Stripe platform
+          stripe.redirectToCheckout({
+            sessionId: data.id,
+          });
+        });
+        }
+
+        onCustomAmountInput(event: Event): void {
+            const inputElement = event.target as HTMLInputElement;
+            this.selectedAmount = parseFloat(inputElement.value);
+          }
+
+          closeThankYouModal(): void {
+            this.showThankYouModal = false;
+          }
 }

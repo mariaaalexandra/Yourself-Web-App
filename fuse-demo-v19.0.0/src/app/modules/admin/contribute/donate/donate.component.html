@@ -18,7 +18,7 @@
                                     <div class="col-lg-6 col-6 form-check-group form-check-group-donation-frequency">
                                         <div class="form-check form-check-radio">
                                             <input class="form-check-input" type="radio" name="DonationFrequency" id="DonationFrequencyOne" checked>
-                                            
+
                                             <label class="form-check-label" for="DonationFrequencyOne">
                                                 One Time
                                             </label>
@@ -28,7 +28,7 @@
                                     <div class="col-lg-6 col-6 form-check-group form-check-group-donation-frequency">
                                         <div class="form-check form-check-radio">
                                             <input class="form-check-input" type="radio" name="DonationFrequency" id="DonationFrequencyMonthly">
-                                            
+
                                             <label class="form-check-label" for="DonationFrequencyMonthly">
                                                 Monthly
                                             </label>
@@ -41,76 +41,76 @@
 
                                     <div class="col-lg-3 col-md-6 col-6 form-check-group">
                                         <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                $10
-                                            </label>
+                                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [(ngModel)]="selectedAmount" [value]="10">
+                                          <label class="form-check-label" for="flexRadioDefault1">
+                                            $10
+                                          </label>
                                         </div>
-                                    </div>
+                                      </div>
 
-                                    <div class="col-lg-3 col-md-6 col-6 form-check-group">
+                                      <div class="col-lg-3 col-md-6 col-6 form-check-group">
                                         <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                $15
-                                            </label>
+                                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="selectedAmount" [value]="15">
+                                          <label class="form-check-label" for="flexRadioDefault2">
+                                            $15
+                                          </label>
                                         </div>
-                                    </div>
+                                      </div>
 
-                                    <div class="col-lg-3 col-md-6 col-6 form-check-group">
+                                      <div class="col-lg-3 col-md-6 col-6 form-check-group">
                                         <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                                            <label class="form-check-label" for="flexRadioDefault3">
-                                                $20
-                                            </label>
+                                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" [(ngModel)]="selectedAmount" [value]="20">
+                                          <label class="form-check-label" for="flexRadioDefault3">
+                                            $20
+                                          </label>
                                         </div>
-                                    </div>
+                                      </div>
 
-                                    <div class="col-lg-3 col-md-6 col-6 form-check-group">
+                                      <div class="col-lg-3 col-md-6 col-6 form-check-group">
                                         <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                                            <label class="form-check-label" for="flexRadioDefault4">
-                                                $30
-                                            </label>
+                                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" [(ngModel)]="selectedAmount" [value]="30">
+                                          <label class="form-check-label" for="flexRadioDefault4">
+                                            $30
+                                          </label>
                                         </div>
-                                    </div>
+                                      </div>
 
-                                    <div class="col-lg-3 col-md-6 col-6 form-check-group">
+                                      <div class="col-lg-3 col-md-6 col-6 form-check-group">
                                         <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5">
-                                            <label class="form-check-label" for="flexRadioDefault5">
-                                                $45
-                                            </label>
+                                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" [(ngModel)]="selectedAmount" [value]="45">
+                                          <label class="form-check-label" for="flexRadioDefault5">
+                                            $45
+                                          </label>
                                         </div>
-                                    </div>
+                                      </div>
 
-                                    <div class="col-lg-3 col-md-6 col-6 form-check-group">
+                                      <div class="col-lg-3 col-md-6 col-6 form-check-group">
                                         <div class="form-check form-check-radio">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6">
-                                            <label class="form-check-label" for="flexRadioDefault6">
-                                                $50
-                                            </label>
+                                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" [(ngModel)]="selectedAmount" [value]="50">
+                                          <label class="form-check-label" for="flexRadioDefault6">
+                                            $50
+                                          </label>
                                         </div>
-                                    </div>
+                                      </div>
 
-                                    <div class="col-lg-6 col-12 form-check-group">
+                                      <div class="col-lg-6 col-12 form-check-group">
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1">$</span>
-                                            
-                                            <input type="text" class="form-control" placeholder="Custom amount" aria-label="Username" aria-describedby="basic-addon1">
+                                          <span class="input-group-text" id="basic-addon1">$</span>
+                                          <input type="text" class="form-control" placeholder="Custom amount" aria-label="Custom amount" aria-describedby="basic-addon1" (input)="onCustomAmountInput($event)">
                                         </div>
-                                    </div>
+                                      </div>
+
 
                                     <div class="col-lg-12 col-12">
                                         <h5 class="mt-1">Personal Info</h5>
                                     </div>
 
                                     <div class="col-lg-6 col-12 mt-2">
-                                        <input type="text" name="donation-name" id="donation-name" class="form-control" placeholder="Jack Doe" required>
+                                        <input type="text" name="donation-name" id="donation-name" class="form-control" placeholder="Name" required>
                                     </div>
 
                                     <div class="col-lg-6 col-12 mt-2">
-                                        <input type="email" name="donation-email" id="donation-email" pattern="[^ ]*[^ ]*" class="form-control" placeholder="Jackdoegmail.com" required>
+                                        <input type="email" name="donation-email" id="donation-email" pattern="[^ ]*[^ ]*" class="form-control" placeholder="Email" required>
                                     </div>
 
                                     <div class="col-lg-12 col-12">
@@ -125,7 +125,7 @@
                                                 Debit or Credit card
                                             </label>
                                         </div>
-                                        <button type="submit" class="form-control mt-4">Submit Donation</button>
+                                        <button type="submit" class="form-control mt-4" (click)="pay()">Submit Donation</button>
                                     </div>
                                 </div>
                             </form>
@@ -154,9 +154,9 @@
                                     <div class="d-flex align-items-center my-2">
                                         <p class="mb-0">
                                             <strong>Raised:</strong>
-                                            ${{ raisedAmount }}
+                                            ${{raisedAmount}}
                                         </p>
-                                    
+
                                         <p class="ms-auto mb-0">
                                             <strong>Goal:</strong>
                                             ${{ goalAmount }}
@@ -165,7 +165,7 @@
                                     <div class="progress">
                                         <div class="progress-bar" [style.width.%]="progressPercentage"></div>
                                     </div>
-                                    
+
                                 </div>
 
                                 <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
@@ -188,7 +188,7 @@
                                             <strong>Raised:</strong>
                                             ${{ raisedAmount }}
                                         </p>
-                                    
+
                                         <p class="ms-auto mb-0">
                                             <strong>Goal:</strong>
                                             ${{ goalAmount2 }}
@@ -197,7 +197,7 @@
                                     <div class="progress2">
                                         <div class="progress2-bar" [style.width.%]="progressPercentage2"></div>
                                     </div>
-                                    
+
                                 </div>
 
                                 <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
@@ -220,7 +220,7 @@
                                             <strong>Raised:</strong>
                                             ${{ raisedAmount }}
                                         </p>
-                                    
+
                                         <p class="ms-auto mb-0">
                                             <strong>Goal:</strong>
                                             ${{ goalAmount3 }}
@@ -228,7 +228,7 @@
                                     </div>
                                     <div class="progress3">
                                         <div class="progress3-bar" [style.width.%]="progressPercentage3"></div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <a href="/contribute/donate" class="custom-btn btn">Donate now</a>
@@ -240,3 +240,23 @@
             <br>
         </main>
     </body>
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="thankYouModal" *ngIf="showThankYouModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Thank You!</h5>
+              <button type="button" class="close" aria-label="Close" (click)="closeThankYouModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Thank you for your donation!</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="closeThankYouModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>

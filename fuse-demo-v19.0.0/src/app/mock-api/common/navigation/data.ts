@@ -16,7 +16,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:queue-list',
                 link : '/dashboards/dashboard-1',
             },
-            
+
         ],
     },
     {
@@ -26,27 +26,27 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type    : 'group',
         icon    : 'heroicons_outline:home',
         children: [
-            {
-                id   : 'dashboards.analytics',
-                title: 'Analytics',
-                type : 'basic',
-                icon : 'heroicons_outline:chart-pie',
-                link : '/apps/analytics',
-            },
-            {
-                id   : 'dashboards.finance',
-                title: 'Finance',
-                type : 'basic',
-                icon : 'heroicons_outline:banknotes',
-                link : '/apps/finance',
-            },
-            {
-                id   : 'dashboards.crypto',
-                title: 'Crypto',
-                type : 'basic',
-                icon : 'heroicons_outline:currency-dollar',
-                link : '/apps/crypto',
-            },
+            // {
+            //     id   : 'dashboards.analytics',
+            //     title: 'Analytics',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:chart-pie',
+            //     link : '/apps/analytics',
+            // },
+            // {
+            //     id   : 'dashboards.finance',
+            //     title: 'Finance',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:banknotes',
+            //     link : '/apps/finance',
+            // },
+            // {
+            //     id   : 'dashboards.crypto',
+            //     title: 'Crypto',
+            //     type : 'basic',
+            //     icon : 'heroicons_outline:currency-dollar',
+            //     link : '/apps/crypto',
+            // },
             // {
             //     id   : 'apps.academy',
             //     title: 'Academy',
@@ -180,6 +180,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:map',
                 link : '/apps/navigation',
             },
+            {
+                id   : 'apps.budget',
+                title: 'Budget Tracker',
+                type : 'basic',
+                icon : 'heroicons_outline:banknotes',
+                link : '/apps/budget-tracker',
+            },
             // {
             //     id   : 'apps.scrumboard',
             //     title: 'Scrumboard',
@@ -193,6 +200,14 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type : 'basic',
                 icon : 'heroicons_outline:table-cells',
                 link : '/apps/boards',
+            },
+
+            {
+                id   : 'apps.calendar',
+                title: 'Calendar',
+                type : 'basic',
+                icon : 'heroicons_outline:calendar-days',
+                link : '/apps/calendar',
             },
             // {
             //     id   : 'apps.tasks',
