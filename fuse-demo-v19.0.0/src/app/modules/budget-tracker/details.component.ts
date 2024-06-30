@@ -30,7 +30,8 @@ export class DetailsComponent {
         'Business',
         'Free Time',
         'Presents',
-        'Holidays'
+        'Holidays',
+        'Personal Use',
       ];
 
     paymentTypes: string[] = [
@@ -132,5 +133,7 @@ export class DetailsComponent {
 
     closeAllDialogs() {
       this.dialog.closeAll(); // This method closes all currently open dialogs
+      window.location.reload();
+
     }
   }

@@ -25,7 +25,7 @@ public class EmailUtil {
     private JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
-    private String senderEmail; // Read sender email from application.properties
+    private String senderEmail;
 
     public void sendOtpEmail(String email, String otp) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();

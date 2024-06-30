@@ -67,7 +67,7 @@
                             <div
                                 class="hidden lg:block"
                                 [mat-sort-header]="'active'">
-                                Active
+                                Full purchase
                             </div>
                             <div class="hidden sm:block">Details</div>
                         </div>
@@ -79,18 +79,19 @@
                                     <!-- Image -->
                                     <div class="flex items-center">
                                         <div class="relative flex flex-0 items-center justify-center w-12 h-12 mr-6 rounded overflow-hidden border">
-                                            <img
-                                                class="w-8"
-                                                *ngIf="product.thumbnail"
-                                                [alt]="'Product thumbnail image'"
-                                                [src]="product.thumbnail">
-                                            <div
-                                                class="flex items-center justify-center w-full h-full text-xs font-semibold leading-none text-center uppercase"
-                                                *ngIf="!product.thumbnail">
-                                                NO THUMB
+                                            <div *ngIf="product.active"
+                                                style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; background-color: green !important;">
+                                                <mat-icon [svgIcon]="'custom-icon1'" style="width: 3rem !important; height: 3rem !important;"></mat-icon>
                                             </div>
+                                            <div *ngIf="!product.active"
+                                                style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; background-color: red !important;">
+                                                <mat-icon [svgIcon]="'custom-icon1'" style="width: 3rem !important; height: 3rem !important;"></mat-icon>
+                                            </div>
+
                                         </div>
                                     </div>
+
+
 
 
                                     <!-- Name -->
@@ -106,24 +107,7 @@
                                     <!-- Stock -->
                                     <div class="hidden lg:flex items-center">
                                         <div class="min-w-4">{{product.stock}}</div>
-                                        <!-- Low stock -->
-                                        <div
-                                            class="flex items-end ml-2 w-1 h-4 bg-red-200 rounded overflow-hidden"
-                                            *ngIf="product.stock < 20">
-                                            <div class="flex w-full h-1/3 bg-red-600"></div>
-                                        </div>
-                                        <!-- Medium stock -->
-                                        <div
-                                            class="flex items-end ml-2 w-1 h-4 bg-orange-200 rounded overflow-hidden"
-                                            *ngIf="product.stock >= 20 && product.stock < 30">
-                                            <div class="flex w-full h-2/4 bg-orange-400"></div>
-                                        </div>
-                                        <!-- High stock -->
-                                        <div
-                                            class="flex items-end ml-2 w-1 h-4 bg-green-100 rounded overflow-hidden"
-                                            *ngIf="product.stock >= 30">
-                                            <div class="flex w-full h-full bg-green-400"></div>
-                                        </div>
+
                                     </div>
 
                                     <!-- Active -->
@@ -179,14 +163,11 @@
                                 <div class="flex flex-col items-center sm:items-start mb-8 sm:mb-0">
                                     <div class="flex flex-col items-center">
                                         <div class="w-32 h-44 border rounded overflow-hidden">
-                                            <ng-container *ngIf="selectedProductForm.get('images').value?.length; else noImage">
-                                                <img
-                                                    class="w-full h-full object-cover"
-                                                    [src]="selectedProductForm.get('images').value[selectedProductForm.get('currentImageIndex').value]">
-                                            </ng-container>
-                                            <ng-template #noImage>
-                                                <span class="flex items-center min-h-20 text-lg font-semibold">NO IMAGE</span>
-                                            </ng-template>
+                                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; background-color:
+                                                #6962ed;">
+                                                    <mat-icon [svgIcon]="'custom-icon'" style="width: 3rem !important; height: 3rem !important;"></mat-icon>
+                                                </div>
+
                                         </div>
                                         <div
                                             class="flex items-center mt-2 whitespace-nowrap"
@@ -215,7 +196,7 @@
                                         <mat-slide-toggle
                                             [formControlName]="'active'"
                                             [color]="'primary'">
-                                            {{selectedProductForm.get('active').value === true ? 'Active' : 'Disabled'}}
+                                            {{selectedProductForm.get('active').value === true ? 'Purchased' : 'Not Purchased'}}
                                         </mat-slide-toggle>
                                     </div>
                                 </div>
@@ -245,6 +226,7 @@
                                                         </mat-option>
                                                     </ng-container>
                                                 </mat-select>
+
                                             </mat-form-field>
                                             <mat-form-field class="w-1/3 px-2">
                                                 <mat-label>Brand</mat-label>
@@ -266,17 +248,21 @@
                                                     </ng-container>
                                                 </mat-select>
                                             </mat-form-field>
+                                            <div class="flex flex-col w-full lg:w-1/4 sm:pl-8">
+
+                                                <mat-form-field class="w-full">
+                                                    <mat-label>Stock</mat-label>
+                                                    <input
+                                                        type="number"
+                                                        matInput
+                                                        [formControlName]="'stock'">
+                                                </mat-form-field>
+                                            </div>
                                         </div>
 
                                         <!-- Stock and Reserved -->
                                         <div class="flex">
-                                            <mat-form-field class="w-1/3 pr-2">
-                                                <mat-label>Stock</mat-label>
-                                                <input
-                                                    type="number"
-                                                    matInput
-                                                    [formControlName]="'stock'">
-                                            </mat-form-field>
+
 
                                         </div>
                                     </div>
@@ -333,11 +319,12 @@
                                             <div class="h-44 leading-none overflow-y-auto border-t border-gray-300 dark:border-gray-500">
                                                 <!-- Tags -->
                                                 <ng-container *ngIf="!tagsEditMode">
-                                                    <ng-container *ngFor="let tag of filteredTags; trackBy: trackByFn">
+                                                    <ng-container *ngFor="let tag of tags;">
                                                         <mat-checkbox
                                                             class="flex items-center h-10 min-h-10 pl-1 pr-4"
                                                             [color]="'primary'"
-                                                            [checked]="selectedProduct.tags?.includes(tag.id)"
+                                                            [checked]="selectedProductForm.get('tags').value?.includes(tag.id)"
+
                                                             (change)="toggleProductTag(tag, $event)">
                                                             {{tag.title}}
                                                         </mat-checkbox>

@@ -19,8 +19,6 @@ public class InventoryProductController {
 
     private final InventoryProductService productService;
 
-    private InventoryProductRepository repository;
-
     private final InventoryTagService tagService;
 
     @Autowired
@@ -31,7 +29,6 @@ public class InventoryProductController {
 
     @PostMapping
     public ResponseEntity<InventoryProduct> addProduct(@RequestBody InventoryProduct product) {
-
         InventoryProduct savedProduct = productService.addProduct(product);
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
@@ -51,7 +48,6 @@ public class InventoryProductController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-    // Remove this delete endpoint
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteProduct(@RequestParam Long id) {
         productService.deleteProduct(id);

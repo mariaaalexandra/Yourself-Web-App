@@ -20,7 +20,7 @@
                     cdkTextareaAutosize></textarea>
             </div>
             <!-- Tasks -->
-            <ng-container *ngIf="note.subtasks">
+            <!-- <ng-container *ngIf="note.subtasks">
                 <div class="mx-2 mt-4 space-y-1.5">
                     <ng-container *ngFor="let task of note.subtasks; trackBy: trackByFn">
                         <div class="group flex items-center">
@@ -140,7 +140,7 @@
                         <!-- Delete -->
                         <button
                             mat-icon-button
-                            (click)="deleteNote(note)">
+                            (click)="removeNote(note)">
                             <mat-icon [svgIcon]="'heroicons_outline:trash'"></mat-icon>
                         </button>
                     </div>

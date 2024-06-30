@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -18,6 +18,8 @@ import { cloneDeep } from 'lodash-es';
 import { BehaviorSubject, combineLatest, distinctUntilChanged, map, Observable, Subject, takeUntil } from 'rxjs';
 import { Note } from 'app/models/Note';
 import { NoteService } from 'app/services/note.service';
+import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
     selector       : 'notes-list',
@@ -25,7 +27,7 @@ import { NoteService } from 'app/services/note.service';
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
-    imports        : [MatSidenavModule, MatRippleModule, NgClass, MatIconModule, NgIf, NgFor, MatButtonModule, MatFormFieldModule, MatInputModule, FuseMasonryComponent, AsyncPipe],
+    imports        : [MatSidenavModule, MatRippleModule, NgClass, MatIconModule, NgIf, NgFor, MatButtonModule, MatFormFieldModule, MatInputModule, FuseMasonryComponent, AsyncPipe, CommonModule,FormsModule,MatCheckboxModule],
 })
 export class NotesListComponent implements OnInit, OnDestroy
 {
@@ -67,6 +69,8 @@ export class NotesListComponent implements OnInit, OnDestroy
             // Handle any errors, e.g., show an error message to the user
           }
         });
+        window.location.reload();
+
       }
 
     allNotesForUser() {
@@ -74,13 +78,18 @@ export class NotesListComponent implements OnInit, OnDestroy
           next: (notes) => {
             this.allNotes =notes;
             console.log('Notes for user:', notes);
+            // window.location.reload();
+
             // Process the notes, update the UI, etc.
           },
           error: (error) => {
             console.error('Error fetching notes:', error);
             // Handle the error
           }
+
         });
+        // window.location.reload();
+
       }
 
     allLabels():void {
@@ -94,6 +103,8 @@ export class NotesListComponent implements OnInit, OnDestroy
               console.error('There was an error retrieving the labels', error);
             }
           });
+        //   window.location.reload();
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -240,6 +251,7 @@ export class NotesListComponent implements OnInit, OnDestroy
                 note: {},
             },
         });
+
     }
 
     /**
@@ -253,15 +265,17 @@ export class NotesListComponent implements OnInit, OnDestroy
     /**
      * Open the note dialog
      */
-    openNoteDialog(note: Note): void
-    {
+    openNoteDialog(note: Note): void {
+        console.log("note " + JSON.stringify(note))
+        this._changeDetectorRef.detectChanges(); // Ensure the view is updated
+
         this._matDialog.open(NotesDetailsComponent, {
-            autoFocus: false,
-            data     : {
-                note: cloneDeep(note),
-            },
+          autoFocus: false,
+          data: {
+            note: cloneDeep(note),
+          },
         });
-    }
+      }
 
     /**
      * Filter by archived

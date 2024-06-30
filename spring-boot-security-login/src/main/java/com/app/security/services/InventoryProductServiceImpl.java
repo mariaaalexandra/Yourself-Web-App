@@ -31,25 +31,21 @@ public class InventoryProductServiceImpl implements InventoryProductService {
     @Override
     @Transactional
     public InventoryProduct addProduct(InventoryProduct product) {
-        // Merge brand if it's not null and has an ID (indicating it might be a detached entity)
         if (product.getBrand() != null && product.getBrand().getId() != null) {
             InventoryBrand managedBrand = entityManager.merge(product.getBrand());
             product.setBrand(managedBrand);
         }
 
-        // Merge category in a similar fashion
         if (product.getCategory() != null && product.getCategory().getId() != null) {
             InventoryCategory managedCategory = entityManager.merge(product.getCategory());
             product.setCategory(managedCategory);
         }
 
-        // Merge vendor in a similar fashion
         if (product.getVendor() != null && product.getVendor().getId() != null) {
             InventoryVendor managedVendor = entityManager.merge(product.getVendor());
             product.setVendor(managedVendor);
         }
 
-        // Handle tags - assuming a product can have multiple tags
         if (product.getTags() != null && !product.getTags().isEmpty()) {
             Set<InventoryTag> managedTags = new HashSet<>();
             for (InventoryTag tag : product.getTags()) {
@@ -57,7 +53,6 @@ public class InventoryProductServiceImpl implements InventoryProductService {
                     InventoryTag managedTag = entityManager.merge(tag);
                     managedTags.add(managedTag);
                 } else {
-                    // If the tag is new (no ID), just persist it
                     entityManager.persist(tag);
                     managedTags.add(tag);
                 }
@@ -65,13 +60,10 @@ public class InventoryProductServiceImpl implements InventoryProductService {
             product.setTags(new ArrayList<>(managedTags));
         }
 
-        // Save the product with all managed relationships
         return productRepository.save(product);
     }
 
     public List<InventoryProduct> getAllProducts() {
-        // Assuming you have a repository or a way to fetch all products
-        // Let's call it productRepository for this example
         return productRepository.findAll();
     }
 

@@ -208,6 +208,7 @@ export class TasksDetailsComponent implements OnInit, AfterViewInit, OnDestroy
         //     });
 
 
+
         // Update task when there is a value change on the task form
 
 this.taskForm.valueChanges.pipe(
@@ -232,7 +233,7 @@ this.taskForm.valueChanges.pipe(
 
 
           // Mark for check
-          this._changeDetectorRef.markForCheck();
+        //   this._changeDetectorRef.markForCheck();
         },
         error: (error) => {
           // Handle error, e.g., log or show a user-friendly message
@@ -256,7 +257,14 @@ this.taskForm.valueChanges.pipe(
                 // Focus on the title field
                 this._titleField.nativeElement.focus();
             });
+            this._changeDetectorRef.markForCheck();
     }
+
+    redirect(): void {
+        this._router.navigate(['/apps/task-management']).then(() => {
+            window.location.reload();
+          });
+      }
 
     /**
      * After view init
@@ -665,6 +673,8 @@ this.taskForm.valueChanges.pipe(
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
+                window.location.reload()
+
             }
         });
     }

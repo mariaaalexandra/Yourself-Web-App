@@ -65,21 +65,13 @@ public class BoardController {
     }
 
     @PostMapping("/lists/updateTitle")
-    public ResponseEntity<BoardList> updateListTitle(
-            @RequestParam("boardId") Long boardId,
-            @RequestParam("listId") Long listId,
-            @RequestParam("newTitle") String newTitle) {
-
+    public ResponseEntity<BoardList> updateListTitle(@RequestParam("boardId") Long boardId, @RequestParam("listId") Long listId, @RequestParam("newTitle") String newTitle) {
         BoardList updatedList = boardService.updateBoardListTitle(boardId, listId, newTitle);
         return ResponseEntity.ok(updatedList);
     }
 
     @PostMapping("/cards/update")
-    public ResponseEntity<Card> updateCardDetails(
-            @RequestParam("boardId") Long boardId,
-            @RequestParam("listId") Long listId,
-            @RequestParam("cardId") Long cardId,
-            @RequestBody Card card) {
+    public ResponseEntity<Card> updateCardDetails(@RequestParam("boardId") Long boardId, @RequestParam("listId") Long listId, @RequestParam("cardId") Long cardId, @RequestBody Card card) {
 
         Card updatedCard = boardService.updateCardDetails(boardId, listId, cardId, card);
         return ResponseEntity.ok(updatedCard);
@@ -94,10 +86,7 @@ public class BoardController {
 
 
     @PostMapping("/cards/add")
-    public ResponseEntity<Card> addCardToListOfBoard(
-            @RequestParam("boardId") Long boardId,
-            @RequestParam("listId") Long listId,
-            @RequestBody Card cardDTO) {
+    public ResponseEntity<Card> addCardToListOfBoard(@RequestParam("boardId") Long boardId, @RequestParam("listId") Long listId, @RequestBody Card cardDTO) {
 
         // Convert CardDTO to Card entity
         Card newCard = new Card();
@@ -117,11 +106,7 @@ public class BoardController {
 
 
     @PostMapping("/addLabel")
-    public ResponseEntity<?> addLabelToCard(
-            @RequestParam("boardId") Long boardId,
-            @RequestParam("listId") Long listId,
-            @RequestParam("cardId") Long cardId,
-            @RequestBody BoardLabel labelDTO) {
+    public ResponseEntity<?> addLabelToCard(@RequestParam("boardId") Long boardId, @RequestParam("listId") Long listId, @RequestParam("cardId") Long cardId, @RequestBody BoardLabel labelDTO) {
 
         // Convert BoardLabelDTO to BoardLabel
         BoardLabel newLabel = new BoardLabel();
@@ -138,10 +123,7 @@ public class BoardController {
     }
 
     @PostMapping("/cards/delete")
-    public ResponseEntity<Boolean> deleteCard(
-            @RequestParam("boardId") Long boardId,
-            @RequestParam("listId") Long listId,
-            @RequestParam("cardId") Long cardId) {
+    public ResponseEntity<Boolean> deleteCard(@RequestParam("boardId") Long boardId, @RequestParam("listId") Long listId, @RequestParam("cardId") Long cardId) {
 
         boolean isDeleted = boardService.deleteCard(boardId, listId, cardId);
 
@@ -150,8 +132,7 @@ public class BoardController {
     }
 
     @DeleteMapping("/lists/delete")
-    public ResponseEntity<Boolean> deleteList(@RequestParam("boardId") Long boardId,
-                                              @RequestParam("listId") Long listId) {
+    public ResponseEntity<Boolean> deleteList(@RequestParam("boardId") Long boardId, @RequestParam("listId") Long listId) {
         boolean isDeleted = boardService.deleteListByBoardIdAndListId(boardId, listId);
         return ResponseEntity.ok(isDeleted); // Directly return the boolean result
     }

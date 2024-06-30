@@ -3,47 +3,113 @@ export const categories = [
     {
         id      : 'b899ec30-b85a-40ab-bb1f-18a596d5c6de',
         parentId: null,
-        name    : 'Mens',
-        slug    : 'mens',
+        name    : 'sweets',
+        slug    : 'sweets',
     },
     {
         id      : '07986d93-d4eb-4de1-9448-2538407f7254',
         parentId: null,
-        name    : 'Ladies',
-        slug    : 'ladies',
+        name    : 'vegetables & fruits',
+        slug    : 'vegetables & fruits',
     },
     {
         id      : 'ad12aa94-3863-47f8-acab-a638ef02a3e9',
         parentId: null,
-        name    : 'Unisex',
-        slug    : 'unisex',
+        name    : 'meat',
+        slug    : 'meat',
+    },
+
+    {
+        id      : 'ad12aa94-3863-47f8-acab-a638ef02aeee',
+        parentId: null,
+        name    : 'sneaks',
+        slug    : 'sneaks',
+    },
+
+    {
+        id      : 'ad12aa94-3863-47f8-acab-a638ef02a999',
+        parentId: null,
+        name    : 'dairy products',
+        slug    : 'dairy products',
+    },
+
+    {
+        id      : 'ad12aa94-3863-47f8-acab-a638ef02a101',
+        parentId: null,
+        name    : 'flour products',
+        slug    : 'flour products',
+    },
+
+    {
+        id  : '2d9d98d8-f334-4125-9596-862515f55xxx',
+        name: 'Base products',
+        slug: 'Base products',
     },
 ];
 export const brands = [
     {
         id  : 'e1789f32-9475-43e7-9256-451d2e3a2282',
-        name: 'Benton',
-        slug: 'benton',
+        name: 'Milka',
+        slug: 'milka',
     },
     {
         id  : '61d52c2a-8947-4a2c-8c35-f36baef45b96',
-        name: 'Capmia',
-        slug: 'capmia',
+        name: 'Hochland',
+        slug: 'hochland',
     },
     {
         id  : 'f9987124-7ada-4b93-bef7-35280b3ddbd7',
-        name: 'Lara',
-        slug: 'lara',
+        name: 'Dorna',
+        slug: 'dorna',
     },
     {
         id  : '5913ee46-a497-41db-a118-ee506011529f',
-        name: 'Premera',
-        slug: 'premera',
+        name: 'Nestle',
+        slug: 'nestle',
     },
     {
         id  : '2c4d98d8-f334-4125-9596-862515f5526b',
-        name: 'Zeon',
-        slug: 'zeon',
+        name: 'Danone',
+        slug: 'Danone',
+    },
+    {
+        id  : '3w3d98d8-f334-4125-9596-862515f5526b',
+        name: 'Solaris',
+        slug: 'Solaris',
+    },
+    {
+        id  : '2c4d98d8-f334-4125-9596-862515f55123',
+        name: 'Pringles',
+        slug: 'Pringles',
+    },
+
+    {
+        id  : '2c4d98d8-f334-4125-9596-862515f55aaa',
+        name: 'Napolact',
+        slug: 'Napolact',
+    },
+
+    {
+        id  : '2c4d98d8-f334-4125-9596-862515f55xxx',
+        name: 'Lindt',
+        slug: 'Lindt',
+    },
+    {
+        id  : '2d9d98d8-f334-4125-9596-862515f55xxx',
+        name: 'Chio',
+        slug: 'Chio',
+    },
+
+    {
+        id  : '2d9d98d8-f334-4125-9596-862515f55wqw',
+        name: 'Pilos',
+        slug: 'Pilos',
+    },
+
+    {
+        id  : '2d9d98d8-ffff-4125-9596-862515f55wqw',
+        name: 'Purcari',
+        slug: 'Purcari',
     },
 ];
 export const tags = [
@@ -91,18 +157,23 @@ export const tags = [
 export const vendors = [
     {
         id  : '987dd10a-43b1-49f9-bfd9-05bb2dbc7029',
-        name: 'Evel',
-        slug: 'evel',
+        name: 'Lidl',
+        slug: 'lidl',
     },
     {
         id  : '998b0c07-abfd-4ba3-8de1-7563ef3c4d57',
-        name: 'Mivon',
-        slug: 'mivon',
+        name: 'Mega Image',
+        slug: 'mega',
     },
     {
         id  : '05ebb527-d733-46a9-acfb-a4e4ec960024',
-        name: 'Neogen',
-        slug: 'neogen',
+        name: 'Kaufland',
+        slug: 'kaufland',
+    },
+    {
+        id  : '05ebb527-d733-46a9-acfb-a4e4ec960020',
+        name: 'Cora',
+        slug: 'cora',
     },
 ];
 export const products = [

@@ -1,13 +1,17 @@
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { Board } from 'app/modules/admin/apps/board/scrumboard.models';
 import { ScrumboardService } from 'app/modules/admin/apps/board/scrumboard.service';
 import { BoardService } from 'app/services/board-service';
 import { DateTime } from 'luxon';
 import { Subject, takeUntil } from 'rxjs';
+
+
+
 
 @Component({
     selector       : 'scrumboard-boards',
@@ -17,6 +21,7 @@ import { Subject, takeUntil } from 'rxjs';
     standalone     : true,
     imports        : [CdkScrollable, NgFor, RouterLink, MatIconModule, NgIf],
 })
+
 export class ScrumboardBoardsComponent implements OnInit, OnDestroy
 {
     boards: Board[];
@@ -24,16 +29,28 @@ export class ScrumboardBoardsComponent implements OnInit, OnDestroy
     // Private
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+
+
     /**
      * Constructor
      */
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _scrumboardService: ScrumboardService,
-        private boardService: BoardService
-    )
+        private boardService: BoardService,
+        private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer    )
     {
+        this.iconRegistry.addSvgIcon(
+            'custom-icon',
+            this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/svg/icon1.svg')
+          );
+
+          this.iconRegistry.addSvgIcon(
+            'custom-icon2',
+            this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/svg/icon2.svg')
+          );
     }
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks

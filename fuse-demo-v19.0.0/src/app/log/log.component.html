@@ -51,14 +51,19 @@
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Enter your password" [(ngModel)]="userData.password"  required
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 12 or more characters">
+                <input type="password" name="password" placeholder="Enter your password" [(ngModel)]="userData.password" required
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}"
+                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 12 or more characters">
+                <div *ngIf="loginFailed" class="validation-pop-up">
+                  Password or email are incorrect
+                </div>
               </div>
               <div class="text"><a href="/reset-pass">Forgot password?</a></div>
               <div class="button input-box">
-                <input type="submit" (click)="onLogin(userData)" value="Submit" >
+                <input type="submit" (click)="onLogin(userData)" value="Submit">
               </div>
+
+
               <div class="text sign-up-text">Don't have an account? <label for="flip">Sign Up</label></div>
             </div>
         </form>
@@ -76,7 +81,7 @@
                 </div>
                 <div class="input-box" style="position: relative;">
                   <i class="fas fa-envelope"></i>
-                  <input type="email" name="email" class="form-control" placeholder="Enter your email" [(ngModel)]="userDataRegistration.email" #emailField="ngModel" required email>
+                  <input type="email" name="email"  placeholder="Enter your email" [(ngModel)]="userDataRegistration.email" #emailField="ngModel" required email>
                   <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="validation-popup">
                       Please enter a valid email.
                   </div>

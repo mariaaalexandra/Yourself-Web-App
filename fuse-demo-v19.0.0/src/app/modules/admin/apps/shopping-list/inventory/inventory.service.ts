@@ -179,6 +179,7 @@ export class InventoryService
      * Create product
      */
     createProduct(product: InventoryProduct): Observable<InventoryProduct> {
+        this.getProducts(0, 10, 'name', 'asc', '');
         return this.products$.pipe(
             take(1),
             switchMap(products =>
@@ -205,6 +206,8 @@ export class InventoryService
      */
     updateProduct(id: string, product: InventoryProduct): Observable<InventoryProduct> {
         // Setting HttpParams
+        this.getProducts(0, 100, 'name', 'asc', '');
+
         const params = new HttpParams().set('productId', id);
         const baseUrl = 'http://localhost:8080/api/products/update'; // Adjust the port if needed
 

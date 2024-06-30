@@ -161,7 +161,7 @@
                                         class="icon-size-5"
                                         [svgIcon]="'heroicons_outline:trash'"
                                         (click)="this.deleteTheCard(card)"></mat-icon>
-                                 
+
                                 <!-- </button> -->
                                 </ng-container>
                             </div>
@@ -176,10 +176,13 @@
                 </ng-container>
 
                 <!-- New list -->
-                <scrumboard-board-add-list
-                    (saved)="addList($event)"
-                    [buttonTitle]="board.lists.length ? 'Add another list' : 'Add a list'">
-                </scrumboard-board-add-list>
+                <ng-container *ngIf="board.lists.length < 4">
+                    <scrumboard-board-add-list
+                        (saved)="addList($event)"
+                        [buttonTitle]="board.lists.length === 3 ? 'Add another list' : 'Add a list'">
+                    </scrumboard-board-add-list>
+                  </ng-container>
+
 
             </div>
 

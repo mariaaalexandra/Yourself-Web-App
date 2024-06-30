@@ -50,10 +50,11 @@
 
                 <!-- Close button -->
                 <a
-                    mat-icon-button
-                    [routerLink]="['../']">
-                    <mat-icon [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
-                </a>
+                mat-icon-button
+                (click)="redirect()">
+                <mat-icon [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+              </a>
+
             </div>
 
         </div>

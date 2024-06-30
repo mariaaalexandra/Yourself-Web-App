@@ -19,7 +19,7 @@ export class AppointmentService {
   }
 
   getAllResources(): Observable<Resource[]> {
-    return this.http.get<Resource[]>(this.apiUrl);
+    return this.http.get<Resource[]>(this.api);
   }
 
   deleteAppointment(id: number): Observable<any> {

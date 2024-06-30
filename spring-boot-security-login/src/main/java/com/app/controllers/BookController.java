@@ -45,8 +45,6 @@ public class BookController {
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-
-
     @RequestMapping(value = "/add/image", method = RequestMethod.POST)
     public ResponseEntity uploadImage(@RequestParam("id") int id, HttpServletResponse response, HttpServletRequest request) {
         try {

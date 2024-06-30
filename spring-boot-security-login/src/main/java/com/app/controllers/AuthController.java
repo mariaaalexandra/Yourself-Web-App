@@ -139,8 +139,7 @@ public class AuthController {
     }
 
     @PutMapping("/verify-account")
-    public ResponseEntity<String> verifyAccount(@RequestParam String email,
-                                                @RequestParam String otp) {
+    public ResponseEntity<String> verifyAccount(@RequestParam String email, @RequestParam String otp) {
         User user = userRepository.findByEmail(email);
         if (user!=null) {
             if (user.getOtp().equals(otp) && Duration.between(user.getOtpGeneratedTime(),
@@ -182,8 +181,7 @@ public class AuthController {
         mailMessage.setFrom(senderEmail);
         mailMessage.setTo(userDetails.getEmail());
         mailMessage.setSubject("Verify OTP");
-        mailMessage.setText("This is your OTP for login:\n"+
-                "http://localhost:8080/api/auth/verify-account?email=" + userDetails.getEmail() + "&otp=" + otp);
+        mailMessage.setText("This is your OTP for login:\n"+ otp);
 
         mailSender.send(mailMessage);
 

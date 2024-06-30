@@ -608,3 +608,64 @@ body {
 .modal-footer.success button:hover {
   background-color: #2e7d32; /* Darker green on hover */
 }
+
+.validation-pop-up {
+    position: absolute;
+    bottom: 120%; /* Position above the input */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: linear-gradient(145deg, #ff758c 0%, #ff7eb3 100%);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 25px -5px rgba(255, 94, 98, 0.5);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-out;
+    pointer-events: none; /* Prevents mouse events on the popup */
+  }
+
+  .input-box:hover .validation-pop-up,
+  .input-box:focus-within .validation-pop-up,
+  .validation-pop-up-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px); /* Slight move up effect */
+  }
+
+  /* Popup Arrow */
+  .validation-pop-up::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #ff758c transparent transparent transparent;
+    transition: all 0.4s ease-out;
+  }
+
+  /* Animation for the popup */
+  @keyframes pop-upAnimation {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-5px);
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  .input-box:hover .validation-po-pup,
+  .input-box:focus-within .validation-po-pup {
+    animation: pop-upAnimation 0.4s ease-out forwards;
+  }

@@ -152,6 +152,7 @@ export class TasksListComponent implements OnInit, OnDestroy
                     this.createTask('section');
                 }
             });
+            window.location.reload
     }
 
     /**

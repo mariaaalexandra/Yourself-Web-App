@@ -18,6 +18,7 @@ export class LogComponent {
   errorMessage: string = ''; // Hold the error message
   successMessage: string = '';
   isSubmitted: boolean = false;
+  loginFailed = false;
 
   @ViewChild('flip', { static: true })
   flipCheckbox!: ElementRef;
@@ -76,10 +77,13 @@ export class LogComponent {
           localStorage.setItem('email', res.email);
           this.router.navigate(['/otp-verification']);
           localStorage.setItem('isLoggedIn', "true");
+          this.loginFailed = false;
 
         },
         error: (error: any) => {
           console.log(error);
+          this.loginFailed = true;
+            console.log(" failed " + this.loginFailed)
         }
       });
   }

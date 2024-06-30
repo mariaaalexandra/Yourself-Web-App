@@ -49,8 +49,6 @@ export class BudgetTrackerComponent {
     totalIncome: number | undefined;
     transactions: Transaction[] = [];
 
-
-
     constructor(private transactionService: TransactionService, private fb: FormBuilder) {
         this.createForm();
         this.fetchLastFiveTransactions();
@@ -88,9 +86,7 @@ export class BudgetTrackerComponent {
           });
         }
         this.closeModal();
-
       }
-
 
       openModal() {
         this.showModal = true;

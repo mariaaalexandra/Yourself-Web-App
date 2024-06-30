@@ -2,6 +2,7 @@ package com.app.security.services;
 
 import com.app.models.TaskManagement;
 
+import com.app.repository.TagRepository;
 import com.app.repository.TaskManagementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ public class TaskManagementServiceImpl implements TaskManagementService {
 
     @Autowired
     private TaskManagementRepository taskManagementRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
 
     @Override
     public TaskManagement findById(int id) {

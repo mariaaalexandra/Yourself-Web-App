@@ -1,12 +1,12 @@
 export interface InventoryProduct
 {
     id: string;
-    category?: string;
+    category?: InventoryCategory;
     name: string;
     description?: string;
-    tags?: string[];
-    brand?: string | null;
-    vendor: string | null;
+    tags?: InventoryTag[];
+    brand?: InventoryBrand | null;
+    vendor: InventoryVendor | null;
     stock: number;
     cost: number;
     price: number;

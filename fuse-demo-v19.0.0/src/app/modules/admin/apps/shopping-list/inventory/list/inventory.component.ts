@@ -6,13 +6,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule, MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { DomSanitizer } from '@angular/platform-browser';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { InventoryService } from 'app/modules/admin/apps/shopping-list/inventory/inventory.service';
@@ -69,6 +70,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
     vendors: InventoryVendor[];
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+
     /**
      * Constructor
      */
@@ -77,9 +79,19 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
         private _fuseConfirmationService: FuseConfirmationService,
         private _formBuilder: UntypedFormBuilder,
         private _inventoryService: InventoryService,
-        private http: HttpClient
+        private http: HttpClient,
+        private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer
     )
     {
+        this.iconRegistry.addSvgIcon(
+            'custom-icon',
+            this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/svg/icon3.svg')
+          )
+
+          this.iconRegistry.addSvgIcon(
+            'custom-icon1',
+            this.sanitizer.bypassSecurityTrustResourceUrl('assets/images/svg/icon4.svg')
+          )
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -95,7 +107,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
         this.selectedProductForm = this._formBuilder.group({
             id               : [''],
             category         : [''],
-            name             : ['', [Validators.required]],
+            name             : [''],
             description      : [''],
             tags             : [[]],
             brand            : [''],
@@ -108,6 +120,8 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
             currentImageIndex: [0], // Image index that is currently being viewed
             active           : [false],
         });
+
+
 
         // Get the brands
         this._inventoryService.brands$
@@ -147,7 +161,6 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
 
         // Get the products
         this.products$ = this._inventoryService.products$;
-        console.log("prod " + JSON.stringify(this.products$))
 
         // Get the tags
         this._inventoryService.tags$
@@ -252,6 +265,18 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
+    toggleProductTags(tag: any, event: any): void {
+        const tags = this.selectedProductForm.get('tags').value;
+        if (event.checked) {
+            tags.push(tag.id);
+        } else {
+            const index = tags.indexOf(tag.id);
+            if (index > -1) {
+                tags.splice(index, 1);
+            }
+        }
+        this.selectedProductForm.get('tags').setValue(tags);
+    }
     /**
      * Toggle product details
      *
@@ -271,12 +296,56 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
         this._inventoryService.getProductById(productId)
             .subscribe((product) =>
             {
+                let iBrand=null;
+                for (let i = 0; i < this.brands.length; i++) {
+                    if(product.brand)
+                    if (this.brands[i].name === product.brand.name) {
+                        iBrand = this.brands[i];
+                        break;
+                    }
+                }
+
+                let iCategory=null;
+                for (let i = 0; i < this.categories.length; i++) {
+                    if(product.category)
+                    if (this.categories[i].name === product.category.name) {
+                        iCategory = this.categories[i];
+                        break;
+                    }
+                }
+
+                let iVendor=null;
+                for (let i = 0; i < this.vendors.length; i++) {
+                    if(product.vendor)
+                    if (this.vendors[i].name === product.vendor.name) {
+                        iVendor = this.vendors[i];
+                        break;
+                    }
+                }
                 // Set the selected product
+                product.brand=iBrand
+                product.category=iCategory
+                product.vendor=iVendor
                 this.selectedProduct = product;
 
-                // Fill the form
-                this.selectedProductForm.patchValue(product);
 
+                // Fill the form
+                this.selectedProductForm.patchValue(this.selectedProduct);
+                this.selectedProductForm.patchValue({
+                    brand: iBrand.id
+                });
+                this.selectedProductForm.patchValue({
+                    tags:this.selectedProduct.tags.map(tag => tag.id)
+                })
+                if(iCategory)
+                this.selectedProductForm.patchValue({
+                    category: iCategory.id
+                });
+                if(iVendor)
+                this.selectedProductForm.patchValue({
+                    vendor: iVendor.id
+                });
+                
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
@@ -288,6 +357,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
     closeDetails(): void
     {
         this.selectedProduct = null;
+
     }
 
     /**
@@ -455,7 +525,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
         this.http.post<InventoryProduct>('http://localhost:8080/api/products/addTagToProduct', tag, { params }).subscribe({
             next: (product) => {
                 // Assuming that `selectedProduct` is a type that includes a tags array
-                this.selectedProduct.tags.unshift(tag.id); // Add the tag to the local array
+                this.selectedProduct.tags.unshift(tag); // Add the tag to the local array
 
                 // Update the selected product form if it's used to display data
                 if (this.selectedProductForm && this.selectedProductForm.get('tags')) {
@@ -491,7 +561,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
         this.http.delete('http://localhost:8080/api/products/removeTag', { params }).subscribe({
             next: () => {
                 // Remove the tag id from the local array of tag ids
-                const index = this.selectedProduct.tags.indexOf(tag.id);
+                const index = this.selectedProduct.tags.indexOf(tag);
                 if (index !== -1) {
                     this.selectedProduct.tags.splice(index, 1);
 
@@ -559,6 +629,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
             // Mark for check
             this._changeDetectorRef.markForCheck();
         });
+
     }
 
 
@@ -570,16 +641,67 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
     {
         // Get the product object
         const product = this.selectedProductForm.getRawValue();
+        console.log("produs " + JSON.stringify(product))
 
         // Remove the currentImageIndex field
-        delete product.currentImageIndex;
+        // delete product.currentImageIndex;
+
+        const category = this.selectedProductForm.get('category').value;
+        const brand = this.selectedProductForm.get('brand').value;
+        const vendor = this.selectedProductForm.get('vendor').value;
+        const tags = this.selectedProductForm.get('tags').value;
+
+
+
+        let iBrand=null;
+        let iBrandId=null;
+        for (let i = 0; i < this.brands.length; i++) {
+            if (this.brands[i].id === brand) {
+                iBrand = this.brands[i];
+                iBrandId = iBrand.id;
+                break;
+            }
+        }
+
+        iBrand.id = null
+        product.brand = iBrand
+
+        let iCategory=null;
+        let iCategoryId=null;
+        for (let i = 0; i < this.categories.length; i++) {
+            if (this.categories[i].id === category) {
+                iCategory = this.categories[i];
+                iCategoryId = iCategory.id;
+                break;
+            }
+        }
+
+        iCategory.id = null
+        product.category = iCategory
+
+        let iVendor=null;
+        let iVendorId=null;
+        for (let i = 0; i < this.vendors.length; i++) {
+            if (this.vendors[i].id === vendor) {
+                iVendor = this.vendors[i];
+                iVendorId = iVendor.id;
+                break;
+            }
+        }
+
+        iVendor.id = null
+        product.vendor = iVendor
+
 
         // Update the product on the server
         this._inventoryService.updateProduct(product.id, product).subscribe(() =>
         {
             // Show a success message
             this.showFlashMessage('success');
+
         });
+
+        window.location.reload()
 
 
     }
@@ -616,7 +738,10 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
                     this.closeDetails();
                 });
             }
+            window.location.reload()
+
         });
+
     }
 
     /**

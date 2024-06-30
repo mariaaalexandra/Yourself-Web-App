@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Note } from 'app/models/Note';
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +35,16 @@ export class NoteService {
     return this.http.put(url, note);
   }
 
-  deleteNote(id: number) {
-    const url = 'http://localhost:8080/api/notes/remove'; // Adjust the URL as necessary
-    const options = { params: new HttpParams().set('id', id.toString()) };
+  deleteNote(note:Note) {
+    const url = 'http://localhost:8080/api/notes'; // Adjust the URL as necessary
+    const params = new HttpParams().set('id', note.id.toString());
+    return this.http.post<void>(`${url}/remove`, null, { params });
 
-    return this.http.post(url, null, options);
+    // return this.http.post(url, null, options);
+  }
+
+  deleteNoteById(id: number): Observable<void> {
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.post<void>(`${this.baseUrl}/remove`, null, { params });
   }
 }

@@ -64,7 +64,7 @@ export class TasksListComponent implements OnInit, OnDestroy
         this.taskService.getTasksByUserId(this.userId).subscribe({
           next: (data) => {
             this.userTasks = data;
-            console.log(this.userTasks);
+
           },
           error: (error) => {
             console.error('Error fetching tasks:', error);
@@ -81,7 +81,17 @@ export class TasksListComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this.loadTasks()
+        this.taskService.getTasksByUserId(this.userId).subscribe({
+            next: (data) => {
+              this.userTasks = data;
+              console.log("lala " + this.userTasks);
+              this._changeDetectorRef.detectChanges();
+
+            },
+            error: (error) => {
+              console.error('Error fetching tasks:', error);
+            },
+          });
         // Get the tags
         this._tasksService.tags$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -121,7 +131,7 @@ export class TasksListComponent implements OnInit, OnDestroy
                         const menuItem = this._fuseNavigationService.getItem('apps.tasks', mainNavigation);
 
                         // Update the subtitle of the item
-                        menuItem.subtitle = this.tasksCount.incomplete + ' remaining tasks';
+                        // menuItem.subtitle = this.tasksCount.incomplete + ' remaining tasks';
 
                         // Refresh the navigation
                         mainNavigationComponent.refresh();
@@ -175,6 +185,7 @@ export class TasksListComponent implements OnInit, OnDestroy
                     this.createTask('section');
                 }
             });
+
     }
 
     /**

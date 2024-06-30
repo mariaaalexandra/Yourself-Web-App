@@ -32,19 +32,6 @@ public class OtpUtil {
         return output;
     }
 
-    public static String verifyAccount(String email, String otp) {
-        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            if (user.getOtp().equals(otp) && Duration.between(user.getOtpGeneratedTime(),
-                    LocalDateTime.now()).getSeconds() < (1 * 60)) {
-                userRepository.save(user);
-                return "OTP verified you can login";
-            }
-        }
-        return "User not found or OTP is invalid. Please regenerate OTP and try again.";
-    }
-
     public String regenerateOtp(String email) {
         Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
         if (optionalUser.isPresent()) {

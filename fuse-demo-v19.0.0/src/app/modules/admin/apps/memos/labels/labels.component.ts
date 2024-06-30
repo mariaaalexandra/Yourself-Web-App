@@ -51,6 +51,8 @@ export class NotesLabelsComponent implements OnInit, OnDestroy
               console.error('There was an error retrieving the labels', error);
             }
           });
+        //   window.location.reload();
+
     }
 
     addLabels(labelName: string): void {
@@ -73,6 +75,8 @@ export class NotesLabelsComponent implements OnInit, OnDestroy
             // Optionally, handle the error, maybe show a user-friendly message
           }
         });
+        window.location.reload();
+
       }
 
 
@@ -81,6 +85,8 @@ export class NotesLabelsComponent implements OnInit, OnDestroy
           next: () => console.log('Note label deleted successfully.'),
           error: (error) => console.error('Error deleting note label', error)
         });
+        window.location.reload();
+
       }
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks

@@ -1,5 +1,4 @@
 <div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
-
     <mat-drawer-container
         class="flex-auto h-full bg-card dark:bg-transparent"
         (backdropClick)="onBackdropClicked()">
@@ -25,6 +24,8 @@
                     <!-- Title -->
                     <div>
                         <div class="text-4xl font-extrabold tracking-tight leading-none">Tasks</div>
+                        <p>pla</p>
+
                         <div class="ml-0.5 font-medium text-secondary">
                             <span *ngIf="tasksCount.incomplete === 0">All tasks completed!</span>
                             <span *ngIf="tasksCount.incomplete !== 0">{{tasksCount.incomplete}} remaining tasks</span>

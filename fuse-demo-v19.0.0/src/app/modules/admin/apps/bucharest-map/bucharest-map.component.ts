@@ -38,7 +38,7 @@ export class BucharestMapComponent implements OnInit {
   }
 
   private async initializeMap(): Promise<void> {
-    const apiKey = 'AAPK03093c3ee6eb4655a56a83c5c78a227d7RlDqxpvBVf599xcEtobyqYTQ-e3v3dXJKar1HRvjpnYWgiNhWZvIp2e62iWhO2a'; // Replace with your actual API key
+    const apiKey = 'AAPK03093c3ee6eb4655a56a83c5c78a227d7RlDqxpvBVf599xcEtobyqYTQ-e3v3dXJKar1HRvjpnYWgiNhWZvIp2e62iWhO2a';
     const routeLayer = new RouteLayer();
 
     this.map = new Map({
@@ -49,13 +49,12 @@ export class BucharestMapComponent implements OnInit {
     this.mapView = new MapView({
       container: this.mapViewEl.nativeElement,
       map: this.map,
-      center: [26.1025, 44.4268], // Bucharest coordinates
+      center: [26.1025, 44.4268],
       zoom: 14
     });
 
     await this.mapView.when();
-      this.addLibraryLayer();
-      this.addLibraryPoints();
+      this.addLayer();
 
     this.mapView.when(() => {
       const directionsWidget = new Directions({
@@ -65,10 +64,6 @@ export class BucharestMapComponent implements OnInit {
       });
 
       this.mapView.ui.add(directionsWidget, "top-right");
-
-      // Placeholder for checking the lastRoute property
-      // You may need to adjust where and when this check is performed
-      // based on user interactions or other events in your application
       directionsWidget.watch('lastRoute', (lastRoute) => {
         if (lastRoute && lastRoute.routeInfo) {
           this.animateAlongPath(lastRoute.routeInfo.geometry, this.mapView);
@@ -77,8 +72,8 @@ export class BucharestMapComponent implements OnInit {
     });
   }
 
-  private addLibraryLayer(): void {
-    const libraryLayer = new FeatureLayer({
+  private addLayer(): void {
+    const layer = new FeatureLayer({
       url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads_Styled/FeatureServer/0",
       outFields: ["*"],
       popupTemplate: {
@@ -87,12 +82,9 @@ export class BucharestMapComponent implements OnInit {
       }
     });
 
-    this.map.add(libraryLayer);
+    this.map.add(layer);
   }
 
-  private addLibraryPoints(): void {
-
-  }
 
 
 

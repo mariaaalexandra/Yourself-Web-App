@@ -24,9 +24,10 @@
                     <!-- Title -->
                     <div>
                         <div class="text-4xl font-extrabold tracking-tight leading-none">Tasks</div>
+
                         <div class="ml-0.5 font-medium text-secondary">
                             <span *ngIf="tasksCount.incomplete === 0">All tasks completed!</span>
-                            <span *ngIf="tasksCount.incomplete !== 0">{{tasksCount.incomplete}} remaining tasks</span>
+                            <!-- <span *ngIf="tasksCount.incomplete !== 0">{{tasksCount.incomplete}} remaining tasks</span> -->
                         </div>
                     </div>
                     <!-- Actions -->
@@ -54,7 +55,7 @@
                 </div>
 
                 <!-- Tasks list -->
-                <ng-container *ngIf="this.userTasks && this.userTasks.length > 0; else noTasks">
+                <ng-container *ngIf="userTasks.length > 0; else noTasks">
                     <div
                         class="divide-y"
                         cdkDropList

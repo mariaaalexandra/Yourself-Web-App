@@ -1,6 +1,6 @@
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -25,7 +25,7 @@ import { debounceTime, map, Observable, of, Subject, switchMap, takeUntil } from
     standalone     : true,
     imports        : [NgIf, MatButtonModule, MatIconModule, FormsModule, TextFieldModule, NgFor, MatCheckboxModule, NgClass, MatRippleModule, MatMenuModule, MatDialogModule, AsyncPipe],
 })
-export class NotesDetailsComponent implements OnInit, OnDestroy
+export class NotesDetailsComponent implements OnInit, OnDestroy, AfterViewInit
 {
     note$: Observable<Note>;
     // labels$: Observable<Label[]>;
@@ -43,7 +43,7 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
      */
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
-        @Inject(MAT_DIALOG_DATA) private _data: { note: Note },
+        @Inject(MAT_DIALOG_DATA) public _data: { note: Note },
         private _notesService: NotesService,
         private _matDialogRef: MatDialogRef<NotesDetailsComponent>,
         private noteService: NoteService,
@@ -53,11 +53,15 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
     {
     }
 
-    removeNote(id: number) {
-        this.noteService.deleteNote(id).subscribe({
+    removeNote(note:Note) {
+        console.log("del " + JSON.stringify(note) + " " + note.id)
+        this.noteService.deleteNote(note).subscribe({
           next: () => {
             console.log('Note deleted successfully.');
+            window.location.reload();
+
             // Optional: Refresh data or update the UI here
+
           },
           error: (error) => {
             console.error('Error deleting note', error);
@@ -65,12 +69,19 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
         });
       }
 
+      ngAfterViewInit(): void {
+        this._changeDetectorRef.detectChanges();
+    }
+
+
     allLabels():void {
 
         this.labelService.getAllNoteLabels(this.userId).subscribe({
             next: (response) => {
               this.noteLabel = response;
               console.log('Labels retrieved successfully', this.noteLabel);
+              this._changeDetectorRef.detectChanges(); // Ensure the view is updated
+
             },
             error: (error) => {
               console.error('There was an error retrieving the labels', error);
@@ -84,6 +95,8 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
           next: (createdNote) => {
             localStorage.setItem("noteId", String(createdNote.id));
             console.log('Note created:', createdNote);
+            window.location.reload();
+
             // Handle the response, e.g., update the UI to show the added note
           },
           error: (error) => {
@@ -100,6 +113,8 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
         this.noteService.updateNoteSubtasks(noteId, note).subscribe({
           next: (updatedNote) => {
             console.log('Note updated successfully', updatedNote);
+            this._changeDetectorRef.detectChanges(); // Ensure the view is updated
+
           },
           error: (error) => {
             console.error('Error updating note', error);
@@ -113,6 +128,8 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
         this.noteService.updateNoteLabels(noteId, note).subscribe({
           next: (updatedNote) => {
             console.log('Labels updated successfully', updatedNote);
+            this._changeDetectorRef.detectChanges(); // Ensure the view is updated
+
           },
           error: (error) => {
             console.error('Error updating labels', error);
@@ -129,15 +146,16 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        console.log(JSON.stringify(this._data.note)+ "nnn")
         this.allLabels();
         // Edit
         if ( this._data.note.id )
         {
-            // // Request the data from the server
+            // Request the data from the server
             // this._notesService.getNoteById(this._data.note.id).subscribe();
 
-            // // Get the note
-            // this.note$ = this._notesService.note$;
+            // // // Get the note
+            this.note$ = of(this._data.note);
         }
         // Add
         else
@@ -379,7 +397,10 @@ export class NotesDetailsComponent implements OnInit, OnDestroy
      */
     updateNoteDetails(note: Note): void
     {
-        this.noteChanged.next(note);
+        // this.noteChanged.next(note);
+        setTimeout(() => {
+            this.noteChanged.next(note);
+        })
     }
 
     /**
